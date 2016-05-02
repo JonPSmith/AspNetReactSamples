@@ -3,7 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactWebPack.MVC5", "ReactWebPack.MVC5\ReactWebPack.MVC5.csproj", "{8140BA2D-5A78-4686-BB64-ED05326B916B}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8140BA2D-5A78-4686-BB64-ED05326B916B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8140BA2D-5A78-4686-BB64-ED05326B916B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8140BA2D-5A78-4686-BB64-ED05326B916B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8140BA2D-5A78-4686-BB64-ED05326B916B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

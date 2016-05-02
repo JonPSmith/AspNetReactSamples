@@ -1,0 +1,211 @@
+*{
+  box-sizing: border-box;
+}
+
+html,body,#root {
+  height:100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #eee;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1{
+  font-weight: 200;
+  color: #3b414c;
+  font-size: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.app {
+  white-space: nowrap;
+  height:100%;
+}
+
+.list {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  height: 100%;
+  width: 33%;
+  padding: 0 20px;
+  overflow: auto;
+}
+
+.list:not(:last-child):after{
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 99%;
+  background: linear-gradient(to bottom, #eee 0%, #ccc 50%, #eee 100%) fixed;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  width: 100%;
+  padding: 10px 10px 10px 15px;
+  margin: 0 0 10px 0;
+  overflow: auto;
+  border: 1px solid #e5e5df;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.card__title {
+  font-weight: bold;
+  border-bottom: solid 5px transparent;
+}
+
+.card__title:before {
+  display: inline-block;
+  width: 1em;
+  content: '▸';
+}
+
+.card__title--is-open:before {
+  content: '▾';
+}
+
+.card.big {
+  position: absolute;
+  width: 450px;
+  height: 200px;
+  margin: auto;
+  padding: 15px;
+  top: 0; left: 0; bottom: 100px; right: 0;
+  z-index: 3;
+}
+
+.card.big input[type=text], textarea {
+  width : 100%;
+  margin: 3px 0;
+  font-size: 13px;
+  border: none;
+}
+
+.card.big input[type=text] {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.card.big input[type=text]:focus,
+.card.big textarea:focus {
+  outline: dashed thin #999;
+  outline-offset: 2px;
+}
+
+.card.big label {
+  margin: 3px 0 7px 3px;
+  color: #a7a7a7;
+  display: inline-block;
+  width: 60px;
+}
+
+.actions {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.card.big button {
+  font-size:14px;
+  padding: 8px;
+}
+
+.card__edit{
+  position: absolute;
+  top:10px;
+  right: 10px;
+  opacity: 0;
+  transition: opacity .25s ease-in;
+}
+
+.card:hover .card__edit{
+  opacity: 1;
+}
+
+.card__edit a{
+  text-decoration: none;
+  color: #999;
+  font-size: 17px;
+}
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0; bottom: 0; right: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.toggle-enter {
+  max-height: 0;
+  overflow: hidden;
+}
+
+.toggle-enter.toggle-enter-active {
+  max-height: 300px;
+  overflow: hidden;
+  transition: max-height .25s ease-in;
+}
+
+.toggle-leave {
+  max-height: 300px;
+  overflow: hidden;
+}
+
+.toggle-leave.toggle-leave-active {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .25s ease-out;
+}
+
+.checklist__task:first-child {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: dashed 1px #ddd;
+}
+
+.checklist__task--remove:after{
+  display: inline-block;
+  color: #d66;
+  content: "✖";
+}
+
+.checklist--add-task {
+  border: 1px dashed #bbb;
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 3px;
+}
+
+.float-button {
+  position: absolute;
+  height: 56px;
+  width: 56px;
+  z-index: 2;
+  right: 20px;
+  bottom: 20px;
+  background: #D43A2F;
+  color: white;
+  border-radius: 100%;
+  font-size: 34px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 50px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
