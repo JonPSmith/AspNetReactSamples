@@ -3,15 +3,16 @@
     Layout = "~/Views/Shared/_ReactLayout.cshtml";
 }
 <h3>
-    This is an ASP.NET MVC5 running react.js code which was built be <a href="http://webpack.github.io/docs/">WebPack</a>
+    This is an ASP.NET MVC5 web site using <a href="http://facebook.github.io/react/">React</a> code which was built be <a href="http://webpack.github.io/docs/">WebPack</a>
     with <a href="https://babeljs.io/">Babel js</a>
 </h3>
-<p>This is a react.js application taken from <a href="https://github.com/pro-react/kanban-app/tree/chapter6">Pro React GitHub</a></p>
+<p>This application was downloaded from <a href="https://github.com/pro-react/kanban-app/tree/chapter6">Pro React GitHub, Chapter 6</a></p>
 <hr/>
 
 <div id='root'>
 </div>
 
 @section scripts{
-    <script src="~/js/bundle.js"></script>
+    <script src="~/js/vendor.js"></script>
+    <script src="~/js/main.js"></script>
 }
