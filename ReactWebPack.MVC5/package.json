@@ -2,7 +2,7 @@
   "name": "kanban-app",
   "version": "0.1.0",
   "description": "Pro React sample kanban app project",
-  "author": "Cássio Zen - edited by Jon Smith",
+  "author": "Cássio Zen, edited by Jon Smith",
   "license": "MIT",
   "scripts": {
     "watch-dev": "node_modules/.bin/webpack -d --watch --colors",
