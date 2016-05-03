@@ -12,18 +12,20 @@ var vendorPackages = Object.keys(pkg.dependencies).filter(function (el) {
  * Default webpack configuration for development
  */
 var config = {
-  devtool: 'eval-source-map',
-  entry: {
-      main: path.join(__dirname, '/app/App.js'),
+    devtool: 'eval-source-map',
+    cache: true,
+    entry: {
+      main: path.join(__dirname, "app", "App.js"),
       vendor: vendorPackages
   },
   output: {
-      path: path.join(__dirname, '/js/'),
+      path: path.join(__dirname, "js"),
       filename: '[name].js',
       sourceMapFilename: "[file].map"
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({
+      new webpack.OldWatchingPlugin(),  //needed to make watch work. see http://stackoverflow.com/a/29292578/1434764
+      new webpack.optimize.CommonsChunkPlugin({
         name: 'vendor',
         filename: 'vendor.js',
         minChunks: Infinity

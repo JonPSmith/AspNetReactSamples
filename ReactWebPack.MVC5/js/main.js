@@ -6957,11 +6957,6 @@ webpackJsonp([0],{
 	        cardDetails = _react2.default.createElement(
 	          'div',
 	          { className: 'card__details' },
-	          _react2.default.createElement(
-	            'div',
-	            null,
-	            'Testing!!!!1234'
-	          ),
 	          _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: (0, _marked2.default)(this.props.description) } }),
 	          _react2.default.createElement(_CheckList2.default, { cardId: this.props.id,
 	            tasks: this.props.tasks })
