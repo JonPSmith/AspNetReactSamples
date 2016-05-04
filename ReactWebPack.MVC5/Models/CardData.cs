@@ -10,6 +10,7 @@
 // =====================================================
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -41,21 +42,62 @@ namespace ReactWebPack.MVC5.Models
 
         public static List<CardData> SeedData()
         {
+            long i = 1;
             return new List<CardData>
             {
                 new CardData
                 {
-                    id = 1,
-                    title = "Read the Book",
-                    description = "I should read the **whole** book",
-                    status = InProgressStatus,
+                    id = i++,
+                    title = "Read the article",
+                    description = "The article can be found [here](#)",
+                    status = DoneStatus,
                     color = DefaultColor,
                     tasks = new List<TaskData>()
                 },
                 new CardData
                 {
-                    id = 2,
-                    title = "Write some code",
+                    id = i++,
+                    title = "Download the example code",
+                    description = "The gitHub code can be found at [AspNetReactSamples](https://github.com/JonPSmith/AspNetReactSamples)",
+                    status = InProgressStatus,
+                    color = DefaultColor,
+                    tasks = new List<TaskData>
+                    {
+                        new TaskData
+                        {
+                            id = i++,
+                            name = "Run the ReactWebPack.MVC5 project",
+                            done = true
+                        },
+                        new TaskData
+                        {
+                            id = i++,
+                            name = "mark this as true to check it works",
+                            done = false
+                        }
+                    }
+                },
+                new CardData
+                {
+                    id = i++,
+                    title = "Install the NPM Task Runner",
+                    description = "NPM Task Runner can be found [here](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)",
+                    status = ToDoStatus,
+                    color = DefaultColor,
+                    tasks = new List<TaskData>
+                    {
+                        new TaskData
+                        {
+                            id = i++,
+                            name = "Look in Task Runner Explorer window for new commands",
+                            done = false
+                        }
+                    }
+                },
+                new CardData
+                {
+                    id = i++,
+                    title = "Play with the code",
                     description = "Code along with the samples in the book",
                     status = ToDoStatus,
                     color = DefaultColor,
@@ -63,20 +105,20 @@ namespace ReactWebPack.MVC5.Models
                     {
                         new TaskData
                         {
-                            id = 1,
-                            name = "ContactList Example",
-                            done = true
-                        },
-                        new TaskData
-                        {
-                            id = 2,
-                            name = "Kanban Example",
+                            id = i++,
+                            name = "Edit one of the react files in /app and recompile with dev-build** command",
                             done = false
                         },
                         new TaskData
                         {
-                            id = 3,
-                            name = "My own experiments",
+                            id = i++,
+                            name = "Start watch-dev and then edit a file and save. Did it recompile?",
+                            done = false
+                        },
+                        new TaskData
+                        {
+                            id = i++,
+                            name = "",
                             done = false
                         }
                     }
