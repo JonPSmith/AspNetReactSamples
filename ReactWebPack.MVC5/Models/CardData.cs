@@ -71,7 +71,7 @@ namespace ReactWebPack.MVC5.Models
                         new TaskData
                         {
                             id = i++,
-                            name = "mark this as true to check it works",
+                            name = "Mark this as true to check it works",
                             done = false
                         },
                         new TaskData
@@ -79,7 +79,13 @@ namespace ReactWebPack.MVC5.Models
                             id = i++,
                             name = "Maybe edit a card, or add a task.",
                             done = false
-                        }
+                        },
+                        new TaskData
+                        {
+                            id = i++,
+                            name = "Stop the MVC app and see how any further changes are reverted.",
+                            done = false
+                        },
                     }
                 },
                 new CardData
