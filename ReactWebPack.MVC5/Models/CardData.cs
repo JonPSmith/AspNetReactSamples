@@ -25,7 +25,7 @@ namespace ReactWebPack.MVC5.Models
         public const string DefaultColor = "#000000";
 
         // ReSharper disable InconsistentNaming
-        public int id { get; set; }
+        public long id { get; set; }
         public string title { get; set; }
         public string description { get; set; }
         public string color { get; set; }
@@ -34,7 +34,12 @@ namespace ReactWebPack.MVC5.Models
         public ICollection<TaskData> tasks { get; set; }
         // ReSharper restore InconsistentNaming
 
-        public static IEnumerable<CardData> SeedData()
+        private CardData()
+        {
+            tasks = new List<TaskData>();
+        }
+
+        public static List<CardData> SeedData()
         {
             return new List<CardData>
             {

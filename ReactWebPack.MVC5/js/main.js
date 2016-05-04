@@ -7033,6 +7033,11 @@ webpackJsonp([0],{
 	  value: true
 	});
 	exports.default = {
+	
+	  //API_URL: 'http://kanbanapi.pro-react.com';    //original value
+	
+	  API_URL: 'http://localhost:50120/api', //reads from MVC app
+	
 	  CARD: 'card',
 	
 	  FETCH_CARDS: 'fetch cards',
@@ -7309,7 +7314,13 @@ webpackJsonp([0],{
 	
 	__webpack_require__(/*! babel-polyfill */ 457);
 	
-	var API_URL = 'http://kanbanapi.pro-react.com';
+	var _constants = __webpack_require__(/*! ../constants */ 451);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//const API_URL = 'http://kanbanapi.pro-react.com';     //The API_URL has moved into the constants file
 	var API_HEADERS = {
 	  'Content-Type': 'application/json',
 	  Authorization: 'any-string-you-like'
@@ -7317,12 +7328,12 @@ webpackJsonp([0],{
 	
 	var KanbanAPI = {
 	  fetchCards: function fetchCards() {
-	    return fetch(API_URL + '/cards', { headers: API_HEADERS }).then(function (response) {
+	    return fetch(_constants2.default.API_URL + '/cards', { headers: API_HEADERS }).then(function (response) {
 	      return response.json();
 	    });
 	  },
 	  addCard: function addCard(card) {
-	    return fetch(API_URL + '/cards', {
+	    return fetch(_constants2.default.API_URL + '/cards', {
 	      method: 'post',
 	      headers: API_HEADERS,
 	      body: JSON.stringify(card)
@@ -7331,21 +7342,21 @@ webpackJsonp([0],{
 	    });
 	  },
 	  updateCard: function updateCard(card, draftCard) {
-	    return fetch(API_URL + '/cards/' + card.id, {
+	    return fetch(_constants2.default.API_URL + '/cards/' + card.id, {
 	      method: 'put',
 	      headers: API_HEADERS,
 	      body: JSON.stringify(draftCard)
 	    });
 	  },
 	  persistCardDrag: function persistCardDrag(cardId, status, index) {
-	    return fetch(API_URL + '/cards/' + cardId, {
+	    return fetch(_constants2.default.API_URL + '/cards/' + cardId, {
 	      method: 'put',
 	      headers: API_HEADERS,
 	      body: JSON.stringify({ status: status, row_order_position: index })
 	    });
 	  },
 	  addTask: function addTask(cardId, task) {
-	    return fetch(API_URL + '/cards/' + cardId + '/tasks', {
+	    return fetch(_constants2.default.API_URL + '/cards/' + cardId + '/tasks', {
 	      method: 'post',
 	      headers: API_HEADERS,
 	      body: JSON.stringify(task)
@@ -7354,13 +7365,13 @@ webpackJsonp([0],{
 	    });
 	  },
 	  deleteTask: function deleteTask(cardId, task) {
-	    return fetch(API_URL + '/cards/' + cardId + '/tasks/' + task.id, {
+	    return fetch(_constants2.default.API_URL + '/cards/' + cardId + '/tasks/' + task.id, {
 	      method: 'delete',
 	      headers: API_HEADERS
 	    });
 	  },
 	  toggleTask: function toggleTask(cardId, task) {
-	    return fetch(API_URL + '/cards/' + cardId + '/tasks/' + task.id, {
+	    return fetch(_constants2.default.API_URL + '/cards/' + cardId + '/tasks/' + task.id, {
 	      method: 'put',
 	      headers: API_HEADERS,
 	      body: JSON.stringify({ done: !task.done })

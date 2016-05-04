@@ -14,7 +14,7 @@ namespace ReactWebPack.MVC5.Models
     public class TaskData
     {
         // ReSharper disable InconsistentNaming
-        public int id { get; set; }
+        public long id { get; set; }
         public string name { get; set; }
         public bool done { get; set; }
         // ReSharper restore InconsistentNaming
