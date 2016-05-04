@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace ReactWebPack.MVC5.Models
 {
@@ -74,14 +73,20 @@ namespace ReactWebPack.MVC5.Models
                             id = i++,
                             name = "mark this as true to check it works",
                             done = false
+                        },
+                        new TaskData
+                        {
+                            id = i++,
+                            name = "Maybe edit a card, or add a task.",
+                            done = false
                         }
                     }
                 },
                 new CardData
                 {
                     id = i++,
-                    title = "Install the NPM Task Runner",
-                    description = "NPM Task Runner can be found [here](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)",
+                    title = "Install the NPM Task Runner.",
+                    description = "NPM Task Runner can be found [here](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941).",
                     status = ToDoStatus,
                     color = DefaultColor,
                     tasks = new List<TaskData>
@@ -98,7 +103,7 @@ namespace ReactWebPack.MVC5.Models
                 {
                     id = i++,
                     title = "Play with the code",
-                    description = "Code along with the samples in the book",
+                    description = "Get to know the code by editing something.",
                     status = ToDoStatus,
                     color = DefaultColor,
                     tasks = new List<TaskData>
@@ -106,7 +111,7 @@ namespace ReactWebPack.MVC5.Models
                         new TaskData
                         {
                             id = i++,
-                            name = "Edit one of the react files in /app and recompile with dev-build** command",
+                            name = "Edit one of the react files in /app and recompile with dev-build command",
                             done = false
                         },
                         new TaskData
@@ -118,7 +123,7 @@ namespace ReactWebPack.MVC5.Models
                         new TaskData
                         {
                             id = i++,
-                            name = "",
+                            name = "Have look round the application",
                             done = false
                         }
                     }
