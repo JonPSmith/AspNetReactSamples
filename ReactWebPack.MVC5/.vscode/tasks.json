@@ -1,6 +1,6 @@
 {
 	"version": "0.1.0",
-	"command": "${workspaceRoot}/node_modules/.bin/webpack",
+	"command": "${workspaceRoot}/node_modules/.bin/webpack --config webpack.config.js",
 	"isShellCommand": true,
 	"args": [
 		"--colors"

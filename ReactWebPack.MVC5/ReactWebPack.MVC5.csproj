@@ -172,14 +172,16 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="js\main.js" />
+    <Content Include="js\ScriptInclude.html" />
     <Content Include="js\vendor.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="package.json" />
     <Content Include="webpack.config.js" />
     <Content Include="js\main.js.map" />
-    <Content Include="js\vendor.js.map" />
     <Content Include=".vscode\tasks.json" />
+    <Content Include="app\scriptIncludes.template.html" />
+    <Content Include="js\vendor.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -210,8 +212,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Api\" />
-    <Folder Include="Views\ReactApi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
