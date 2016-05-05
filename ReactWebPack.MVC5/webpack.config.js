@@ -63,13 +63,7 @@ if (process.env.NODE_ENV === 'production') {
         }),
         new webpack.DefinePlugin({
           'process.env': {NODE_ENV: JSON.stringify('production')}
-        }),
-        //new HtmlWebpackPlugin({
-        //    template: path.resolve(__dirname, 'app/scriptIncludes.template.html'),
-        //    filename: 'ScriptInclude.html',
-        //    inject: false,
-        //    hash: true
-        //})
+        })
     ];
 };
 
