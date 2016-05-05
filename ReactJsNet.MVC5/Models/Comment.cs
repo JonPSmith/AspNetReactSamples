@@ -37,7 +37,7 @@ namespace ReactJsNet.MVC5.Models
                 {
                     id = i++,
                     author = "Jon Smith",
-                    text = "See [reactjs.net/](http://reactjs.net/) for more about using this approach to developing React js applications."
+                    text = "See [reactjs.net](http://reactjs.net/) for more about using this approach to developing React js applications."
                 },
                 new Comment
                 {
