@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Optimization;
+using System.Web.Optimization.React;
 
 namespace ReactJsNet.MVC5
 {
@@ -26,6 +27,15 @@ namespace ReactJsNet.MVC5
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new BabelBundle("~/bundles/react").Include(
+                // Add your JSX files here
+                "~/app/Comment.jsx",
+                "~/app/CommentBox.jsx",
+                "~/app/CommentList.jsx",
+                "~/app/CommentForm.jsx",
+                "~/app/app.jsx"
+                ));
         }
     }
 }
