@@ -5,8 +5,8 @@
   "author": "Cássio Zen, edited by Jon Smith",
   "license": "MIT",
   "scripts": {
-    "watch-dev": "webpack -d --watch --colors",
-    "dev-build": "webpack -d --config webpack.config.js --colors",
+    "watch-dev": "node_modules/.bin/webpack -d --watch --colors",
+    "dev-build": "node_modules/.bin/webpack -d --config webpack.config.js --colors",
     "prod-build": "SET NODE_ENV=production&&webpack -p --config webpack.config.js --colors"
   },
   "dependencies": {
