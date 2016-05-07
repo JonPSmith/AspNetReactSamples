@@ -1,13 +1,10 @@
 {
-  "name": "kanban-app",
-  "version": "0.1.0",
-  "description": "Example React with WebPack in ASP.NET MVC5",
-  "author": "Jon Smith",
-  "license": "MIT",
+  "version": "1.0.0",
+  "name": "reacttests",
+  "private": true,
   "scripts": {
-    "watch-dev": "webpack -d --watch --colors",
-    "dev-build": "webpack -d --config webpack.config.js --colors",
-    "prod-build": "SET NODE_ENV=production&&webpack -p --config webpack.config.js --colors"
+    "test": "karma start",
+    "mytest": "karam start"
   },
   "dependencies": {
     "flux": "2.1.1",
@@ -30,6 +27,17 @@
     "babel-preset-react": "6.5.0",
     "webpack": "1.13.0",
     "webpack-dev-server": "1.13.0",
-    "html-webpack-plugin": "2.16.0"
+    "expect": "1.19.0",
+    "jsx-loader": "0.13.2",
+    "karma": "0.13.22",
+    "karma-chrome-launcher": "1.0.1",
+    "karma-cli": "1.0.0",
+    "karma-mocha": "1.0.1",
+    "karma-sourcemap-loader": "0.3.7",
+    "karma-webpack": "1.7.0",
+    "mocha": "2.4.5",
+    "react-hot-loader": "^1.2.7",
+    "react-tools": "^0.13.3"
+
   }
 }
