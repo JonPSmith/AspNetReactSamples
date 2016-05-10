@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
   "name": "reacttests",
-  "private": true,
+  "private":  true,  
   "scripts": {
-    "test": "karma start",
-    "mytest": "karam start"
+    "RunTests": "karma start karma.conf.js",
+    "DebugTests": "karma start karma.conf.js --single-run=false"
   },
   "dependencies": {
     "flux": "2.1.1",
@@ -33,11 +33,14 @@
     "karma-chrome-launcher": "1.0.1",
     "karma-cli": "1.0.0",
     "karma-mocha": "1.0.1",
+    "karma-mocha-reporter": "2.0.3",
     "karma-sourcemap-loader": "0.3.7",
     "karma-webpack": "1.7.0",
     "mocha": "2.4.5",
     "react-hot-loader": "^1.2.7",
-    "react-tools": "^0.13.3"
-
+    "react-tools": "^0.13.3",
+    "react-addons-test-utils": "15.0.2",
+    "react-shallow-testutils": "2.0.0",
+    "jstransform": "6.0.0"
   }
 }

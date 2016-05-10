@@ -154,6 +154,8 @@
     <Content Include="app\AppDispatcher.js" />
     <Content Include="app\components\Card.js" />
     <Content Include="app\components\CardForm.js" />
+    <Content Include="app\temp\app.js" />
+    <Content Include="app\temp\CheckboxWithLabel.js" />
     <Content Include="app\components\CheckList.js" />
     <Content Include="app\components\EditCard.js" />
     <Content Include="app\components\KanbanBoard.js" />
