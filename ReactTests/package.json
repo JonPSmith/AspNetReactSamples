@@ -27,7 +27,6 @@
     "babel-preset-react": "6.5.0",
     "webpack": "1.13.0",
     "webpack-dev-server": "1.13.0",
-    "expect": "1.19.0",
     "jsx-loader": "0.13.2",
     "karma": "0.13.22",
     "karma-chrome-launcher": "1.0.1",
@@ -40,7 +39,8 @@
     "react-hot-loader": "^1.2.7",
     "react-tools": "^0.13.3",
     "react-addons-test-utils": "15.0.2",
-    "react-shallow-testutils": "2.0.0",
+    "expect": "1.19.0",
+    "enzyme": "2.3.0",
     "jstransform": "6.0.0"
   }
 }

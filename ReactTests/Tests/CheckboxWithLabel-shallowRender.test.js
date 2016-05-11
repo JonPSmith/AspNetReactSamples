@@ -1,34 +1,27 @@
-﻿import expect from 'expect';
+﻿import React from 'react';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
-import ShallowTestUtils from 'react-shallow-testutils';
+import expect from 'expect';
+import {shallow} from 'enzyme'; 
 
 import CheckboxWithLabel from '../../ReactWebPack.MVC5/app/temp/CheckboxWithLabel';
 
-const shallowRenderer = TestUtils.createRenderer(); 
-describe.only('CheckboxWithLabel', function () {
-    debugger;
-    // Render a checkbox with label in the document
-    shallowRenderer.render(<CheckboxWithLabel labelOn="On" labelOff="Off" />);
 
-    let checkbox = shallowRenderer.getRenderOutput();
+describe('CheckboxWithLabel', function () {
+    debugger;
 
     it('defaults to unchecked and Off label', () => { 
-        const expectedChildren = [
-          <input type="checkbox" checked={false} checkbox={checkbox.onChange} />,
-          "Off"];
-        expect(checkbox.props.children).toEqual(expectedChildren);
+        const wrapper = shallow(<CheckboxWithLabel labelOn="On" labelOff="Off"/>);
+        //console.log(wrapper.debug());
+        expect(wrapper.find('label').text()).toEqual('Off');
+        expect(wrapper.find('input').props().checked).toBeFalsy();
     });
 
+    it('changes the label after change', () => {
 
-    //it('changes the label after click', () => {
-    //    component.onChange();
-
-    //    // Updates the render
-    //    checkbox = shallowRenderer.getRenderOutput();
-
-    //    expect(checkbox.props.children[1]).toEqual('On');
-    //});
+        const wrapper = shallow(<CheckboxWithLabel labelOn="On" labelOff="Off" />);    
+        //console.log(wrapper.debug());
+        wrapper.find('input').simulate('change');
+        expect(wrapper.find('label').text()).toEqual('On');
+        expect(wrapper.find('input').props().checked).toBeTruthy();
+    });
 });

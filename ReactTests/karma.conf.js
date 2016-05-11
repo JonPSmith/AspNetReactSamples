@@ -33,6 +33,13 @@ module.exports = function (config) {
                     }
                 ]
             },
+            //Needed for enzyme. See http://airbnb.io/enzyme/docs/guides/karma.html
+            externals: {
+                cheerio: 'window',
+                'react/addons': true,
+                'react/lib/ExecutionEnvironment': true,
+                'react/lib/ReactContext': true
+            },
             watch: true
         },
         webpackServer: {

@@ -1,29 +1,21 @@
-﻿import expect from 'expect';
+﻿import React from 'react';
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import TestUtils from 'react-addons-test-utils';
+import expect from 'expect';
+import {shallow} from 'enzyme'; 
+
 import List from '../../ReactWebPack.MVC5/app/components/List';
 
-import ShallowTestUtils from 'react-shallow-testutils';
-const shallowRenderer = TestUtils.createRenderer();
+describe.skip('Component.List', () => {
 
-describe('Component.List', () => {
-
-    shallowRenderer.render(<List className='test' 
+    it('has title and id', () => {
+        const wrapper = shallow(<List className='test' 
               id='todo'
               title='To Do'
               cards= {[]} />);
+    //console.log(wrapper.debug());
+    expect(wrapper.contains(<div className="test" />)).toBeTruthy();
+    expect(wrapper.contains(<h1>To Do</h1>)).toBeTruthy();
 
-    let list = shallowRenderer.getRenderOutput();
-
-    it('has title and id', () => {
-        const expectedChildren = [<List className='test' 
-              id='todo'
-              title='To Do'
-              cards= {[]} />];
-        console.log(JSON.stringify(list.props.children));
-        expect(list.props.children).toEqual(expectedChildren);
     });
 
 });
