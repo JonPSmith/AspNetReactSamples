@@ -39,7 +39,7 @@ module.exports = function (config) {
                     }
                 ]
             },
-            //Needed for enzyme working with React 0.15.0. See http://airbnb.io/enzyme/docs/guides/webpack.html#react-15-compatability 
+            //Needed for enzyme working with webpack & React 0.15.0. See http://airbnb.io/enzyme/docs/guides/webpack.html#react-15-compatability 
             externals: {
                 'react/addons': true,
                 'react/lib/ExecutionEnvironment': true,
