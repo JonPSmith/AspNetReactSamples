@@ -181,7 +181,6 @@
     <Content Include="package.json" />
     <Content Include="webpack.config.js" />
     <Content Include="js\main.js.map" />
-    <Content Include=".vscode\tasks.json" />
     <Content Include="js\vendor.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
