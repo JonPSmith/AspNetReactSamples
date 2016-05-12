@@ -1,4 +1,4 @@
-﻿
+﻿// see https://github.com/lelandrichardson/enzyme-example-karma-webpack/blob/master/karma.conf.js (but note extra externals with 0.15.0 React)
 var webpack = require('webpack');
 
 module.exports = function (config) {
@@ -30,12 +30,17 @@ module.exports = function (config) {
                         query: {
                             presets: ['es2015', 'react']
                         }
+                    },
+                    //See https://github.com/airbnb/enzyme/issues/309 as to why json loader is needed. 
+                    //I had to add this when I tried to use enzyme's 'render', which uses Cherrio
+                    {
+                        test: /\.json$/,
+                        loader: 'json',
                     }
                 ]
             },
             //Needed for enzyme. See http://airbnb.io/enzyme/docs/guides/karma.html
             externals: {
-                cheerio: 'window',
                 'react/addons': true,
                 'react/lib/ExecutionEnvironment': true,
                 'react/lib/ReactContext': true
