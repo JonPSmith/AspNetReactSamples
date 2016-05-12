@@ -5,17 +5,21 @@ import {shallow} from 'enzyme';
 
 import List from '../../ReactWebPack.MVC5/app/components/List';
 
-describe.skip('Component.List', () => {
-
-    it('has title and id', () => {
-        const wrapper = shallow(<List className='test' 
-              id='todo'
-              title='To Do'
-              cards= {[]} />);
-    //console.log(wrapper.debug());
-    expect(wrapper.contains(<div className="test" />)).toBeTruthy();
-    expect(wrapper.contains(<h1>To Do</h1>)).toBeTruthy();
-
+describe('Component.List', () => {
+    describe('shallow render', () => {
+        it('froms correct html',
+        () => {
+            const OrgList = List.DecoratedComponent;
+            // Stub the React DnD connector functions with an identity function
+            const identity = function(el) { return el; };
+            const wrapper = shallow(<OrgList
+                id='todo'
+                title='To Do'
+                cards= {[]}
+                connectDropTarget={identity}/>);
+            //console.log(wrapper.debug());
+            expect(wrapper.html()).toEqual('<div class="list"><h1>To Do</h1></div>');
+            debugger;
+        });
     });
-
 });

@@ -51,7 +51,6 @@
     <Content Include="tests.webpack.js" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".babelrc" />
     <None Include="package.json" />
   </ItemGroup>
   <ItemGroup />

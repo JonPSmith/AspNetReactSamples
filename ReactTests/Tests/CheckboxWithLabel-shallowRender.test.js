@@ -7,7 +7,6 @@ import CheckboxWithLabel from '../../ReactWebPack.MVC5/app/temp/CheckboxWithLabe
 
 
 describe('CheckboxWithLabel', function () {
-    debugger;
 
     it('defaults to unchecked and Off label', () => { 
         const wrapper = shallow(<CheckboxWithLabel labelOn="On" labelOff="Off"/>);
@@ -16,7 +15,7 @@ describe('CheckboxWithLabel', function () {
         expect(wrapper.find('input').props().checked).toBeFalsy();
     });
 
-    it('changes the label after change', () => {
+    it('changes the label text after change event', () => {
 
         const wrapper = shallow(<CheckboxWithLabel labelOn="On" labelOff="Off" />);    
         //console.log(wrapper.debug());

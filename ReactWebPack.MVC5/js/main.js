@@ -24,11 +24,11 @@ webpackJsonp([0],{
 	
 	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
 	
-	var _EditCard = __webpack_require__(/*! ./components/EditCard */ 761);
+	var _EditCard = __webpack_require__(/*! ./components/EditCard */ 773);
 	
 	var _EditCard2 = _interopRequireDefault(_EditCard);
 	
-	var _NewCard = __webpack_require__(/*! ./components/NewCard */ 764);
+	var _NewCard = __webpack_require__(/*! ./components/NewCard */ 776);
 	
 	var _NewCard2 = _interopRequireDefault(_NewCard);
 	
@@ -75,11 +75,11 @@ webpackJsonp([0],{
 	
 	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 454);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 768);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
-	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 758);
+	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 770);
 	
 	var _CardStore2 = _interopRequireDefault(_CardStore);
 	
@@ -6669,7 +6669,7 @@ webpackJsonp([0],{
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 168);
 	
-	var _List = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./List\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _List = __webpack_require__(/*! ./List */ 454);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
@@ -6734,6 +6734,652 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 454:
+/*!********************************!*\
+  !*** ./app/components/List.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDnd = __webpack_require__(/*! react-dnd */ 251);
+	
+	var _Card = __webpack_require__(/*! ./Card */ 455);
+	
+	var _Card2 = _interopRequireDefault(_Card);
+	
+	var _constants = __webpack_require__(/*! ../constants */ 464);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 768);
+	
+	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var listTargetSpec = {
+	  hover: function hover(props, monitor) {
+	    var dragged = monitor.getItem();
+	    _CardActionCreators2.default.updateCardStatus(dragged.id, props.id);
+	  }
+	};
+	
+	function collect(connect, monitor) {
+	  return {
+	    connectDropTarget: connect.dropTarget()
+	  };
+	}
+	
+	var List = function (_Component) {
+	  _inherits(List, _Component);
+	
+	  function List() {
+	    _classCallCheck(this, List);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(List).apply(this, arguments));
+	  }
+	
+	  _createClass(List, [{
+	    key: 'render',
+	    value: function render() {
+	      var connectDropTarget = this.props.connectDropTarget;
+	
+	
+	      var cards = this.props.cards.map(function (card) {
+	        return _react2.default.createElement(_Card2.default, _extends({ key: card.id }, card));
+	      });
+	
+	      return connectDropTarget(_react2.default.createElement(
+	        'div',
+	        { className: 'list' },
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          this.props.title
+	        ),
+	        cards
+	      ));
+	    }
+	  }]);
+	
+	  return List;
+	}(_react.Component);
+	
+	;
+	List.propTypes = {
+	  title: _react.PropTypes.string.isRequired,
+	  cards: _react.PropTypes.arrayOf(_react.PropTypes.object),
+	  connectDropTarget: _react.PropTypes.func.isRequired
+	};
+	
+	exports.default = (0, _reactDnd.DropTarget)(_constants2.default.CARD, listTargetSpec, collect)(List);
+
+/***/ },
+
+/***/ 455:
+/*!********************************!*\
+  !*** ./app/components/Card.js ***!
+  \********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactAddonsCssTransitionGroup = __webpack_require__(/*! react-addons-css-transition-group */ 456);
+	
+	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
+	
+	var _marked = __webpack_require__(/*! marked */ 463);
+	
+	var _marked2 = _interopRequireDefault(_marked);
+	
+	var _reactDnd = __webpack_require__(/*! react-dnd */ 251);
+	
+	var _constants = __webpack_require__(/*! ../constants */ 464);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	var _CheckList = __webpack_require__(/*! ./CheckList */ 465);
+	
+	var _CheckList2 = _interopRequireDefault(_CheckList);
+	
+	var _reactRouter = __webpack_require__(/*! react-router */ 168);
+	
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 768);
+	
+	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var titlePropType = function titlePropType(props, propName, componentName) {
+	  if (props[propName]) {
+	    var value = props[propName];
+	    if (typeof value !== 'string' || value.length > 80) {
+	      return new Error(propName + ' in ' + componentName + ' is longer than 80 characters');
+	    }
+	  }
+	};
+	
+	var cardDragSpec = {
+	  beginDrag: function beginDrag(props) {
+	    return {
+	      id: props.id,
+	      status: props.status
+	    };
+	  },
+	  endDrag: function endDrag(props) {
+	    _CardActionCreators2.default.persistCardDrag(props);
+	  }
+	};
+	
+	var cardDropSpec = {
+	  hover: function hover(props, monitor) {
+	    var draggedId = monitor.getItem().id;
+	    if (props.id !== draggedId) {
+	      _CardActionCreators2.default.updateCardPosition(draggedId, props.id);
+	    }
+	  }
+	};
+	
+	var collectDrag = function collectDrag(connect, monitor) {
+	  return {
+	    connectDragSource: connect.dragSource()
+	  };
+	};
+	
+	var collectDrop = function collectDrop(connect, monitor) {
+	  return {
+	    connectDropTarget: connect.dropTarget()
+	  };
+	};
+	
+	var Card = function (_Component) {
+	  _inherits(Card, _Component);
+	
+	  function Card() {
+	    _classCallCheck(this, Card);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Card).apply(this, arguments));
+	  }
+	
+	  _createClass(Card, [{
+	    key: 'toggleDetails',
+	    value: function toggleDetails() {
+	      _CardActionCreators2.default.toggleCardDetails(this.props.id);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _props = this.props;
+	      var connectDragSource = _props.connectDragSource;
+	      var connectDropTarget = _props.connectDropTarget;
+	
+	
+	      var cardDetails = void 0;
+	      if (this.props.showDetails !== false) {
+	        cardDetails = _react2.default.createElement(
+	          'div',
+	          { className: 'card__details' },
+	          _react2.default.createElement('span', { dangerouslySetInnerHTML: { __html: (0, _marked2.default)(this.props.description) } }),
+	          _react2.default.createElement(_CheckList2.default, { cardId: this.props.id,
+	            tasks: this.props.tasks })
+	        );
+	      }
+	
+	      var sideColor = {
+	        position: 'absolute',
+	        zIndex: -1,
+	        top: 0,
+	        bottom: 0,
+	        left: 0,
+	        width: 7,
+	        backgroundColor: this.props.color
+	      };
+	
+	      return connectDropTarget(connectDragSource(_react2.default.createElement(
+	        'div',
+	        { className: 'card' },
+	        _react2.default.createElement('div', { style: sideColor }),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'card__edit' },
+	          _react2.default.createElement(
+	            _reactRouter.Link,
+	            { to: '/edit/' + this.props.id },
+	            '✎'
+	          )
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: this.props.showDetails !== false ? "card__title card__title--is-open" : "card__title", onClick: this.toggleDetails.bind(this) },
+	          this.props.title
+	        ),
+	        _react2.default.createElement(
+	          _reactAddonsCssTransitionGroup2.default,
+	          { transitionName: 'toggle',
+	            transitionEnterTimeout: 250,
+	            transitionLeaveTimeout: 250 },
+	          cardDetails
+	        )
+	      )));
+	    }
+	  }]);
+	
+	  return Card;
+	}(_react.Component);
+	
+	Card.propTypes = {
+	  id: _react.PropTypes.number,
+	  title: titlePropType,
+	  description: _react.PropTypes.string,
+	  color: _react.PropTypes.string,
+	  tasks: _react.PropTypes.arrayOf(_react.PropTypes.object),
+	  connectDragSource: _react.PropTypes.func.isRequired,
+	  connectDropTarget: _react.PropTypes.func.isRequired
+	};
+	
+	var dragHighOrderCard = (0, _reactDnd.DragSource)(_constants2.default.CARD, cardDragSpec, collectDrag)(Card);
+	var dragDropHighOrderCard = (0, _reactDnd.DropTarget)(_constants2.default.CARD, cardDropSpec, collectDrop)(dragHighOrderCard);
+	exports.default = dragDropHighOrderCard;
+
+/***/ },
+
+/***/ 464:
+/*!**************************!*\
+  !*** ./app/constants.js ***!
+  \**************************/
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	
+	  //API_URL: 'http://kanbanapi.pro-react.com';    //original value
+	
+	  API_URL: 'http://localhost:50120/api', //reads from MVC app
+	
+	  CARD: 'card',
+	
+	  FETCH_CARDS: 'fetch cards',
+	  FETCH_CARDS_SUCCESS: 'fetch cards success',
+	  FETCH_CARDS_ERROR: 'fetch cards error',
+	
+	  TOGGLE_CARD_DETAILS: 'toggle card details',
+	
+	  CREATE_CARD: 'create card',
+	  CREATE_CARD_SUCCESS: 'create card success',
+	  CREATE_CARD_ERROR: 'create card error',
+	
+	  UPDATE_CARD: 'update card',
+	  UPDATE_CARD_SUCCESS: 'update card success',
+	  UPDATE_CARD_ERROR: 'update card error',
+	
+	  UPDATE_CARD_STATUS: 'update card status',
+	
+	  UPDATE_CARD_POSITION: 'update card position',
+	
+	  PERSIST_CARD_DRAG: 'persist card drag',
+	  PERSIST_CARD_DRAG_SUCCESS: 'persist card drag success',
+	  PERSIST_CARD_DRAG_ERROR: 'persist card drag error',
+	
+	  CREATE_DRAFT: 'create draft',
+	  UPDATE_DRAFT: 'update draft',
+	
+	  CREATE_TASK: 'create task',
+	  CREATE_TASK_SUCCESS: 'create task success',
+	  CREATE_TASK_ERROR: 'create task error',
+	
+	  DELETE_TASK: 'delete task',
+	  DELETE_TASK_SUCCESS: 'delete task success',
+	  DELETE_TASK_ERROR: 'delete task error',
+	
+	  TOGGLE_TASK: 'toggle task',
+	  TOGGLE_TASK_SUCCESS: 'toggle task success',
+	  TOGGLE_TASK_ERROR: 'toggle task error'
+	
+	};
+
+/***/ },
+
+/***/ 465:
+/*!*************************************!*\
+  !*** ./app/components/CheckList.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _TaskActionCreators = __webpack_require__(/*! ../actions/TaskActionCreators */ 466);
+	
+	var _TaskActionCreators2 = _interopRequireDefault(_TaskActionCreators);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CheckList = function (_Component) {
+	  _inherits(CheckList, _Component);
+	
+	  function CheckList() {
+	    _classCallCheck(this, CheckList);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CheckList).apply(this, arguments));
+	  }
+	
+	  _createClass(CheckList, [{
+	    key: 'checkInputKeyPress',
+	    value: function checkInputKeyPress(evt) {
+	      if (evt.key === 'Enter') {
+	        var newTask = { id: Date.now(), name: evt.target.value, done: false };
+	        _TaskActionCreators2.default.addTask(this.props.cardId, newTask);
+	        evt.target.value = '';
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var tasks = this.props.tasks.map(function (task, taskIndex) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: task.id, className: 'checklist__task' },
+	          _react2.default.createElement('input', { type: 'checkbox',
+	            checked: task.done,
+	            onChange: _TaskActionCreators2.default.toggleTask.bind(null, _this2.props.cardId, task, taskIndex) }),
+	          task.name,
+	          ' ',
+	          _react2.default.createElement('a', { href: '#',
+	            className: 'checklist__task--remove',
+	            onClick: _TaskActionCreators2.default.deleteTask.bind(null, _this2.props.cardId, task, taskIndex) })
+	        );
+	      });
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'checklist' },
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          tasks
+	        ),
+	        _react2.default.createElement('input', { type: 'text',
+	          className: 'checklist--add-task',
+	          placeholder: 'Type then hit Enter to add a task',
+	          onKeyPress: this.checkInputKeyPress.bind(this) })
+	      );
+	    }
+	  }]);
+	
+	  return CheckList;
+	}(_react.Component);
+	
+	CheckList.propTypes = {
+	  cardId: _react.PropTypes.number,
+	  tasks: _react.PropTypes.arrayOf(_react.PropTypes.object)
+	};
+	exports.default = CheckList;
+
+/***/ },
+
+/***/ 466:
+/*!*******************************************!*\
+  !*** ./app/actions/TaskActionCreators.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 467);
+	
+	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
+	
+	var _constants = __webpack_require__(/*! ../constants */ 464);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 766);
+	
+	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var TaskActionCreators = {
+	  addTask: function addTask(cardId, task) {
+	    _AppDispatcher2.default.dispatchAsync(_KanbanApi2.default.addTask(cardId, task), {
+	      request: _constants2.default.CREATE_TASK,
+	      success: _constants2.default.CREATE_TASK_SUCCESS,
+	      failure: _constants2.default.CREATE_TASK_ERROR
+	    }, { cardId: cardId, task: task });
+	  },
+	  deleteTask: function deleteTask(cardId, task, taskIndex) {
+	    _AppDispatcher2.default.dispatchAsync(_KanbanApi2.default.deleteTask(cardId, task), {
+	      request: _constants2.default.DELETE_TASK,
+	      success: _constants2.default.DELETE_TASK_SUCCESS,
+	      failure: _constants2.default.DELETE_TASK_ERROR
+	    }, { cardId: cardId, task: task, taskIndex: taskIndex });
+	  },
+	  toggleTask: function toggleTask(cardId, task, taskIndex) {
+	    _AppDispatcher2.default.dispatchAsync(_KanbanApi2.default.toggleTask(cardId, task), {
+	      request: _constants2.default.TOGGLE_TASK,
+	      success: _constants2.default.TOGGLE_TASK_SUCCESS,
+	      failure: _constants2.default.TOGGLE_TASK_ERROR
+	    }, { cardId: cardId, task: task, taskIndex: taskIndex });
+	  }
+	};
+	
+	exports.default = TaskActionCreators;
+
+/***/ },
+
+/***/ 467:
+/*!******************************!*\
+  !*** ./app/AppDispatcher.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _flux = __webpack_require__(/*! flux */ 468);
+	
+	__webpack_require__(/*! babel-polyfill */ 470);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AppDispatcher = function (_Dispatcher) {
+	  _inherits(AppDispatcher, _Dispatcher);
+	
+	  function AppDispatcher() {
+	    _classCallCheck(this, AppDispatcher);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AppDispatcher).apply(this, arguments));
+	  }
+	
+	  _createClass(AppDispatcher, [{
+	    key: 'dispatchAsync',
+	
+	    /**
+	    * Dispatches three actions for an async operation represented by promise.
+	    */
+	    value: function dispatchAsync(promise, types, payload) {
+	      var _this2 = this;
+	
+	      var request = types.request;
+	      var success = types.success;
+	      var failure = types.failure;
+	
+	      this.dispatch({ type: request, payload: Object.assign({}, payload) });
+	      promise.then(function (response) {
+	        return _this2.dispatch({
+	          type: success,
+	          payload: Object.assign({}, payload, { response: response })
+	        });
+	      }, function (error) {
+	        return _this2.dispatch({
+	          type: failure,
+	          payload: Object.assign({}, payload, { error: error })
+	        });
+	      });
+	    }
+	  }]);
+	
+	  return AppDispatcher;
+	}(_flux.Dispatcher);
+	
+	exports.default = new AppDispatcher();
+
+/***/ },
+
+/***/ 766:
+/*!******************************!*\
+  !*** ./app/api/KanbanApi.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	__webpack_require__(/*! whatwg-fetch */ 767);
+	
+	__webpack_require__(/*! babel-polyfill */ 470);
+	
+	var _constants = __webpack_require__(/*! ../constants */ 464);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	//const API_URL = 'http://kanbanapi.pro-react.com';     //The API_URL has moved into the constants file
+	var API_HEADERS = {
+	  'Content-Type': 'application/json',
+	  Authorization: 'any-string-you-like'
+	};
+	
+	var KanbanAPI = {
+	  fetchCards: function fetchCards() {
+	    return fetch(_constants2.default.API_URL + '/cards', { headers: API_HEADERS }).then(function (response) {
+	      return response.json();
+	    });
+	  },
+	  addCard: function addCard(card) {
+	    return fetch(_constants2.default.API_URL + '/cards', {
+	      method: 'post',
+	      headers: API_HEADERS,
+	      body: JSON.stringify(card)
+	    }).then(function (response) {
+	      return response.json();
+	    });
+	  },
+	  updateCard: function updateCard(card, draftCard) {
+	    return fetch(_constants2.default.API_URL + '/cards/' + card.id, {
+	      method: 'put',
+	      headers: API_HEADERS,
+	      body: JSON.stringify(draftCard)
+	    });
+	  },
+	  persistCardDrag: function persistCardDrag(cardId, status, index) {
+	    return fetch(_constants2.default.API_URL + '/cards/' + cardId, {
+	      method: 'put',
+	      headers: API_HEADERS,
+	      body: JSON.stringify({ status: status, row_order_position: index })
+	    });
+	  },
+	  addTask: function addTask(cardId, task) {
+	    return fetch(_constants2.default.API_URL + '/cards/' + cardId + '/tasks', {
+	      method: 'post',
+	      headers: API_HEADERS,
+	      body: JSON.stringify(task)
+	    }).then(function (response) {
+	      return response.json();
+	    });
+	  },
+	  deleteTask: function deleteTask(cardId, task) {
+	    return fetch(_constants2.default.API_URL + '/cards/' + cardId + '/tasks/' + task.id, {
+	      method: 'delete',
+	      headers: API_HEADERS
+	    });
+	  },
+	  toggleTask: function toggleTask(cardId, task) {
+	    return fetch(_constants2.default.API_URL + '/cards/' + cardId + '/tasks/' + task.id, {
+	      method: 'put',
+	      headers: API_HEADERS,
+	      body: JSON.stringify({ done: !task.done })
+	    });
+	  }
+	};
+	
+	exports.default = KanbanAPI;
+
+/***/ },
+
+/***/ 768:
 /*!*******************************************!*\
   !*** ./app/actions/CardActionCreators.js ***!
   \*******************************************/
@@ -6745,21 +7391,21 @@ webpackJsonp([0],{
 	  value: true
 	});
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 455);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 467);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
-	var _constants = __webpack_require__(/*! ../constants */ 754);
+	var _constants = __webpack_require__(/*! ../constants */ 464);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 755);
+	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 766);
 	
 	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
 	
-	var _utils = __webpack_require__(/*! ../utils */ 757);
+	var _utils = __webpack_require__(/*! ../utils */ 769);
 	
-	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 758);
+	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 770);
 	
 	var _CardStore2 = _interopRequireDefault(_CardStore);
 	
@@ -6836,220 +7482,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 455:
-/*!******************************!*\
-  !*** ./app/AppDispatcher.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _flux = __webpack_require__(/*! flux */ 456);
-	
-	__webpack_require__(/*! babel-polyfill */ 458);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var AppDispatcher = function (_Dispatcher) {
-	  _inherits(AppDispatcher, _Dispatcher);
-	
-	  function AppDispatcher() {
-	    _classCallCheck(this, AppDispatcher);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AppDispatcher).apply(this, arguments));
-	  }
-	
-	  _createClass(AppDispatcher, [{
-	    key: 'dispatchAsync',
-	
-	    /**
-	    * Dispatches three actions for an async operation represented by promise.
-	    */
-	    value: function dispatchAsync(promise, types, payload) {
-	      var _this2 = this;
-	
-	      var request = types.request;
-	      var success = types.success;
-	      var failure = types.failure;
-	
-	      this.dispatch({ type: request, payload: Object.assign({}, payload) });
-	      promise.then(function (response) {
-	        return _this2.dispatch({
-	          type: success,
-	          payload: Object.assign({}, payload, { response: response })
-	        });
-	      }, function (error) {
-	        return _this2.dispatch({
-	          type: failure,
-	          payload: Object.assign({}, payload, { error: error })
-	        });
-	      });
-	    }
-	  }]);
-	
-	  return AppDispatcher;
-	}(_flux.Dispatcher);
-	
-	exports.default = new AppDispatcher();
-
-/***/ },
-
-/***/ 754:
-/*!**************************!*\
-  !*** ./app/constants.js ***!
-  \**************************/
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = {
-	
-	  //API_URL: 'http://kanbanapi.pro-react.com';    //original value
-	
-	  API_URL: 'http://localhost:50120/api', //reads from MVC app
-	
-	  CARD: 'card',
-	
-	  FETCH_CARDS: 'fetch cards',
-	  FETCH_CARDS_SUCCESS: 'fetch cards success',
-	  FETCH_CARDS_ERROR: 'fetch cards error',
-	
-	  TOGGLE_CARD_DETAILS: 'toggle card details',
-	
-	  CREATE_CARD: 'create card',
-	  CREATE_CARD_SUCCESS: 'create card success',
-	  CREATE_CARD_ERROR: 'create card error',
-	
-	  UPDATE_CARD: 'update card',
-	  UPDATE_CARD_SUCCESS: 'update card success',
-	  UPDATE_CARD_ERROR: 'update card error',
-	
-	  UPDATE_CARD_STATUS: 'update card status',
-	
-	  UPDATE_CARD_POSITION: 'update card position',
-	
-	  PERSIST_CARD_DRAG: 'persist card drag',
-	  PERSIST_CARD_DRAG_SUCCESS: 'persist card drag success',
-	  PERSIST_CARD_DRAG_ERROR: 'persist card drag error',
-	
-	  CREATE_DRAFT: 'create draft',
-	  UPDATE_DRAFT: 'update draft',
-	
-	  CREATE_TASK: 'create task',
-	  CREATE_TASK_SUCCESS: 'create task success',
-	  CREATE_TASK_ERROR: 'create task error',
-	
-	  DELETE_TASK: 'delete task',
-	  DELETE_TASK_SUCCESS: 'delete task success',
-	  DELETE_TASK_ERROR: 'delete task error',
-	
-	  TOGGLE_TASK: 'toggle task',
-	  TOGGLE_TASK_SUCCESS: 'toggle task success',
-	  TOGGLE_TASK_ERROR: 'toggle task error'
-	
-	};
-
-/***/ },
-
-/***/ 755:
-/*!******************************!*\
-  !*** ./app/api/KanbanApi.js ***!
-  \******************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	__webpack_require__(/*! whatwg-fetch */ 756);
-	
-	__webpack_require__(/*! babel-polyfill */ 458);
-	
-	var _constants = __webpack_require__(/*! ../constants */ 754);
-	
-	var _constants2 = _interopRequireDefault(_constants);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	//const API_URL = 'http://kanbanapi.pro-react.com';     //The API_URL has moved into the constants file
-	var API_HEADERS = {
-	  'Content-Type': 'application/json',
-	  Authorization: 'any-string-you-like'
-	};
-	
-	var KanbanAPI = {
-	  fetchCards: function fetchCards() {
-	    return fetch(_constants2.default.API_URL + '/cards', { headers: API_HEADERS }).then(function (response) {
-	      return response.json();
-	    });
-	  },
-	  addCard: function addCard(card) {
-	    return fetch(_constants2.default.API_URL + '/cards', {
-	      method: 'post',
-	      headers: API_HEADERS,
-	      body: JSON.stringify(card)
-	    }).then(function (response) {
-	      return response.json();
-	    });
-	  },
-	  updateCard: function updateCard(card, draftCard) {
-	    return fetch(_constants2.default.API_URL + '/cards/' + card.id, {
-	      method: 'put',
-	      headers: API_HEADERS,
-	      body: JSON.stringify(draftCard)
-	    });
-	  },
-	  persistCardDrag: function persistCardDrag(cardId, status, index) {
-	    return fetch(_constants2.default.API_URL + '/cards/' + cardId, {
-	      method: 'put',
-	      headers: API_HEADERS,
-	      body: JSON.stringify({ status: status, row_order_position: index })
-	    });
-	  },
-	  addTask: function addTask(cardId, task) {
-	    return fetch(_constants2.default.API_URL + '/cards/' + cardId + '/tasks', {
-	      method: 'post',
-	      headers: API_HEADERS,
-	      body: JSON.stringify(task)
-	    }).then(function (response) {
-	      return response.json();
-	    });
-	  },
-	  deleteTask: function deleteTask(cardId, task) {
-	    return fetch(_constants2.default.API_URL + '/cards/' + cardId + '/tasks/' + task.id, {
-	      method: 'delete',
-	      headers: API_HEADERS
-	    });
-	  },
-	  toggleTask: function toggleTask(cardId, task) {
-	    return fetch(_constants2.default.API_URL + '/cards/' + cardId + '/tasks/' + task.id, {
-	      method: 'put',
-	      headers: API_HEADERS,
-	      body: JSON.stringify({ done: !task.done })
-	    });
-	  }
-	};
-	
-	exports.default = KanbanAPI;
-
-/***/ },
-
-/***/ 757:
+/***/ 769:
 /*!**********************!*\
   !*** ./app/utils.js ***!
   \**********************/
@@ -7062,7 +7495,7 @@ webpackJsonp([0],{
 	});
 	exports.throttle = undefined;
 	
-	__webpack_require__(/*! babel-polyfill */ 458);
+	__webpack_require__(/*! babel-polyfill */ 470);
 	
 	var throttle = exports.throttle = function throttle(func, wait) {
 	  var context = void 0,
@@ -7095,7 +7528,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 758:
+/***/ 770:
 /*!*********************************!*\
   !*** ./app/stores/CardStore.js ***!
   \*********************************/
@@ -7109,21 +7542,21 @@ webpackJsonp([0],{
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 455);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 467);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
-	var _constants = __webpack_require__(/*! ../constants */ 754);
+	var _constants = __webpack_require__(/*! ../constants */ 464);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
 	var _utils = __webpack_require__(/*! flux/utils */ 232);
 	
-	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 759);
+	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 771);
 	
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 	
-	__webpack_require__(/*! babel-polyfill */ 458);
+	__webpack_require__(/*! babel-polyfill */ 470);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -7314,7 +7747,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 761:
+/***/ 773:
 /*!************************************!*\
   !*** ./app/components/EditCard.js ***!
   \************************************/
@@ -7332,25 +7765,25 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _CardForm = __webpack_require__(/*! ./CardForm */ 762);
+	var _CardForm = __webpack_require__(/*! ./CardForm */ 774);
 	
 	var _CardForm2 = _interopRequireDefault(_CardForm);
 	
-	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 758);
+	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 770);
 	
 	var _CardStore2 = _interopRequireDefault(_CardStore);
 	
-	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 763);
+	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 775);
 	
 	var _DraftStore2 = _interopRequireDefault(_DraftStore);
 	
 	var _utils = __webpack_require__(/*! flux/utils */ 232);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 454);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 768);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
-	__webpack_require__(/*! babel-polyfill */ 458);
+	__webpack_require__(/*! babel-polyfill */ 470);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -7423,7 +7856,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 762:
+/***/ 774:
 /*!************************************!*\
   !*** ./app/components/CardForm.js ***!
   \************************************/
@@ -7566,7 +7999,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 763:
+/***/ 775:
 /*!**********************************!*\
   !*** ./app/stores/DraftStore.js ***!
   \**********************************/
@@ -7580,17 +8013,17 @@ webpackJsonp([0],{
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 455);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 467);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
-	var _constants = __webpack_require__(/*! ../constants */ 754);
+	var _constants = __webpack_require__(/*! ../constants */ 464);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
 	var _utils = __webpack_require__(/*! flux/utils */ 232);
 	
-	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 759);
+	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 771);
 	
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 	
@@ -7660,7 +8093,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 764:
+/***/ 776:
 /*!***********************************!*\
   !*** ./app/components/NewCard.js ***!
   \***********************************/
@@ -7678,17 +8111,17 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _CardForm = __webpack_require__(/*! ./CardForm */ 762);
+	var _CardForm = __webpack_require__(/*! ./CardForm */ 774);
 	
 	var _CardForm2 = _interopRequireDefault(_CardForm);
 	
-	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 763);
+	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 775);
 	
 	var _DraftStore2 = _interopRequireDefault(_DraftStore);
 	
 	var _utils = __webpack_require__(/*! flux/utils */ 232);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 454);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 768);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
