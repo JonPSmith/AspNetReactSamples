@@ -37,13 +37,14 @@ namespace ReactJsNet.MVC5.Models
                 {
                     id = i++,
                     author = "Jon Smith",
-                    text = "See [reactjs.net](http://reactjs.net/) for more about using this approach to developing React js applications."
+                    text = "See [reactjs.net](http://reactjs.net/) for more about using this approach to developing **ReactJS** applications."
                 },
                 new Comment
                 {
                     id = i++,
                     author = "Jon Smith",
-                    text = "More on the example code I used can be found [here](http://facebook.github.io/react/docs/tutorial.html)"
+                    text = "More on the example code I used can be found in the [React Tutorial](http://facebook.github.io/react/docs/tutorial.html).  \n" +
+                    "*Note: try stopping the MVC application and notice that any new comment is removed once the POST times out.*"
                 }
             };
         }

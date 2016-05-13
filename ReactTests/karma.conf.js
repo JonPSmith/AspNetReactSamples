@@ -3,7 +3,7 @@ var webpack = require('webpack');
 
 module.exports = function (config) {
     config.set({
-        browsers: ['ChromeCanary'],
+        browsers: ['ChromeCanary', 'Chrome'],
         singleRun: true,
         frameworks: ['mocha'],
         files: [
