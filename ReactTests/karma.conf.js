@@ -1,9 +1,9 @@
-﻿// see https://github.com/lelandrichardson/enzyme-example-karma-webpack/blob/master/karma.conf.js (but note extra externals with 0.15.0 React)
+﻿// see https://github.com/lelandrichardson/enzyme-example-karma-webpack/blob/master/karma.conf.js (but note extra externals with 15.0.0 React)
 var webpack = require('webpack');
 
 module.exports = function (config) {
     config.set({
-        browsers: ['ChromeCanary', 'Chrome'],
+        browsers: ['Chrome'],
         singleRun: true,
         frameworks: ['mocha'],
         files: [
@@ -39,7 +39,7 @@ module.exports = function (config) {
                     }
                 ]
             },
-            //Needed for enzyme working with webpack & React 0.15.0. See http://airbnb.io/enzyme/docs/guides/webpack.html#react-15-compatability 
+            //Needed for enzyme working with webpack & React 15.0.x. See http://airbnb.io/enzyme/docs/guides/webpack.html#react-15-compatability 
             externals: {
                 'react/addons': true,
                 'react/lib/ExecutionEnvironment': true,

@@ -165,6 +165,7 @@
     <Content Include="app\constants.js" />
     <Content Include="app\stores\CardStore.js" />
     <Content Include="app\stores\DraftStore.js" />
+    <Content Include="app\temp\Decoded CheckboxWithLabel.js" />
     <Content Include="app\utils.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
