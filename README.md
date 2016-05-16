@@ -35,7 +35,7 @@ the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](
 
 If you clone/copy this GitHub Repository then you need to:
 
-### 1. Make sure your computer is set up properly
+#### 1. Make sure your computer is set up properly
 
 I assume you are running Visual Studio 2015, which includes Node.js.
 *NOTE: You can use Visual Studio 2013, but you need to install the 
@@ -43,13 +43,13 @@ I assume you are running Visual Studio 2015, which includes Node.js.
 for VS 2013, which I believe includes Node.js.*
 
 You should also load the [NPM Task Runner](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)
-extension.
+extension, which you need to run the build/debug scripts from Visual Studio.
 
 If you want to use [Visual Studio Code](https://code.visualstudio.com/) 
 to run some of the build/test command scripts then you need load the extension
 [VSCode NPM Scripts](https://github.com/Microsoft/vscode-npm-scripts) extension.
 
-### 2. Look at the README.md file for the project you want to run
+#### 2. Look at the README.md file for the project you want to run
 
 Each project has its own README.md file which tells you how to:
 
