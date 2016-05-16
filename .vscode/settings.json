@@ -1,7 +1,7 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     //Setting for https://github.com/Microsoft/vscode-npm-scripts
-    "npm.runInTerminal": false,
+    "npm.runInTerminal": true,
     "npm.includeDirectories": [
         "ReactTests",
         "ReactWebPack.MVC5/"
