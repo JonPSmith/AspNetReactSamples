@@ -3,10 +3,10 @@
 import expect from 'expect';
 import {shallow, mount} from 'enzyme';
 
-import CheckboxWithLabel from '../../ReactWebPack.MVC5/app/temp/CheckboxWithLabel';
+import CheckboxWithLabel from '../ExampleReact/CheckboxWithLabel';
 
 
-describe.only('CheckboxWithLabel', function () {
+describe('CheckboxWithLabel', function () {
     describe('(shallow)', () => {
         it('defaults to unchecked and Off label', () => { 
             const wrapper = shallow(<CheckboxWithLabel labelOn="On" labelOff="Off"/>);

@@ -43,8 +43,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExampleReact\CheckboxWithLabel.js" />
+    <Content Include="ExampleReact\Decoded CheckboxWithLabel.js" />
     <Content Include="karma.conf.js" />
-    <Content Include="Tests\CheckboxWithLabel-shallowRender.test.js" />
+    <Content Include="Tests\CheckboxWithLabel.test.js" />
     <Content Include="Tests\components-List.test.js" />
     <Content Include="Tests\karam-setup.test.js" />
     <Content Include="server.js" />

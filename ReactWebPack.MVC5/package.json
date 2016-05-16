@@ -5,8 +5,8 @@
   "author": "Jon Smith",
   "license": "MIT",
   "scripts": {
-    "watch-dev": "webpack -d --watch --colors",
     "dev-build": "webpack -d --config webpack.config.js --colors",
+    "dev-watch": "webpack -d --config webpack.config.js --watch --colors",
     "prod-build": "SET NODE_ENV=production&&webpack -p --config webpack.config.js --colors"
   },
   "dependencies": {
