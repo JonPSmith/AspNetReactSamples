@@ -37,15 +37,13 @@ If you clone/copy this GitHub Repository then you need to:
 
 #### 1. Make sure your computer is set up properly
 
-I assume you are running Visual Studio 2015, which includes Node.js.
+- I assume you are running Visual Studio 2015, which includes Node.js.
 *NOTE: You can use Visual Studio 2013, but you need to install the 
 [Task Runner Explorer](https://visualstudiogallery.msdn.microsoft.com/8e1b4368-4afb-467a-bc13-9650572db708) 
 for VS 2013, which I believe includes Node.js.*
-
-You should also load the [NPM Task Runner](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)
+- You should also load the [NPM Task Runner](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)
 extension, which you need to run the build/debug scripts from Visual Studio.
-
-If you want to use [Visual Studio Code](https://code.visualstudio.com/) 
+- If you want to use [Visual Studio Code](https://code.visualstudio.com/) 
 to run some of the build/test command scripts then you need load the extension
 [VSCode NPM Scripts](https://github.com/Microsoft/vscode-npm-scripts) extension.
 
@@ -53,6 +51,6 @@ to run some of the build/test command scripts then you need load the extension
 
 Each project has its own README.md file which tells you how to:
 
-1. Restore any packages (if required)
-2. How to run whatever application/process that is in that project.
+- Restore any packages (if required)
+- How to run whatever application/process that is in that project.
 
