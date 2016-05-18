@@ -1,23 +1,15 @@
 # AspNetReactSamples
 
 Wecome to this ASP.NET solution which contains examples of how to incorporate, build and Unit Test 
-[React](https://facebook.github.io/react/) front-end inside an ASP.NET Core and ASP.NET MVC5 
+[React](https://facebook.github.io/react/) front-end inside an ASP.NET Core (RC2) and ASP.NET MVC5 
 application. 
 
 ### This solution is supported by an article [???? to come ????](#) that goes through the examples in detail.
 
 The example projects are designed to be scalable up to a real-world, production-ready applications
-with full build, test, and deploy capabilities. 
-The features I have covered in these examples are:
+with full build, test, and deployment capabilities. 
 
-- Ability to build one big SPA, and/or multiple small React components.
-- Ability to build a production, minified JavaScript files.
-- Ability to run the code locally and debug it.
-- Ability to Unit Test the React code, and debug it.
-- The build process must work on ASP.NET Core and ASP.NET MVC5
-- The build process must be automatable.
-
-Licence: MIT
+**Licence: MIT**
 
 ## What is included in this solution
 
@@ -28,8 +20,11 @@ package to on-the-fly convert React JSX files to currently supported, e.g. ES5, 
 **(Note: Also available for ASP.NET Core, see [this NuGet package](https://www.nuget.org/packages/React.AspNet/)).
 2. **ReactWebPack** This is a more complex React application which is built using 
 the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](http://babeljs.io/)
-  - **ReactWebPack.MVC5** is a ASP.NET MVC5 version
-3. **
+  - **[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)** 
+is an ASP.NET Core (RC2) MVC version.
+  - **[ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)** 
+is a ASP.NET MVC5 version.
+
 
 ## How to try the examples
 
@@ -37,20 +32,66 @@ If you clone/copy this GitHub Repository then you need to:
 
 #### 1. Make sure your computer is set up properly
 
-- I assume you are running Visual Studio 2015, which includes Node.js.
-*NOTE: You can use Visual Studio 2013, but you need to install the 
-[Task Runner Explorer](https://visualstudiogallery.msdn.microsoft.com/8e1b4368-4afb-467a-bc13-9650572db708) 
-for VS 2013, which I believe includes Node.js.*
-- You should also load the [NPM Task Runner](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)
-extension, which you need to run the build/debug scripts from Visual Studio.
-- If you want to use [Visual Studio Code](https://code.visualstudio.com/) 
-to run some of the build/test command scripts then you need load the extension
+- I assume you are running Visual Studio 2015 (VS2015), which includes Node.js.  
+*NOTE: You can use Visual Studio 2013 for the MVC5 versions, 
+but I don't think the ASP.NET Core versions will work (I haven't tried it).*
+- If you want to build the application that uses ASp.NET Core, RC2 then you need to download and install
+[.NET Core windows](https://www.microsoft.com/net/core#windows).
+
+- I recommend you use [Visual Studio Code](https://code.visualstudio.com/) (VSCode)
+to run the build/test React command scripts. You will need to:
+  - Install VSCode 
+  - Make sure you have [Node.js]() installed. *Node should already be installed if you are running VS2015.*
+  - Install the the extension
 [VSCode NPM Scripts](https://github.com/Microsoft/vscode-npm-scripts) extension.
 
-#### 2. Look at the README.md file for the project you want to run
+- If you want to run the React command scripts from Visual Studio load the 
+[NPM Task Runner](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)
+extension.
 
-Each project has its own README.md file which tells you how to:
+#### 2. Set up the application
 
-- Restore any packages (if required)
-- How to run whatever application/process that is in that project.
+You should set the specific appliction you want to try as the startup application.
+Simply right-click the project and select `Set as Startup Project`.
 
+If you want to run any of the build processes then you need to ensure the NPM packages are loaded.
+You do this by right-click the packages.json file and click `Restore Packages` at the top.
+  
+
+#### 3. Running the Webpack build process [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) and [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)
+
+##### 3a. Run with VSCode
+
+VSCode  is a great way to handle the React code because it understand JSX and ES6 syntax. 
+Its also very lightweight, i.e. it has a small memory footprint and is fast. The process is:
+
+1. Make sure you have VSCode setup properly - see []
+2. Type F1 then `npm` and select `npm: Run Script` (shortcut: cntrl-R shift-R)
+2. You are then presented with scripts from all three apps: `ReactTests`, `ReactWebPack.CoreRC2` and `ReactWebPack.MVC5`.
+Pick the one you want, e.g. `ReactWebPack.CoreRC2: dev-build`.  
+*NOTE: commands with `watch` in them stay running and will rebuild the files and 
+re-run the command if a *.js file is saved. Very useful when debugging/developing.*
+3. The output of the process is shown in a new console window, including any errors.  
+*NOTE: To stop a `watch` task type cntrl-C in the console window.*
+
+##### 3b. Run with Visual Studio
+
+If you want to run the React build/test commands from Visual Studio then you need the 
+
+
+
+
+
+
+   
+
+
+## NOTE: Making the application ready for production
+
+While the React build process have totally valid development and production
+paths I haven't handled all the ASP.NET production details. 
+Things that would need to be added:
+
+- cachebuster values to be added to the production builds
+- most likely change the endings of the vendor.js and main.js to ...min.js
+when running the production path to make it obvious.
