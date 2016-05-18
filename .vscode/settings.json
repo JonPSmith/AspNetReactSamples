@@ -4,7 +4,8 @@
     "npm.runInTerminal": true,
     "npm.includeDirectories": [
         "ReactTests",
-        "ReactWebPack.MVC5/"
+        "ReactWebPack.MVC5",
+        "ReactWebPack.CoreRC2"
     ],
     "npm.useRootDirectory": false 
 }

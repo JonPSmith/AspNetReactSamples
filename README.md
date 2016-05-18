@@ -15,9 +15,10 @@ with full build, test, and deployment capabilities.
 
 The solution *currently* contains the following solutions:
 
-1. **ReactJsNet.MVC5:** A simple example of using the [ReactJS.Net](http://reactjs.net/)
+1. **[ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5):**
+A simple example of using the [ReactJS.Net](http://reactjs.net/)
 package to on-the-fly convert React JSX files to currently supported, e.g. ES5, JavaScript.
-**(Note: Also available for ASP.NET Core, see [this NuGet package](https://www.nuget.org/packages/React.AspNet/)).
+*(Note: Also available for ASP.NET Core, see [this NuGet package](https://www.nuget.org/packages/React.AspNet/)).*
 2. **ReactWebPack** This is a more complex React application which is built using 
 the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](http://babeljs.io/)
   - **[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)** 
@@ -49,11 +50,11 @@ to run the build/test React command scripts. You will need to:
 [NPM Task Runner](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)
 extension.
 
-#### 2. Set up the application
+#### 2. Set up the specific project
 
-You should set the specific appliction you want to try as the startup application.
+You should set the specific project you want to try as the startup application.
 Simply right-click the project and select `Set as Startup Project`.  
-*NOTE: No need to do that on the ReactTests application. That can't be run in that way.
+*NOTE: No need to do that on the ReactTests application. That can't be run in that way anyway.*
 
 If you want to run any of the MVC versions to see how it works 'out-of-the-box' then press F5 (Start Debugging).
 In the case of [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5)
@@ -61,10 +62,10 @@ it will transpile the JSX files on the fly.
 
 For [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
 [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5) 
-it will run with the last build I did on that application. 
+it will run with the last build I did on that project's React code. 
 
 
-#### 3. Running the React Build/Test [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) and [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)
+#### 3. Running the React Build/Test in [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) and [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)
 
 If you want to run any of the build/test processes then you need to ensure the NPM packages are loaded
 in that specific project. To do that right-click the `packages.json` file in the application 
@@ -73,12 +74,12 @@ you are interested and click `Restore Packages` at the top of the context menu.
 
 ##### 3a. React Build/Test with VSCode
 
-VSCode  is a great way to handle the React code because it understand JSX and ES6 syntax. 
+VSCode  is a great way to handle the React code because it understands JSX and ES6 syntax. 
 Its also very lightweight, i.e. it has a small memory footprint and is fast. The process is:
 
 1. Make sure you have VSCode setup properly - see [1. How to setup](https://github.com/JonPSmith/AspNetReactSamples#1-make-sure-your-computer-is-set-up-properly).
-2. Open the outer directory of the samples, e.g. AspNetReactSamples.
-3. Type F1 then `npm` and select `npm: Run Script` (shortcut: cntrl-R shift-R)
+2. Open the outer directory of the samples, e.g. AspNetReactSamples, with VSCodes `Open Folder` command.
+3. Type `F1` key, then `npm` and select `npm: Run Script` (shortcut: cntrl-R shift-R)
 4. You are then presented with scripts from all three apps: `ReactTests`, `ReactWebPack.CoreRC2` and `ReactWebPack.MVC5`.
 Pick the one you want, e.g. `ReactWebPack.CoreRC2: dev-build`.  
 *NOTE: commands with `watch` in them stay running and will rebuild the files and 
@@ -93,8 +94,8 @@ If you don't want to learn VSCode then you can run the React build/test commands
 1. Make sure you have Visual Studio setup properly - see [1. How to setup](https://github.com/JonPSmith/AspNetReactSamples#1-make-sure-your-computer-is-set-up-properly).
 2. Open the Task Runner Explorer window (found via Views->Other Windows->Task Runner Explorer) 
 select the package.json of the project you want to run commands for in the top dropdown
-and then click the command you want to run. See example screenshot below:
-![Task Runner Window](https://raw.githubusercontent.com/JonPSmith/AspNetReactSamples/master/ReactNpmTaskRunnerWindow.PNG)
+and then click the command you want to run. See example screenshot below:  
+![Task Runner Window](https://raw.githubusercontent.com/JonPSmith/AspNetReactSamples/master/ReactNpmTaskRunnerWindow.PNG)  
 The results will appear in the Task Runner Explorer output pane.   
 *NOTE: commands with `watch` in them stay running and will rebuild the files and 
 re-run the command if a *.js file is saved. Very useful when debugging/developing.*  
@@ -103,9 +104,9 @@ re-run the command if a *.js file is saved. Very useful when debugging/developin
 ## NOTE: Making the application ready for production
 
 While the React build process have totally valid development and production
-paths I haven't handled all the ASP.NET production details. 
+paths I haven't handled all the ASP.NET side of production/deployment. 
 Things that would need to be added:
 
-- cachebuster values to be added to the production builds
-- most likely change the endings of the vendor.js and main.js to ...min.js
+- cachebuster values to be added to the production builds.
+- most likely change the endings of the `vendor.js` and `main.js` to ...**min**.js
 when running the production path to make it obvious.
