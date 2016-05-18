@@ -39,7 +39,7 @@ If you clone/copy this GitHub Repository then you need to:
 - I assume you are running Visual Studio 2015 (VS2015), which includes Node.js.  
 *NOTE: You can use Visual Studio 2013 for the MVC5 versions, 
 but I don't think the ASP.NET Core versions will work (I haven't tried it).*
-- If you want to build the application that uses ASp.NET Core, RC2 then you need to download and install
+- If you want to build the application that uses ASP.NET Core, RC2 then you need to download and install
 [.NET Core windows](https://www.microsoft.com/net/core#windows).
 
 - I recommend you use [Visual Studio Code](https://code.visualstudio.com/) (VSCode)
@@ -60,8 +60,6 @@ Simply right-click the project and select `Set as Startup Project`.
 *NOTE: No need to do that on the ReactTests application. That can't be run in that way anyway.*
 
 If you want to run any of the MVC versions to see how it works 'out-of-the-box' then press F5 (Start Debugging).
-In the case of [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5)
-it will transpile the JSX files on the fly. 
 
 *For [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
 [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5) 
@@ -76,7 +74,7 @@ NOTE: These sections apply to:
 - [ReactTests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests)
 - [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 - [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)
-- *[ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5)
+- *NOTE: [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5)
 doesn't need a build.*
 
 If you want to run any of the build/test processes then you need to ensure the NPM packages are loaded
