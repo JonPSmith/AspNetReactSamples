@@ -60,17 +60,26 @@ If you want to run any of the MVC versions to see how it works 'out-of-the-box' 
 In the case of [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5)
 it will transpile the JSX files on the fly. 
 
-For [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
+*For [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
 [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5) 
 it will run with the last build I did on that project's React code. 
+[ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5) 
+transpiles on the fly anyway, so will always be up to date.*
 
 
-#### 3. Running the React Build/Test in [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) and [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)
+#### 3. Running the React Build/Test commands
+
+NOTE: These sections apply to:
+- [ReactTests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests)
+- [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
+- [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)
+- *[ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5)
+doesn't need a build.*
 
 If you want to run any of the build/test processes then you need to ensure the NPM packages are loaded
 in that specific project. To do that right-click the `packages.json` file in the application 
 you are interested and click `Restore Packages` at the top of the context menu.
- 
+
 
 ##### 3a. React Build/Test with VSCode
 
@@ -100,8 +109,14 @@ The results will appear in the Task Runner Explorer output pane.
 *NOTE: commands with `watch` in them stay running and will rebuild the files and 
 re-run the command if a *.js file is saved. Very useful when debugging/developing.*  
 
+##### 4c. Notes about the Unit Tests
 
-## NOTE: Making the application ready for production
+I have only written a few [Unit Tests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests/Tests)
+just to prove that my Test configuration/commands works.
+See [???? the article ?????](#) for more information on Unit Testing.
+
+
+### NOTE: Making the application ready for production
 
 While the React build process have totally valid development and production
 paths I haven't handled all the ASP.NET side of production/deployment. 
