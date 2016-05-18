@@ -83,6 +83,8 @@ in that specific project. To do that load the solution into Visual Studio and
 right-click the `packages.json` file in the project 
 you are interested in. Then click `Restore Packages` at the top of the context menu.
 
+*Note: If you restore all the packages and compile all the projects the solution takes up a LOT of disk space.*
+
 
 ##### 3a. React Build/Test with VSCode
 
