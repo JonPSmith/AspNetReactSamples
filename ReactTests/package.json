@@ -3,8 +3,8 @@
   "name": "reacttests",
   "private":  true,  
   "scripts": {
-    "RunTests": "karma start karma.conf.js",
-    "DebugTests": "karma start karma.conf.js --single-run=false"
+    "tests-run": "karma start karma.conf.js",
+    "tests-watch": "karma start karma.conf.js --single-run=false"
   },
   "dependencies": {
     "flux": "2.1.1",

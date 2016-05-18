@@ -25,6 +25,9 @@ the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](
 is an ASP.NET Core (RC2) MVC version.
   - **[ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)** 
 is a ASP.NET MVC5 version.
+3. **[ReactTests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests)**:
+A separate project containing a setup for running Unit Tests on React components and
+libraries. 
 
 
 ## How to try the examples
@@ -77,14 +80,18 @@ NOTE: These sections apply to:
 doesn't need a build.*
 
 If you want to run any of the build/test processes then you need to ensure the NPM packages are loaded
-in that specific project. To do that right-click the `packages.json` file in the application 
-you are interested and click `Restore Packages` at the top of the context menu.
+in that specific project. To do that load the solution into Visual Studio and
+right-click the `packages.json` file in the application 
+you are interested in. Then click `Restore Packages` at the top of the context menu.
 
 
 ##### 3a. React Build/Test with VSCode
 
 VSCode  is a great way to handle the React code because it understands JSX and ES6 syntax. 
-Its also very lightweight, i.e. it has a small memory footprint and is fast. The process is:
+Its also very lightweight, i.e. it has a small memory footprint and is fast. 
+Because the AspNetReactSamples solution has multiple package.json files  I have added some 
+[user setting](https://github.com/JonPSmith/AspNetReactSamples/blob/master/.vscode/settings.json) 
+to help the VSCode npm Scripts extension work with all of the projects. The process is:
 
 1. Make sure you have VSCode setup properly - see [1. How to setup](https://github.com/JonPSmith/AspNetReactSamples#1-make-sure-your-computer-is-set-up-properly).
 2. Open the outer directory of the samples, e.g. AspNetReactSamples, with VSCodes `Open Folder` command.
