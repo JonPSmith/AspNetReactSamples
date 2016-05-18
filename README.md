@@ -80,7 +80,7 @@ doesn't need a build.*
 
 If you want to run any of the build/test processes then you need to ensure the NPM packages are loaded
 in that specific project. To do that load the solution into Visual Studio and
-right-click the `packages.json` file in the application 
+right-click the `packages.json` file in the project 
 you are interested in. Then click `Restore Packages` at the top of the context menu.
 
 
@@ -106,7 +106,10 @@ re-run the command if a *.js file is saved. Very useful when debugging/developin
 
 If you don't want to learn VSCode then you can run the React build/test commands from Visual Studio:
 
-1. Make sure you have Visual Studio setup properly - see [1. How to setup](https://github.com/JonPSmith/AspNetReactSamples#1-make-sure-your-computer-is-set-up-properly).
+1. Make sure you have Visual Studio setup properly, especially that you have installed the
+[NPM Task Runner](https://visualstudiogallery.msdn.microsoft.com/8f2f2cbc-4da5-43ba-9de2-c9d08ade4941)
+extension - see 
+[1. How to setup](https://github.com/JonPSmith/AspNetReactSamples#1-make-sure-your-computer-is-set-up-properly).
 2. Open the Task Runner Explorer window (found via Views->Other Windows->Task Runner Explorer) 
 select the package.json of the project you want to run commands for in the top dropdown
 and then click the command you want to run. See example screenshot below:  
@@ -119,7 +122,7 @@ re-run the command if a *.js file is saved. Very useful when debugging/developin
 
 I have only written a few [Unit Tests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests/Tests)
 just to prove that my Test configuration/commands works.
-See [???? the article ?????](#) for more information on Unit Testing.
+See [???? to come ?????](#) for more information on Unit Testing.
 
 
 ### NOTE: Making the application ready for production
