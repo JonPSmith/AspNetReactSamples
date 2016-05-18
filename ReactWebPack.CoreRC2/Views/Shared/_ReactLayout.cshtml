@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ReactWebPack.CoreRC2</title>
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/css/kanban-styles.css">
+    </environment>
+    <environment names="Staging,Production">
+        <!-- In production you would normally minify the css, but I haven't -->
+        <link rel="stylesheet" href="~/css/kanban-styles.css" asp-append-version="true">
+    </environment>
+</head>
+<body>
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; 2016 - ReactWebPack.CoreRC2</p>
+    </footer>
+</div>
+
+    <!-- The only difference between development and production React is adding a cachebusting suffix to the files-->
+    <environment names="Development">
+        <script src="~/js/vendor.js"></script>
+        <script type="text/javascript">
+            self._babelPolyfill = false; //HACK: see http://stackoverflow.com/a/36672020/1434764
+        </script>
+        <script src="~/js/main.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/js/vendor.js" asp-append-version="true"></script>
+        <script type="text/javascript">
+            self._babelPolyfill = false; //HACK: see http://stackoverflow.com/a/36672020/1434764
+        </script>
+        <script src="~/js/main.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
