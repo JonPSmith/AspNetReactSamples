@@ -45,7 +45,7 @@ but I don't think the ASP.NET Core versions will work (I haven't tried it).*
 - I recommend you use [Visual Studio Code](https://code.visualstudio.com/) (VSCode)
 to run the build/test React command scripts. You will need to:
   - Install VSCode 
-  - Make sure you have [Node.js]() installed. *Node should already be installed if you are running VS2015.*
+  - Install [Node.js](https://nodejs.org/en/) if not already loaded. *Type `node --version` to check if you have it installed*
   - Install the the extension
 [VSCode NPM Scripts](https://github.com/Microsoft/vscode-npm-scripts) extension.
 
