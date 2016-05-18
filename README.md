@@ -70,11 +70,12 @@ transpiles on the fly anyway, so will always be up to date.*
 
 #### 3. Running the React Build/Test commands
 
-NOTE: These sections apply to:
+These sections apply to:
 - [ReactTests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests)
 - [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 - [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)
-- *NOTE: [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5)
+
+*NOTE: [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5)
 doesn't need a build.*
 
 If you want to run any of the build/test processes then you need to ensure the NPM packages are loaded
