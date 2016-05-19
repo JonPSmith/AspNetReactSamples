@@ -39,8 +39,8 @@ If you clone/copy this GitHub Repository then you need to:
 - I assume you are running Visual Studio 2015 (VS2015), which includes Node.js.  
 *NOTE: You can use Visual Studio 2013 for the MVC5 versions, 
 but I don't think the ASP.NET Core versions will work (I haven't tried it).*
-- If you want to build the application that uses ASP.NET Core, RC2 then you need to download and install
-[.NET Core windows](https://www.microsoft.com/net/core#windows).
+- If you want to build the application that uses ASP.NET Core, R2 then you need to download and install
+[Visual Studio official MSI Installer, .NET Core windows](https://www.microsoft.com/net/core#windows).
 
 - I recommend you use [Visual Studio Code](https://code.visualstudio.com/) (VSCode)
 to run the build/test React command scripts. You will need to:
@@ -136,3 +136,6 @@ Things that would need to be added:
 - cachebuster values to be added to the production builds.
 - most likely change the endings of the `vendor.js` and `main.js` to ...**min**.js
 when running the production path to make it obvious.
+- The ASP.NET Core Gulp command `min:js` must ignore `vendor.js` and `main.js`.
+If they had .min.js on the end then it would be fine, but at the moment if bundles
+them all in, which will cause problems.
