@@ -40,7 +40,7 @@ If you clone/copy this GitHub Repository then you need to:
 *NOTE: You can use Visual Studio 2013 for the MVC5 versions, 
 but I don't think the ASP.NET Core versions will work (I haven't tried it).*
 - If you want to build the application that uses ASP.NET Core, R2 then you need to download and install
-[Visual Studio official MSI Installer, .NET Core windows](https://www.microsoft.com/net/core#windows).
+[Visual Studio official MSI Installer with Visual Studio tooling](https://www.microsoft.com/net/core#windows).
 
 - I recommend you use [Visual Studio Code](https://code.visualstudio.com/) (VSCode)
 to run the build/test React command scripts. You will need to:
