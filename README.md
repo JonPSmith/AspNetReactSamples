@@ -4,7 +4,7 @@ Wecome to this ASP.NET solution which contains examples of how to incorporate, b
 [React](https://facebook.github.io/react/) front-end inside an ASP.NET Core (RC2) and ASP.NET MVC5 
 application. 
 
-### This solution is supported by an article [???? to come ????](#) that goes through the examples in detail.
+### This solution is supported by [an article](http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/) that goes through the examples in detail.
 
 The example projects are designed to be scalable up to a real-world, production-ready applications
 with full build, test, and deployment capabilities. 
@@ -124,7 +124,8 @@ re-run the command if a *.js file is saved. Very useful when debugging/developin
 
 I have only written a few [Unit Tests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests/Tests)
 just to prove that my Test configuration/commands works.
-See [???? to come ?????](#) for more information on Unit Testing.
+See the article [Templates for building React front-ends in ASP.NET Core and MVC5](http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/)
+for more information on Unit Testing.
 
 
 ### NOTE: Making the application ready for production
