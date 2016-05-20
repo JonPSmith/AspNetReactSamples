@@ -20,8 +20,9 @@ var config = {
     },
     output: {
         path: path.join(__dirname, "wwwroot", "js"),        //Note: For ASP.NET Core we need to put the output in wwwroot/js
-        filename: '[name].js',
-        sourceMapFilename: "[file].map"
+        //in production mode make files have a .min.js ending - stops gulp's min:js concating them
+        filename: process.env.NODE_ENV === 'production' ? '[name].min.js' : '[name].js',
+        sourceMapFilename: '[file].map'
     },
     resolve: {
         modulesDirectories: ['node_modules'],

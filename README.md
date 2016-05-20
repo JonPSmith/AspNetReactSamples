@@ -135,9 +135,10 @@ While the React build process have totally valid development and production
 paths I haven't handled all the ASP.NET side of production/deployment. 
 Things that would need to be added:
 
-- cachebuster values to be added to the production builds.
-- most likely change the endings of the `vendor.js` and `main.js` to ...**min**.js
-when running the production path to make it obvious.
-- The ASP.NET Core Gulp command `min:js` must ignore `vendor.js` and `main.js`.
-If they had .min.js on the end then it would be fine, but at the moment if bundles
-them all in, which will cause problems.
+- I have set up cachebuster values to ReactWebPack.CoreRC2 in production mode
+but I haven't done anything in the ReactWebPack.MVC5 project. 
+- I have changed the endings of the `vendor.js` and `main.js` to ...**min**.js
+in ReactWebPack.CoreRC2, but not in ReactWebPack.MVC5.
+- The ASP.NET Core Gulp command `min:js` must ignore `vendor.js` and `main.js` 
+that were used in development mode. Either production should delete and
+development files or use a different directory for dev and production.

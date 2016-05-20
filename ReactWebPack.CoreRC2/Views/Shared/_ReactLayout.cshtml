@@ -31,11 +31,11 @@
         <script src="~/js/main.js"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="~/js/vendor.js" asp-append-version="true"></script>
+        <script src="~/js/vendor.min.js" asp-append-version="true"></script>
         <script type="text/javascript">
             self._babelPolyfill = false; //HACK: see http://stackoverflow.com/a/36672020/1434764
         </script>
-        <script src="~/js/main.js" asp-append-version="true"></script>
+        <script src="~/js/main.min.js" asp-append-version="true"></script>
     </environment>
 
     @RenderSection("scripts", required: false)
