@@ -139,6 +139,6 @@ Things that would need to be added:
 but I haven't done anything in the ReactWebPack.MVC5 project. 
 - I have changed the endings of the `vendor.js` and `main.js` to ...**min**.js
 in ReactWebPack.CoreRC2, but not in ReactWebPack.MVC5.
-- The ASP.NET Core Gulp command `min:js` must ignore `vendor.js` and `main.js` 
-that were used in development mode. Either production should delete and
-development files or use a different directory for dev and production.
+- The ASP.NET Core Gulp command `min:js` in ReactWebPack.CoreRC2
+must ignore the `vendor.js` and `main.js` development files. 
+I haven't done that so the Gulp `min:js` command produces an incorrect file.
