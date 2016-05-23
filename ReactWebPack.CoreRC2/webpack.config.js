@@ -25,10 +25,7 @@ var config = {
         sourceMapFilename: '[file].map'
     },
     resolve: {
-        modulesDirectories: ['node_modules'],
-        alias: {
-            'babel-polyfill': path.resolve(__dirname + '/node_modules/babel-polyfill'),
-        },
+        modulesDirectories: ['node_modules']
     },
     plugins: [
         new webpack.OldWatchingPlugin(),  //needed to make watch work. see http://stackoverflow.com/a/29292578/1434764
