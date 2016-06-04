@@ -57,13 +57,13 @@ namespace ReactWebPack.CoreRC2.Controllers
             if (!DataDict.ContainsKey(id))
                 return NotFound();
 
-
-            if (value.id != 0)
-                //We assume the call is a full update.
+            //KanBan React code has two calls to PUT cards/id:
+            if (value.id == id)
+                //1. Full update: We assume the call is a full update if id on value is filled in.
                 DataDict[id] = value;
             else if (!string.IsNullOrEmpty(value.status))
             {
-                //If the id of the value is zero and the status is given then we only update the status
+                //2. Update status only: If the id of the value is zero and the status is given then we only update the status
                 DataDict[id].status = value.status;
             }
 
