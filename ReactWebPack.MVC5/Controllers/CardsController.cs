@@ -53,8 +53,17 @@ namespace ReactWebPack.MVC5.Controllers
             if (!DataDict.ContainsKey(id))
                 return NotFound();
 
-            DataDict[id] = value;
-            return Ok(value);
+
+            if (value.id != 0)
+                //We assume the call is a full update.
+                DataDict[id] = value;
+            else if (!string.IsNullOrEmpty(value.status) )
+            {
+                //If the id of the value is zero and the status is given then we only update the status
+                DataDict[id].status = value.status;
+            }
+
+            return Ok(DataDict[id]);
         }
 
         // DELETE: api/Cards/5
