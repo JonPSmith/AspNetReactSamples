@@ -6,6 +6,7 @@ import constants from '../constants';
 import CheckList from './CheckList';
 import {Link} from 'react-router';
 import CardActionCreators from '../actions/CardActionCreators';
+import { connect } from 'react-redux';
 
 let titlePropType = (props, propName, componentName) => {
   if (props[propName]) {
@@ -26,7 +27,7 @@ const cardDragSpec = {
     };
   },
   endDrag(props) {
-    CardActionCreators.persistCardDrag(props);
+    props.dispatch(CardActionCreators.persistCardDrag(props));
   }
 }
 
@@ -34,11 +35,11 @@ const cardDropSpec = {
   hover(props, monitor) {
     const draggedId = monitor.getItem().id;
     if(props.id !== draggedId){
-      CardActionCreators.updateCardPosition(draggedId, props.id);
+      props.dispatch(CardActionCreators.updateCardPosition(draggedId, props.id));
     }
 
   }
-}
+} 
 
 let collectDrag = (connect, monitor) => {
   return {
@@ -53,8 +54,12 @@ let collectDrop = (connect, monitor) => {
 }
 
 class Card extends Component {
+  constructor(props) {
+    super(props);
+  }
+  
   toggleDetails() {
-    CardActionCreators.toggleCardDetails(this.props.id);
+    this.props.dispatch(CardActionCreators.toggleCardDetails(this.props.id));
   }
 
 
@@ -112,4 +117,4 @@ Card.propTypes = {
 
 const dragHighOrderCard = DragSource(constants.CARD, cardDragSpec, collectDrag)(Card);
 const dragDropHighOrderCard = DropTarget(constants.CARD, cardDropSpec, collectDrop)(dragHighOrderCard);
-export default dragDropHighOrderCard
+export default connect()(dragDropHighOrderCard);
