@@ -18,7 +18,7 @@ let CardActionCreators = {
   toggleCardDetails(cardId) {
     return {
       type: constants.TOGGLE_CARD_DETAILS,
-      cardId
+      payload: cardId
     };
   },
 
@@ -42,32 +42,28 @@ let CardActionCreators = {
     }
   },
 
-  updateCardStatus() {
-    return (dispatch) => {
-      throttle((cardId, listId) => {
-        dispatchAsync({
-          type: constants.UPDATE_CARD_STATUS,
-          payload: { cardId, listId }
-        }, dispatch);
-      })
-    }
+  updateCardStatus(cardId, listId) {
+    throttle((cardId, listId) => {
+      return {
+        type: constants.UPDATE_CARD_STATUS,
+        payload: { cardId, listId }
+      };
+    })
   },
 
-  updateCardPosition() {
-    return (dispatch) => {
-      throttle((cardId, afterId) => {
-        dispatchAsync({
-          type: constants.UPDATE_CARD_POSITION,
-          payload: { cardId, afterId }
-        });
-      }, 500)
-    }
+  updateCardPosition(cardId, afterId) {
+    throttle((cardId, afterId) => {
+      return {
+        type: constants.UPDATE_CARD_POSITION,
+        payload: { cardId, afterId }
+      };
+    }, 500)
   },
 
   persistCardDrag(cardProps) {
     let card = CardStore.getCard(cardProps.id)
     let cardIndex = CardStore.getCardIndex(cardProps.id)
-    AppDispatcher.dispatchAsync(KanbanAPI.persistCardDrag(card.id, card.status, cardIndex), {
+    dispatchAsync(KanbanAPI.persistCardDrag(card.id, card.status, cardIndex), {
       request: constants.PERSIST_CARD_DRAG,
       success: constants.PERSIST_CARD_DRAG_SUCCESS,
       failure: constants.PERSIST_CARD_DRAG_ERROR
@@ -75,20 +71,16 @@ let CardActionCreators = {
   },
 
   createDraft(card) {
-    return (dispatch) => {
-      dispatchAsync({
-        type: constants.CREATE_DRAFT,
-        payload: { card }
-      });
+    return {
+      type: constants.CREATE_DRAFT,
+      payload: card
     }
   },
 
-  updateDraft(field, value) {
-    return (dispatch) => {
-      dispatchAsync({
-        type: constants.UPDATE_DRAFT,
-        payload: { field, value }
-      });
+  updateDraft(field, value) {   
+    return {
+      type: constants.UPDATE_DRAFT,
+      payload: { field, value }
     }
   }
 };

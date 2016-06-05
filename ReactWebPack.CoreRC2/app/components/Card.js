@@ -27,7 +27,7 @@ const cardDragSpec = {
     };
   },
   endDrag(props) {
-    props.dispatch(CardActionCreators.persistCardDrag(props));
+    this.props.dispatch(CardActionCreators.persistCardDrag(props));
   }
 }
 
@@ -35,7 +35,7 @@ const cardDropSpec = {
   hover(props, monitor) {
     const draggedId = monitor.getItem().id;
     if(props.id !== draggedId){
-      props.dispatch(CardActionCreators.updateCardPosition(draggedId, props.id));
+      this.props.dispatch(CardActionCreators.updateCardPosition(draggedId, props.id));
     }
 
   }
@@ -54,15 +54,10 @@ let collectDrop = (connect, monitor) => {
 }
 
 class Card extends Component {
-  constructor(props) {
-    super(props);
-  }
-  
   toggleDetails() {
     this.props.dispatch(CardActionCreators.toggleCardDetails(this.props.id));
   }
-
-
+  
   render() {
     const { connectDragSource, connectDropTarget } = this.props;
 

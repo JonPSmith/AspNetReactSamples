@@ -3,16 +3,17 @@ import CardForm from './CardForm';
 import DraftStore from '../stores/DraftStore';
 import {Container} from 'flux/utils';
 import CardActionCreators from '../actions/CardActionCreators';
+import { connect } from 'react-redux';
 
 class NewCard extends Component{
 
   handleChange(field, value){
-    CardActionCreators.updateDraft(field, value);
+    this.props.dispatch(CardActionCreators.updateDraft(field, value));
   }
 
   handleSubmit(e){
     e.preventDefault();
-    CardActionCreators.addCard(this.state.draft);
+    this.props.dispatch(CardActionCreators.addCard(this.state.draft));
     this.props.history.pushState(null,'/');
   }
 
@@ -21,7 +22,7 @@ class NewCard extends Component{
   }
 
   componentDidMount(){
-    setTimeout(()=>CardActionCreators.createDraft(), 0)
+    setTimeout(()=>this.props.dispatch(CardActionCreators.createDraft(), 0))
   }
 
 
@@ -41,4 +42,4 @@ NewCard.calculateState = (prevState) => ({
   draft: DraftStore.getState()
 });
 
-export default Container.create(NewCard);
+export default connect()(Container.create(NewCard))

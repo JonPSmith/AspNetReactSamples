@@ -3,11 +3,12 @@ import { DropTarget } from 'react-dnd';
 import Card from './Card';
 import constants from '../constants';
 import CardActionCreators from '../actions/CardActionCreators';
+import { connect } from 'react-redux';
 
 const listTargetSpec = {
   hover(props, monitor) {
     const dragged = monitor.getItem();
-    CardActionCreators.updateCardStatus(dragged.id, props.id);
+    this.props.dispatch(CardActionCreators.updateCardStatus(dragged.id, props.id));
   }
 };
 
@@ -39,4 +40,4 @@ List.propTypes = {
   connectDropTarget: PropTypes.func.isRequired
 };
 
-export default DropTarget(constants.CARD, listTargetSpec, collect)(List);
+export default connect()(DropTarget(constants.CARD, listTargetSpec, collect)(List))

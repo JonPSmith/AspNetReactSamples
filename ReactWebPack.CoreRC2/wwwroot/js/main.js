@@ -26,19 +26,19 @@ webpackJsonp([0],{
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _KanbanBoardContainer = __webpack_require__(/*! ./containers/KanbanBoardContainer */ 259);
+	var _KanbanBoardContainer = __webpack_require__(/*! ./containers/KanbanBoardContainer */ 558);
 	
 	var _KanbanBoardContainer2 = _interopRequireDefault(_KanbanBoardContainer);
 	
-	var _KanbanBoard = __webpack_require__(/*! ./components/KanbanBoard */ 260);
+	var _KanbanBoard = __webpack_require__(/*! ./components/KanbanBoard */ 559);
 	
 	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
 	
-	var _EditCard = __webpack_require__(/*! ./components/EditCard */ 814);
+	var _EditCard = __webpack_require__(/*! ./components/EditCard */ 791);
 	
 	var _EditCard2 = _interopRequireDefault(_EditCard);
 	
-	var _NewCard = __webpack_require__(/*! ./components/NewCard */ 817);
+	var _NewCard = __webpack_require__(/*! ./components/NewCard */ 816);
 	
 	var _NewCard2 = _interopRequireDefault(_NewCard);
 	
@@ -142,7 +142,7 @@ webpackJsonp([0],{
 	
 	var _cardUtils = __webpack_require__(/*! ../cardUtils */ 258);
 	
-	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 812);
+	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 556);
 	
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 	
@@ -158,28 +158,28 @@ webpackJsonp([0],{
 	
 	  switch (action.type) {
 	    case _constants2.default.FETCH_CARDS_SUCCESS:
-	      return action.response;
+	      return action.payload.response;
 	    /*
 	     * Card Creation
 	     */
 	    case _constants2.default.CREATE_CARD:
-	      return (0, _reactAddonsUpdate2.default)(state, { $push: [action.card] });
+	      return (0, _reactAddonsUpdate2.default)(state, { $push: [action.payload.card] });
 	
 	    case _constants2.default.CREATE_CARD_SUCCESS:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.card.id);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.card.id);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
-	        id: { $set: action.response.id }
+	        id: { $set: action.payload.response.id }
 	      }));
 	
 	    case _constants2.default.CREATE_CARD_ERROR:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.card.id);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.card.id);
 	      return (0, _reactAddonsUpdate2.default)(state, { $splice: [[cardIndex, 1]] });
 	
 	    /*
 	     * Card Status Toggle
 	     */
 	    case _constants2.default.TOGGLE_CARD_DETAILS:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
 	        showDetails: { $apply: function $apply(currentValue) {
 	            return currentValue !== false ? false : true;
@@ -190,38 +190,38 @@ webpackJsonp([0],{
 	     * Card Update
 	     */
 	    case _constants2.default.UPDATE_CARD:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.card.id);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.card.id);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
-	        $set: action.draftCard
+	        $set: action.payload.draftCard
 	      }));
 	
 	    case _constants2.default.UPDATE_CARD_ERROR:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.card.id);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.card.id);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
-	        $set: action.card
+	        $set: action.payload.card
 	      }));
 	
 	    /*
 	     * Card Drag'n Drop
 	     */
 	    case _constants2.default.UPDATE_CARD_POSITION:
-	      if (action.cardId !== action.afterId) {
-	        cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      if (action.payload.cardId !== action.payload.afterId) {
+	        cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	        var card = state[cardIndex];
-	        var afterIndex = (0, _cardUtils.getCardIndex)(state, action.afterId);
+	        var afterIndex = (0, _cardUtils.getCardIndex)(state, action.payload.afterId);
 	        return (0, _reactAddonsUpdate2.default)(state, {
 	          $splice: [[cardIndex, 1], [afterIndex, 0, card]]
 	        });
 	      }
 	
 	    case _constants2.default.UPDATE_CARD_STATUS:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
-	        status: { $set: action.listId }
+	        status: { $set: action.payload.listId }
 	      }));
 	
 	    case _constants2.default.PERSIST_CARD_DRAG_ERROR:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardProps.id);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardProps.id);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
 	        status: { $set: action.cardProps.status }
 	      }));
@@ -230,26 +230,26 @@ webpackJsonp([0],{
 	     * Task Creation
 	     */
 	    case _constants2.default.CREATE_TASK:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
-	        tasks: { $push: [action.task] }
+	        tasks: { $push: [action.payload.task] }
 	      }));
 	
 	    case _constants2.default.CREATE_TASK_SUCCESS:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	      taskIndex = state[cardIndex].tasks.findIndex(function (task) {
-	        return task.id == action.task.id;
+	        return task.id == action.payload.task.id;
 	      });
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
 	        tasks: _defineProperty({}, taskIndex, {
-	          id: { $set: action.response.id }
+	          id: { $set: action.payload.response.id }
 	        })
 	      }));
 	
 	    case _constants2.default.CREATE_TASK_ERROR:
-	      var cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      var cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	      var taskIndex = state[cardIndex].tasks.findIndex(function (task) {
-	        return task.id == action.task.id;
+	        return task.id == action.payload.task.id;
 	      });
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
 	        tasks: {
@@ -261,32 +261,32 @@ webpackJsonp([0],{
 	     * Task Deletion
 	     */
 	    case _constants2.default.DELETE_TASK:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
-	        tasks: { $splice: [[action.taskIndex, 1]] }
+	        tasks: { $splice: [[action.payload.taskIndex, 1]] }
 	      }));
 	
 	    case _constants2.default.DELETE_TASK_ERROR:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
-	        tasks: { $splice: [[action.taskIndex, 0, action.task]] }
+	        tasks: { $splice: [[action.payload.taskIndex, 0, action.payload.task]] }
 	      }));
 	
 	    /*
 	     * Task Toggling
 	     */
 	    case _constants2.default.TOGGLE_TASK:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
-	        tasks: _defineProperty({}, action.taskIndex, { done: { $apply: function $apply(done) {
+	        tasks: _defineProperty({}, action.payload.taskIndex, { done: { $apply: function $apply(done) {
 	              return !done;
 	            } } })
 	      }));
 	
 	    case _constants2.default.TOGGLE_TASK_ERROR:
-	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.cardId);
+	      cardIndex = (0, _cardUtils.getCardIndex)(state, action.payload.cardId);
 	      return (0, _reactAddonsUpdate2.default)(state, _defineProperty({}, cardIndex, {
-	        tasks: _defineProperty({}, action.taskIndex, { done: { $apply: function $apply(done) {
+	        tasks: _defineProperty({}, action.payload.taskIndex, { done: { $apply: function $apply(done) {
 	              return !done;
 	            } } })
 	      }));
@@ -374,7 +374,7 @@ webpackJsonp([0],{
 	exports.getCard = getCard;
 	exports.getCardIndex = getCardIndex;
 	
-	var _babelPolyfill = __webpack_require__(/*! babel-polyfill */ 492);
+	var _babelPolyfill = __webpack_require__(/*! babel-polyfill */ 259);
 	
 	function getCard(cards, id) {
 	    return cards.find(function (card) {
@@ -390,7 +390,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 259:
+/***/ 558:
 /*!************************************************!*\
   !*** ./app/containers/KanbanBoardContainer.js ***!
   \************************************************/
@@ -412,11 +412,11 @@ webpackJsonp([0],{
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 231);
 	
-	var _KanbanBoard = __webpack_require__(/*! ../components/KanbanBoard */ 260);
+	var _KanbanBoard = __webpack_require__(/*! ../components/KanbanBoard */ 559);
 	
 	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 791);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
@@ -471,7 +471,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 260:
+/***/ 559:
 /*!***************************************!*\
   !*** ./app/components/KanbanBoard.js ***!
   \***************************************/
@@ -489,15 +489,15 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDnd = __webpack_require__(/*! react-dnd */ 261);
+	var _reactDnd = __webpack_require__(/*! react-dnd */ 560);
 	
-	var _reactDndHtml5Backend = __webpack_require__(/*! react-dnd-html5-backend */ 382);
+	var _reactDndHtml5Backend = __webpack_require__(/*! react-dnd-html5-backend */ 681);
 	
 	var _reactDndHtml5Backend2 = _interopRequireDefault(_reactDndHtml5Backend);
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 168);
 	
-	var _List = __webpack_require__(/*! ./List */ 476);
+	var _List = __webpack_require__(/*! ./List */ 775);
 	
 	var _List2 = _interopRequireDefault(_List);
 	
@@ -561,7 +561,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 476:
+/***/ 775:
 /*!********************************!*\
   !*** ./app/components/List.js ***!
   \********************************/
@@ -581,9 +581,9 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDnd = __webpack_require__(/*! react-dnd */ 261);
+	var _reactDnd = __webpack_require__(/*! react-dnd */ 560);
 	
-	var _Card = __webpack_require__(/*! ./Card */ 477);
+	var _Card = __webpack_require__(/*! ./Card */ 776);
 	
 	var _Card2 = _interopRequireDefault(_Card);
 	
@@ -591,9 +591,11 @@ webpackJsonp([0],{
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 791);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 231);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -606,7 +608,7 @@ webpackJsonp([0],{
 	var listTargetSpec = {
 	  hover: function hover(props, monitor) {
 	    var dragged = monitor.getItem();
-	    _CardActionCreators2.default.updateCardStatus(dragged.id, props.id);
+	    this.props.dispatch(_CardActionCreators2.default.updateCardStatus(dragged.id, props.id));
 	  }
 	};
 	
@@ -658,11 +660,11 @@ webpackJsonp([0],{
 	  connectDropTarget: _react.PropTypes.func.isRequired
 	};
 	
-	exports.default = (0, _reactDnd.DropTarget)(_constants2.default.CARD, listTargetSpec, collect)(List);
+	exports.default = (0, _reactRedux.connect)()((0, _reactDnd.DropTarget)(_constants2.default.CARD, listTargetSpec, collect)(List));
 
 /***/ },
 
-/***/ 477:
+/***/ 776:
 /*!********************************!*\
   !*** ./app/components/Card.js ***!
   \********************************/
@@ -680,27 +682,27 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactAddonsCssTransitionGroup = __webpack_require__(/*! react-addons-css-transition-group */ 478);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(/*! react-addons-css-transition-group */ 777);
 	
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 	
-	var _marked = __webpack_require__(/*! marked */ 485);
+	var _marked = __webpack_require__(/*! marked */ 784);
 	
 	var _marked2 = _interopRequireDefault(_marked);
 	
-	var _reactDnd = __webpack_require__(/*! react-dnd */ 261);
+	var _reactDnd = __webpack_require__(/*! react-dnd */ 560);
 	
 	var _constants = __webpack_require__(/*! ../constants */ 257);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _CheckList = __webpack_require__(/*! ./CheckList */ 486);
+	var _CheckList = __webpack_require__(/*! ./CheckList */ 785);
 	
 	var _CheckList2 = _interopRequireDefault(_CheckList);
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 168);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 791);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
@@ -731,7 +733,7 @@ webpackJsonp([0],{
 	    };
 	  },
 	  endDrag: function endDrag(props) {
-	    props.dispatch(_CardActionCreators2.default.persistCardDrag(props));
+	    this.props.dispatch(_CardActionCreators2.default.persistCardDrag(props));
 	  }
 	};
 	
@@ -739,7 +741,7 @@ webpackJsonp([0],{
 	  hover: function hover(props, monitor) {
 	    var draggedId = monitor.getItem().id;
 	    if (props.id !== draggedId) {
-	      props.dispatch(_CardActionCreators2.default.updateCardPosition(draggedId, props.id));
+	      this.props.dispatch(_CardActionCreators2.default.updateCardPosition(draggedId, props.id));
 	    }
 	  }
 	};
@@ -759,10 +761,10 @@ webpackJsonp([0],{
 	var Card = function (_Component) {
 	  _inherits(Card, _Component);
 	
-	  function Card(props) {
+	  function Card() {
 	    _classCallCheck(this, Card);
 	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Card).call(this, props));
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(Card).apply(this, arguments));
 	  }
 	
 	  _createClass(Card, [{
@@ -847,7 +849,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 486:
+/***/ 785:
 /*!*************************************!*\
   !*** ./app/components/CheckList.js ***!
   \*************************************/
@@ -865,7 +867,11 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _TaskActionCreators = __webpack_require__(/*! ../actions/TaskActionCreators */ 487);
+	var _reactRedux = __webpack_require__(/*! react-redux */ 231);
+	
+	var _redux = __webpack_require__(/*! redux */ 238);
+	
+	var _TaskActionCreators = __webpack_require__(/*! ../actions/TaskActionCreators */ 821);
 	
 	var _TaskActionCreators2 = _interopRequireDefault(_TaskActionCreators);
 	
@@ -891,7 +897,7 @@ webpackJsonp([0],{
 	    value: function checkInputKeyPress(evt) {
 	      if (evt.key === 'Enter') {
 	        var newTask = { id: Date.now(), name: evt.target.value, done: false };
-	        _TaskActionCreators2.default.addTask(this.props.cardId, newTask);
+	        this.props.actions.addTask(this.props.cardId, newTask);
 	        evt.target.value = '';
 	      }
 	    }
@@ -906,12 +912,12 @@ webpackJsonp([0],{
 	          { key: task.id, className: 'checklist__task' },
 	          _react2.default.createElement('input', { type: 'checkbox',
 	            checked: task.done,
-	            onChange: _TaskActionCreators2.default.toggleTask.bind(null, _this2.props.cardId, task, taskIndex) }),
+	            onChange: _this2.props.actions.toggleTask.bind(_this2, _this2.props.cardId, task, taskIndex) }),
 	          task.name,
 	          ' ',
 	          _react2.default.createElement('a', { href: '#',
 	            className: 'checklist__task--remove',
-	            onClick: _TaskActionCreators2.default.deleteTask.bind(null, _this2.props.cardId, task, taskIndex) })
+	            onClick: _this2.props.actions.deleteTask.bind(_this2, _this2.props.cardId, task, taskIndex) })
 	        );
 	      });
 	
@@ -938,13 +944,25 @@ webpackJsonp([0],{
 	  cardId: _react.PropTypes.number,
 	  tasks: _react.PropTypes.arrayOf(_react.PropTypes.object)
 	};
-	exports.default = CheckList;
+	
+	function mapStateToProps(state) {
+	  return {
+	    cards: state.cards
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    actions: (0, _redux.bindActionCreators)(_TaskActionCreators2.default, dispatch)
+	  };
+	}
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CheckList);
 
 /***/ },
 
-/***/ 487:
+/***/ 786:
 /*!*******************************************!*\
-  !*** ./app/actions/TaskActionCreators.js ***!
+  !*** ./app/actions/CardActionCreators.js ***!
   \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
@@ -954,52 +972,103 @@ webpackJsonp([0],{
 	  value: true
 	});
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 488);
-	
-	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
+	var _ReduxDispatcher = __webpack_require__(/*! ../ReduxDispatcher */ 787);
 	
 	var _constants = __webpack_require__(/*! ../constants */ 257);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 789);
+	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 788);
 	
 	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
 	
+	var _utils = __webpack_require__(/*! ../utils */ 790);
+	
+	var _cardUtils = __webpack_require__(/*! ../cardUtils */ 258);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var TaskActionCreators = {
-	  addTask: function addTask(cardId, task) {
-	    _AppDispatcher2.default.dispatchAsync(_KanbanApi2.default.addTask(cardId, task), {
-	      request: _constants2.default.CREATE_TASK,
-	      success: _constants2.default.CREATE_TASK_SUCCESS,
-	      failure: _constants2.default.CREATE_TASK_ERROR
-	    }, { cardId: cardId, task: task });
+	var CardActionCreators = {
+	  fetchCards: function fetchCards() {
+	    return function (dispatch) {
+	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.fetchCards(), dispatch, {
+	        request: _constants2.default.FETCH_CARDS,
+	        success: _constants2.default.FETCH_CARDS_SUCCESS,
+	        failure: _constants2.default.FETCH_CARDS_ERROR
+	      });
+	    };
 	  },
-	  deleteTask: function deleteTask(cardId, task, taskIndex) {
-	    _AppDispatcher2.default.dispatchAsync(_KanbanApi2.default.deleteTask(cardId, task), {
-	      request: _constants2.default.DELETE_TASK,
-	      success: _constants2.default.DELETE_TASK_SUCCESS,
-	      failure: _constants2.default.DELETE_TASK_ERROR
-	    }, { cardId: cardId, task: task, taskIndex: taskIndex });
+	  toggleCardDetails: function toggleCardDetails(cardId) {
+	    return {
+	      type: _constants2.default.TOGGLE_CARD_DETAILS,
+	      payload: cardId
+	    };
 	  },
-	  toggleTask: function toggleTask(cardId, task, taskIndex) {
-	    _AppDispatcher2.default.dispatchAsync(_KanbanApi2.default.toggleTask(cardId, task), {
-	      request: _constants2.default.TOGGLE_TASK,
-	      success: _constants2.default.TOGGLE_TASK_SUCCESS,
-	      failure: _constants2.default.TOGGLE_TASK_ERROR
-	    }, { cardId: cardId, task: task, taskIndex: taskIndex });
+	  addCard: function addCard(card) {
+	    return function (dispatch) {
+	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.addCard(card), dispatch, {
+	        request: _constants2.default.CREATE_CARD,
+	        success: _constants2.default.CREATE_CARD_SUCCESS,
+	        failure: _constants2.default.CREATE_CARD_ERROR
+	      }, { card: card });
+	    };
+	  },
+	  updateCard: function updateCard(card, draftCard) {
+	    return function (dispatch) {
+	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.updateCard(card, draftCard), dispatch, {
+	        request: _constants2.default.UPDATE_CARD,
+	        success: _constants2.default.UPDATE_CARD_SUCCESS,
+	        failure: _constants2.default.UPDATE_CARD_ERROR
+	      }, { card: card, draftCard: draftCard });
+	    };
+	  },
+	  updateCardStatus: function updateCardStatus(cardId, listId) {
+	    (0, _utils.throttle)(function (cardId, listId) {
+	      return {
+	        type: _constants2.default.UPDATE_CARD_STATUS,
+	        payload: { cardId: cardId, listId: listId }
+	      };
+	    });
+	  },
+	  updateCardPosition: function updateCardPosition(cardId, afterId) {
+	    (0, _utils.throttle)(function (cardId, afterId) {
+	      return {
+	        type: _constants2.default.UPDATE_CARD_POSITION,
+	        payload: { cardId: cardId, afterId: afterId }
+	      };
+	    }, 500);
+	  },
+	  persistCardDrag: function persistCardDrag(cardProps) {
+	    var card = CardStore.getCard(cardProps.id);
+	    var cardIndex = CardStore.getCardIndex(cardProps.id);
+	    (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.persistCardDrag(card.id, card.status, cardIndex), {
+	      request: _constants2.default.PERSIST_CARD_DRAG,
+	      success: _constants2.default.PERSIST_CARD_DRAG_SUCCESS,
+	      failure: _constants2.default.PERSIST_CARD_DRAG_ERROR
+	    }, { cardProps: cardProps });
+	  },
+	  createDraft: function createDraft(card) {
+	    return {
+	      type: _constants2.default.CREATE_DRAFT,
+	      payload: card
+	    };
+	  },
+	  updateDraft: function updateDraft(field, value) {
+	    return {
+	      type: _constants2.default.UPDATE_DRAFT,
+	      payload: { field: field, value: value }
+	    };
 	  }
 	};
 	
-	exports.default = TaskActionCreators;
+	exports.default = CardActionCreators;
 
 /***/ },
 
-/***/ 488:
-/*!******************************!*\
-  !*** ./app/AppDispatcher.js ***!
-  \******************************/
+/***/ 787:
+/*!********************************!*\
+  !*** ./app/ReduxDispatcher.js ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1007,64 +1076,40 @@ webpackJsonp([0],{
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.dispatchAsync = dispatchAsync;
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	__webpack_require__(/*! babel-polyfill */ 259);
 	
-	var _flux = __webpack_require__(/*! flux */ 489);
+	/**
+	* This does the async request and provides Redux thunk feedback 
+	*/
+	function dispatchAsync(promise, dispatch, types, payload) {
+	  var request = types.request;
+	  var success = types.success;
+	  var failure = types.failure;
 	
-	__webpack_require__(/*! babel-polyfill */ 492);
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var AppDispatcher = function (_Dispatcher) {
-	  _inherits(AppDispatcher, _Dispatcher);
-	
-	  function AppDispatcher() {
-	    _classCallCheck(this, AppDispatcher);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AppDispatcher).apply(this, arguments));
-	  }
-	
-	  _createClass(AppDispatcher, [{
-	    key: 'dispatchAsync',
-	
-	    /**
-	    * Dispatches three actions for an async operation represented by promise.
-	    */
-	    value: function dispatchAsync(promise, types, payload) {
-	      var _this2 = this;
-	
-	      var request = types.request;
-	      var success = types.success;
-	      var failure = types.failure;
-	
-	      this.dispatch({ type: request, payload: Object.assign({}, payload) });
-	      promise.then(function (response) {
-	        return _this2.dispatch({
-	          type: success,
-	          payload: Object.assign({}, payload, { response: response })
-	        });
-	      }, function (error) {
-	        return _this2.dispatch({
-	          type: failure,
-	          payload: Object.assign({}, payload, { error: error })
-	        });
-	      });
-	    }
-	  }]);
-	
-	  return AppDispatcher;
-	}(_flux.Dispatcher);
-	
-	exports.default = new AppDispatcher();
+	  dispatch({
+	    type: request,
+	    payload: Object.assign({}, payload)
+	  });
+	  promise.then(function (response) {
+	    return dispatch({
+	      type: success,
+	      success: true,
+	      payload: Object.assign({}, payload, { response: response })
+	    });
+	  }, function (error) {
+	    return dispatch({
+	      type: failure,
+	      success: false,
+	      payload: Object.assign({}, payload, { error: error })
+	    });
+	  });
+	};
 
 /***/ },
 
-/***/ 789:
+/***/ 788:
 /*!******************************!*\
   !*** ./app/api/KanbanApi.js ***!
   \******************************/
@@ -1076,9 +1121,9 @@ webpackJsonp([0],{
 	  value: true
 	});
 	
-	__webpack_require__(/*! whatwg-fetch */ 790);
+	__webpack_require__(/*! whatwg-fetch */ 789);
 	
-	__webpack_require__(/*! babel-polyfill */ 492);
+	__webpack_require__(/*! babel-polyfill */ 259);
 	
 	var _constants = __webpack_require__(/*! ../constants */ 257);
 	
@@ -1149,161 +1194,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 791:
-/*!*******************************************!*\
-  !*** ./app/actions/CardActionCreators.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _ReduxDispatcher = __webpack_require__(/*! ../ReduxDispatcher */ 792);
-	
-	var _constants = __webpack_require__(/*! ../constants */ 257);
-	
-	var _constants2 = _interopRequireDefault(_constants);
-	
-	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 789);
-	
-	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
-	
-	var _utils = __webpack_require__(/*! ../utils */ 793);
-	
-	var _cardUtils = __webpack_require__(/*! ../cardUtils */ 258);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var CardActionCreators = {
-	  fetchCards: function fetchCards() {
-	    return function (dispatch) {
-	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.fetchCards(), dispatch, {
-	        request: _constants2.default.FETCH_CARDS,
-	        success: _constants2.default.FETCH_CARDS_SUCCESS,
-	        failure: _constants2.default.FETCH_CARDS_ERROR
-	      });
-	    };
-	  },
-	  toggleCardDetails: function toggleCardDetails(cardId) {
-	    return {
-	      type: _constants2.default.TOGGLE_CARD_DETAILS,
-	      cardId: cardId
-	    };
-	  },
-	  addCard: function addCard(card) {
-	    return function (dispatch) {
-	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.addCard(card), dispatch, {
-	        request: _constants2.default.CREATE_CARD,
-	        success: _constants2.default.CREATE_CARD_SUCCESS,
-	        failure: _constants2.default.CREATE_CARD_ERROR
-	      }, { card: card });
-	    };
-	  },
-	  updateCard: function updateCard(card, draftCard) {
-	    return function (dispatch) {
-	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.updateCard(card, draftCard), dispatch, {
-	        request: _constants2.default.UPDATE_CARD,
-	        success: _constants2.default.UPDATE_CARD_SUCCESS,
-	        failure: _constants2.default.UPDATE_CARD_ERROR
-	      }, { card: card, draftCard: draftCard });
-	    };
-	  },
-	  updateCardStatus: function updateCardStatus() {
-	    return function (dispatch) {
-	      (0, _utils.throttle)(function (cardId, listId) {
-	        (0, _ReduxDispatcher.dispatchAsync)({
-	          type: _constants2.default.UPDATE_CARD_STATUS,
-	          payload: { cardId: cardId, listId: listId }
-	        }, dispatch);
-	      });
-	    };
-	  },
-	  updateCardPosition: function updateCardPosition() {
-	    return function (dispatch) {
-	      (0, _utils.throttle)(function (cardId, afterId) {
-	        (0, _ReduxDispatcher.dispatchAsync)({
-	          type: _constants2.default.UPDATE_CARD_POSITION,
-	          payload: { cardId: cardId, afterId: afterId }
-	        });
-	      }, 500);
-	    };
-	  },
-	  persistCardDrag: function persistCardDrag(cardProps) {
-	    var card = CardStore.getCard(cardProps.id);
-	    var cardIndex = CardStore.getCardIndex(cardProps.id);
-	    AppDispatcher.dispatchAsync(_KanbanApi2.default.persistCardDrag(card.id, card.status, cardIndex), {
-	      request: _constants2.default.PERSIST_CARD_DRAG,
-	      success: _constants2.default.PERSIST_CARD_DRAG_SUCCESS,
-	      failure: _constants2.default.PERSIST_CARD_DRAG_ERROR
-	    }, { cardProps: cardProps });
-	  },
-	  createDraft: function createDraft(card) {
-	    return function (dispatch) {
-	      (0, _ReduxDispatcher.dispatchAsync)({
-	        type: _constants2.default.CREATE_DRAFT,
-	        payload: { card: card }
-	      });
-	    };
-	  },
-	  updateDraft: function updateDraft(field, value) {
-	    return function (dispatch) {
-	      (0, _ReduxDispatcher.dispatchAsync)({
-	        type: _constants2.default.UPDATE_DRAFT,
-	        payload: { field: field, value: value }
-	      });
-	    };
-	  }
-	};
-	
-	exports.default = CardActionCreators;
-
-/***/ },
-
-/***/ 792:
-/*!********************************!*\
-  !*** ./app/ReduxDispatcher.js ***!
-  \********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.dispatchAsync = dispatchAsync;
-	
-	__webpack_require__(/*! babel-polyfill */ 492);
-	
-	/**
-	* This does the async request and provides Redux thunk feedback 
-	*/
-	function dispatchAsync(promise, dispatch, types) {
-	  var request = types.request;
-	  var success = types.success;
-	  var failure = types.failure;
-	
-	  dispatch({ type: request });
-	  promise.then(function (response) {
-	    return dispatch({
-	      type: success,
-	      success: true,
-	      response: response
-	    });
-	  }, function (error) {
-	    return dispatch({
-	      type: failure,
-	      success: false,
-	      error: error
-	    });
-	  });
-	};
-
-/***/ },
-
-/***/ 793:
+/***/ 790:
 /*!**********************!*\
   !*** ./app/utils.js ***!
   \**********************/
@@ -1316,7 +1207,7 @@ webpackJsonp([0],{
 	});
 	exports.throttle = undefined;
 	
-	__webpack_require__(/*! babel-polyfill */ 492);
+	__webpack_require__(/*! babel-polyfill */ 259);
 	
 	var throttle = exports.throttle = function throttle(func, wait) {
 	  var context = void 0,
@@ -1349,7 +1240,269 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 794:
+/***/ 791:
+/*!************************************!*\
+  !*** ./app/components/EditCard.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _CardForm = __webpack_require__(/*! ./CardForm */ 792);
+	
+	var _CardForm2 = _interopRequireDefault(_CardForm);
+	
+	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 793);
+	
+	var _CardStore2 = _interopRequireDefault(_CardStore);
+	
+	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 815);
+	
+	var _DraftStore2 = _interopRequireDefault(_DraftStore);
+	
+	var _utils = __webpack_require__(/*! flux/utils */ 798);
+	
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
+	
+	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 231);
+	
+	var _cardUtils = __webpack_require__(/*! ../cardUtils */ 258);
+	
+	__webpack_require__(/*! babel-polyfill */ 259);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var EditCard = function (_Component) {
+	  _inherits(EditCard, _Component);
+	
+	  function EditCard() {
+	    _classCallCheck(this, EditCard);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(EditCard).apply(this, arguments));
+	  }
+	
+	  _createClass(EditCard, [{
+	    key: 'handleChange',
+	    value: function handleChange(field, value) {
+	      this.props.dispatch(_CardActionCreators2.default.updateDraft(field, value));
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      e.preventDefault();
+	      var cards = this.context.store.getState().cards;
+	      this.props.dispatch(_CardActionCreators2.default.updateCard((0, _cardUtils.getCard)(cards, this.props.params.card_id), this.state.draft));
+	
+	      this.props.history.pushState(null, '/');
+	    }
+	  }, {
+	    key: 'handleClose',
+	    value: function handleClose(e) {
+	      this.props.history.pushState(null, '/');
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this2 = this;
+	
+	      var cards = this.context.store.getState().cards;
+	      setTimeout(function () {
+	        _this2.props.dispatch(_CardActionCreators2.default.createDraft((0, _cardUtils.getCard)(cards, _this2.props.params.card_id)));
+	      }, 0);
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(_CardForm2.default, { draftCard: this.state.draft,
+	        buttonLabel: 'Edit Card',
+	        handleChange: this.handleChange.bind(this),
+	        handleSubmit: this.handleSubmit.bind(this),
+	        handleClose: this.handleClose.bind(this) });
+	    }
+	  }]);
+	
+	  return EditCard;
+	}(_react.Component);
+	
+	EditCard.contextTypes = {
+	  store: _react2.default.PropTypes.object
+	};
+	
+	EditCard.getStores = function () {
+	  return [_DraftStore2.default];
+	};
+	EditCard.calculateState = function (prevState) {
+	  return {
+	    draft: _DraftStore2.default.getState()
+	  };
+	};
+	
+	exports.default = (0, _reactRedux.connect)()(_utils.Container.create(EditCard));
+
+/***/ },
+
+/***/ 792:
+/*!************************************!*\
+  !*** ./app/components/CardForm.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CardForm = function (_Component) {
+	  _inherits(CardForm, _Component);
+	
+	  function CardForm() {
+	    _classCallCheck(this, CardForm);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CardForm).apply(this, arguments));
+	  }
+	
+	  _createClass(CardForm, [{
+	    key: 'handleChange',
+	    value: function handleChange(field, e) {
+	      this.props.handleChange(field, e.target.value);
+	    }
+	  }, {
+	    key: 'handleClose',
+	    value: function handleClose(e) {
+	      e.preventDefault();
+	      this.props.handleClose();
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'card big' },
+	          _react2.default.createElement(
+	            'form',
+	            { onSubmit: this.props.handleSubmit.bind(this) },
+	            _react2.default.createElement('input', { type: 'text',
+	              value: this.props.draftCard.title,
+	              onChange: this.handleChange.bind(this, 'title'),
+	              placeholder: 'Title',
+	              required: true,
+	              autoFocus: true }),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement('textarea', { value: this.props.draftCard.description,
+	              onChange: this.handleChange.bind(this, 'description'),
+	              placeholder: 'Description',
+	              required: true }),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'label',
+	              { htmlFor: 'status' },
+	              'Status'
+	            ),
+	            _react2.default.createElement(
+	              'select',
+	              { id: 'status',
+	                value: this.props.draftCard.status,
+	                onChange: this.handleChange.bind(this, 'status') },
+	              _react2.default.createElement(
+	                'option',
+	                { value: 'todo' },
+	                'To Do'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: 'in-progress' },
+	                'In Progress'
+	              ),
+	              _react2.default.createElement(
+	                'option',
+	                { value: 'done' },
+	                'Done'
+	              )
+	            ),
+	            _react2.default.createElement('br', null),
+	            _react2.default.createElement(
+	              'label',
+	              { htmlFor: 'color' },
+	              'Color'
+	            ),
+	            _react2.default.createElement('input', { id: 'color',
+	              value: this.props.draftCard.color,
+	              onChange: this.handleChange.bind(this, 'color'),
+	              type: 'color',
+	              defaultValue: '#ff0000' }),
+	            _react2.default.createElement(
+	              'div',
+	              { className: 'actions' },
+	              _react2.default.createElement(
+	                'button',
+	                { type: 'submit' },
+	                this.props.buttonLabel
+	              )
+	            )
+	          )
+	        ),
+	        _react2.default.createElement('div', { className: 'overlay', onClick: this.handleClose.bind(this) })
+	      );
+	    }
+	  }]);
+	
+	  return CardForm;
+	}(_react.Component);
+	
+	CardForm.propTypes = {
+	  buttonLabel: _react.PropTypes.string.isRequired,
+	  draftCard: _react.PropTypes.shape({
+	    title: _react.PropTypes.string,
+	    description: _react.PropTypes.string,
+	    status: _react.PropTypes.string,
+	    color: _react.PropTypes.string
+	  }).isRequired,
+	  handleChange: _react.PropTypes.func.isRequired,
+	  handleSubmit: _react.PropTypes.func.isRequired,
+	  handleClose: _react.PropTypes.func.isRequired
+	};
+	
+	exports.default = CardForm;
+
+/***/ },
+
+/***/ 793:
 /*!*********************************!*\
   !*** ./app/stores/CardStore.js ***!
   \*********************************/
@@ -1363,7 +1516,7 @@ webpackJsonp([0],{
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 488);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 794);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
@@ -1371,13 +1524,13 @@ webpackJsonp([0],{
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _utils = __webpack_require__(/*! flux/utils */ 795);
+	var _utils = __webpack_require__(/*! flux/utils */ 798);
 	
-	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 812);
+	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 556);
 	
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 	
-	__webpack_require__(/*! babel-polyfill */ 492);
+	__webpack_require__(/*! babel-polyfill */ 259);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -1568,7 +1721,75 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 795:
+/***/ 794:
+/*!******************************!*\
+  !*** ./app/AppDispatcher.js ***!
+  \******************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _flux = __webpack_require__(/*! flux */ 795);
+	
+	__webpack_require__(/*! babel-polyfill */ 259);
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var AppDispatcher = function (_Dispatcher) {
+	  _inherits(AppDispatcher, _Dispatcher);
+	
+	  function AppDispatcher() {
+	    _classCallCheck(this, AppDispatcher);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(AppDispatcher).apply(this, arguments));
+	  }
+	
+	  _createClass(AppDispatcher, [{
+	    key: 'dispatchAsync',
+	
+	    /**
+	    * Dispatches three actions for an async operation represented by promise.
+	    */
+	    value: function dispatchAsync(promise, types, payload) {
+	      var _this2 = this;
+	
+	      var request = types.request;
+	      var success = types.success;
+	      var failure = types.failure;
+	
+	      this.dispatch({ type: request, payload: Object.assign({}, payload) });
+	      promise.then(function (response) {
+	        return _this2.dispatch({
+	          type: success,
+	          payload: Object.assign({}, payload, { response: response })
+	        });
+	      }, function (error) {
+	        return _this2.dispatch({
+	          type: failure,
+	          payload: Object.assign({}, payload, { error: error })
+	        });
+	      });
+	    }
+	  }]);
+	
+	  return AppDispatcher;
+	}(_flux.Dispatcher);
+	
+	exports.default = new AppDispatcher();
+
+/***/ },
+
+/***/ 798:
 /*!*************************!*\
   !*** ./~/flux/utils.js ***!
   \*************************/
@@ -1583,16 +1804,16 @@ webpackJsonp([0],{
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Container = __webpack_require__(/*! ./lib/FluxContainer */ 796);
-	module.exports.MapStore = __webpack_require__(/*! ./lib/FluxMapStore */ 799);
-	module.exports.Mixin = __webpack_require__(/*! ./lib/FluxMixinLegacy */ 811);
-	module.exports.ReduceStore = __webpack_require__(/*! ./lib/FluxReduceStore */ 800);
-	module.exports.Store = __webpack_require__(/*! ./lib/FluxStore */ 801);
+	module.exports.Container = __webpack_require__(/*! ./lib/FluxContainer */ 799);
+	module.exports.MapStore = __webpack_require__(/*! ./lib/FluxMapStore */ 802);
+	module.exports.Mixin = __webpack_require__(/*! ./lib/FluxMixinLegacy */ 814);
+	module.exports.ReduceStore = __webpack_require__(/*! ./lib/FluxReduceStore */ 803);
+	module.exports.Store = __webpack_require__(/*! ./lib/FluxStore */ 804);
 
 
 /***/ },
 
-/***/ 796:
+/***/ 799:
 /*!*************************************!*\
   !*** ./~/flux/lib/FluxContainer.js ***!
   \*************************************/
@@ -1617,10 +1838,10 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 797);
+	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 800);
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 491);
-	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 798);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
+	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 801);
 	
 	var DEFAULT_OPTIONS = {
 	  pure: true,
@@ -1779,7 +2000,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 797:
+/***/ 800:
 /*!**************************************!*\
   !*** ./~/flux/lib/FluxStoreGroup.js ***!
   \**************************************/
@@ -1801,7 +2022,7 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 491);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
 	
 	/**
 	 * FluxStoreGroup allows you to execute a callback on every dispatch after
@@ -1864,7 +2085,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 798:
+/***/ 801:
 /*!*******************************************!*\
   !*** ./~/flux/~/fbjs/lib/shallowEqual.js ***!
   \*******************************************/
@@ -1923,7 +2144,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 799:
+/***/ 802:
 /*!************************************!*\
   !*** ./~/flux/lib/FluxMapStore.js ***!
   \************************************/
@@ -1947,10 +2168,10 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FluxReduceStore = __webpack_require__(/*! ./FluxReduceStore */ 800);
-	var Immutable = __webpack_require__(/*! immutable */ 810);
+	var FluxReduceStore = __webpack_require__(/*! ./FluxReduceStore */ 803);
+	var Immutable = __webpack_require__(/*! immutable */ 813);
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 491);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
 	
 	/**
 	 * This is a simple store. It allows caching key value pairs. An implementation
@@ -2077,7 +2298,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 800:
+/***/ 803:
 /*!***************************************!*\
   !*** ./~/flux/lib/FluxReduceStore.js ***!
   \***************************************/
@@ -2101,10 +2322,10 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FluxStore = __webpack_require__(/*! ./FluxStore */ 801);
+	var FluxStore = __webpack_require__(/*! ./FluxStore */ 804);
 	
-	var abstractMethod = __webpack_require__(/*! ./abstractMethod */ 809);
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 491);
+	var abstractMethod = __webpack_require__(/*! ./abstractMethod */ 812);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
 	
 	var FluxReduceStore = (function (_FluxStore) {
 	  _inherits(FluxReduceStore, _FluxStore);
@@ -2188,7 +2409,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 801:
+/***/ 804:
 /*!*********************************!*\
   !*** ./~/flux/lib/FluxStore.js ***!
   \*********************************/
@@ -2210,11 +2431,11 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _require = __webpack_require__(/*! fbemitter */ 802);
+	var _require = __webpack_require__(/*! fbemitter */ 805);
 	
 	var EventEmitter = _require.EventEmitter;
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 491);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
 	
 	/**
 	 * This class should be extended by the stores in your application, like so:
@@ -2375,7 +2596,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 802:
+/***/ 805:
 /*!*************************************!*\
   !*** ./~/flux/~/fbemitter/index.js ***!
   \*************************************/
@@ -2391,7 +2612,7 @@ webpackJsonp([0],{
 	 */
 	
 	var fbemitter = {
-	  EventEmitter: __webpack_require__(/*! ./lib/BaseEventEmitter */ 803)
+	  EventEmitter: __webpack_require__(/*! ./lib/BaseEventEmitter */ 806)
 	};
 	
 	module.exports = fbemitter;
@@ -2399,7 +2620,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 803:
+/***/ 806:
 /*!****************************************************!*\
   !*** ./~/flux/~/fbemitter/lib/BaseEventEmitter.js ***!
   \****************************************************/
@@ -2421,11 +2642,11 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var EmitterSubscription = __webpack_require__(/*! ./EmitterSubscription */ 804);
-	var EventSubscriptionVendor = __webpack_require__(/*! ./EventSubscriptionVendor */ 806);
+	var EmitterSubscription = __webpack_require__(/*! ./EmitterSubscription */ 807);
+	var EventSubscriptionVendor = __webpack_require__(/*! ./EventSubscriptionVendor */ 809);
 	
-	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 808);
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 807);
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 811);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 810);
 	
 	/**
 	 * @class BaseEventEmitter
@@ -2600,7 +2821,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 804:
+/***/ 807:
 /*!*******************************************************!*\
   !*** ./~/flux/~/fbemitter/lib/EmitterSubscription.js ***!
   \*******************************************************/
@@ -2624,7 +2845,7 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var EventSubscription = __webpack_require__(/*! ./EventSubscription */ 805);
+	var EventSubscription = __webpack_require__(/*! ./EventSubscription */ 808);
 	
 	/**
 	 * EmitterSubscription represents a subscription with listener and context data.
@@ -2657,7 +2878,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 805:
+/***/ 808:
 /*!*****************************************************!*\
   !*** ./~/flux/~/fbemitter/lib/EventSubscription.js ***!
   \*****************************************************/
@@ -2715,7 +2936,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 806:
+/***/ 809:
 /*!***********************************************************!*\
   !*** ./~/flux/~/fbemitter/lib/EventSubscriptionVendor.js ***!
   \***********************************************************/
@@ -2737,7 +2958,7 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 807);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 810);
 	
 	/**
 	 * EventSubscriptionVendor stores a set of EventSubscriptions that are
@@ -2828,7 +3049,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 807:
+/***/ 810:
 /*!****************************************************!*\
   !*** ./~/flux/~/fbemitter/~/fbjs/lib/invariant.js ***!
   \****************************************************/
@@ -2887,7 +3108,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 808:
+/***/ 811:
 /*!********************************************************!*\
   !*** ./~/flux/~/fbemitter/~/fbjs/lib/emptyFunction.js ***!
   \********************************************************/
@@ -2933,7 +3154,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 809:
+/***/ 812:
 /*!**************************************!*\
   !*** ./~/flux/lib/abstractMethod.js ***!
   \**************************************/
@@ -2953,7 +3174,7 @@ webpackJsonp([0],{
 	
 	'use strict';
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 491);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
 	
 	function abstractMethod(className, methodName) {
 	   true ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Subclasses of %s must override %s() with their own implementation.', className, methodName) : invariant(false) : undefined;
@@ -2964,7 +3185,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 810:
+/***/ 813:
 /*!**********************************************!*\
   !*** ./~/flux/~/immutable/dist/immutable.js ***!
   \**********************************************/
@@ -7952,7 +8173,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 811:
+/***/ 814:
 /*!***************************************!*\
   !*** ./~/flux/lib/FluxMixinLegacy.js ***!
   \***************************************/
@@ -7972,9 +8193,9 @@ webpackJsonp([0],{
 	
 	'use strict';
 	
-	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 797);
+	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 800);
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 491);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
 	
 	/**
 	 * `FluxContainer` should be preferred over this mixin, but it requires using
@@ -8079,259 +8300,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 814:
-/*!************************************!*\
-  !*** ./app/components/EditCard.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _CardForm = __webpack_require__(/*! ./CardForm */ 815);
-	
-	var _CardForm2 = _interopRequireDefault(_CardForm);
-	
-	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 794);
-	
-	var _CardStore2 = _interopRequireDefault(_CardStore);
-	
-	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 816);
-	
-	var _DraftStore2 = _interopRequireDefault(_DraftStore);
-	
-	var _utils = __webpack_require__(/*! flux/utils */ 795);
-	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 791);
-	
-	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
-	
-	__webpack_require__(/*! babel-polyfill */ 492);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var EditCard = function (_Component) {
-	  _inherits(EditCard, _Component);
-	
-	  function EditCard() {
-	    _classCallCheck(this, EditCard);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(EditCard).apply(this, arguments));
-	  }
-	
-	  _createClass(EditCard, [{
-	    key: 'handleChange',
-	    value: function handleChange(field, value) {
-	      _CardActionCreators2.default.updateDraft(field, value);
-	    }
-	  }, {
-	    key: 'handleSubmit',
-	    value: function handleSubmit(e) {
-	      e.preventDefault();
-	      _CardActionCreators2.default.updateCard(_CardStore2.default.getCard(this.props.params.card_id), this.state.draft);
-	
-	      this.props.history.pushState(null, '/');
-	    }
-	  }, {
-	    key: 'handleClose',
-	    value: function handleClose(e) {
-	      this.props.history.pushState(null, '/');
-	    }
-	  }, {
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this2 = this;
-	
-	      setTimeout(function () {
-	        _CardActionCreators2.default.createDraft(_CardStore2.default.getCard(_this2.props.params.card_id));
-	      }, 0);
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(_CardForm2.default, { draftCard: this.state.draft,
-	        buttonLabel: 'Edit Card',
-	        handleChange: this.handleChange.bind(this),
-	        handleSubmit: this.handleSubmit.bind(this),
-	        handleClose: this.handleClose.bind(this) });
-	    }
-	  }]);
-	
-	  return EditCard;
-	}(_react.Component);
-	
-	EditCard.getStores = function () {
-	  return [_DraftStore2.default];
-	};
-	EditCard.calculateState = function (prevState) {
-	  return {
-	    draft: _DraftStore2.default.getState()
-	  };
-	};
-	
-	exports.default = _utils.Container.create(EditCard);
-
-/***/ },
-
 /***/ 815:
-/*!************************************!*\
-  !*** ./app/components/CardForm.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CardForm = function (_Component) {
-	  _inherits(CardForm, _Component);
-	
-	  function CardForm() {
-	    _classCallCheck(this, CardForm);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CardForm).apply(this, arguments));
-	  }
-	
-	  _createClass(CardForm, [{
-	    key: 'handleChange',
-	    value: function handleChange(field, e) {
-	      this.props.handleChange(field, e.target.value);
-	    }
-	  }, {
-	    key: 'handleClose',
-	    value: function handleClose(e) {
-	      e.preventDefault();
-	      this.props.handleClose();
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'div',
-	          { className: 'card big' },
-	          _react2.default.createElement(
-	            'form',
-	            { onSubmit: this.props.handleSubmit.bind(this) },
-	            _react2.default.createElement('input', { type: 'text',
-	              value: this.props.draftCard.title,
-	              onChange: this.handleChange.bind(this, 'title'),
-	              placeholder: 'Title',
-	              required: true,
-	              autoFocus: true }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('textarea', { value: this.props.draftCard.description,
-	              onChange: this.handleChange.bind(this, 'description'),
-	              placeholder: 'Description',
-	              required: true }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'label',
-	              { htmlFor: 'status' },
-	              'Status'
-	            ),
-	            _react2.default.createElement(
-	              'select',
-	              { id: 'status',
-	                value: this.props.draftCard.status,
-	                onChange: this.handleChange.bind(this, 'status') },
-	              _react2.default.createElement(
-	                'option',
-	                { value: 'todo' },
-	                'To Do'
-	              ),
-	              _react2.default.createElement(
-	                'option',
-	                { value: 'in-progress' },
-	                'In Progress'
-	              ),
-	              _react2.default.createElement(
-	                'option',
-	                { value: 'done' },
-	                'Done'
-	              )
-	            ),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	              'label',
-	              { htmlFor: 'color' },
-	              'Color'
-	            ),
-	            _react2.default.createElement('input', { id: 'color',
-	              value: this.props.draftCard.color,
-	              onChange: this.handleChange.bind(this, 'color'),
-	              type: 'color',
-	              defaultValue: '#ff0000' }),
-	            _react2.default.createElement(
-	              'div',
-	              { className: 'actions' },
-	              _react2.default.createElement(
-	                'button',
-	                { type: 'submit' },
-	                this.props.buttonLabel
-	              )
-	            )
-	          )
-	        ),
-	        _react2.default.createElement('div', { className: 'overlay', onClick: this.handleClose.bind(this) })
-	      );
-	    }
-	  }]);
-	
-	  return CardForm;
-	}(_react.Component);
-	
-	CardForm.propTypes = {
-	  buttonLabel: _react.PropTypes.string.isRequired,
-	  draftCard: _react.PropTypes.shape({
-	    title: _react.PropTypes.string,
-	    description: _react.PropTypes.string,
-	    status: _react.PropTypes.string,
-	    color: _react.PropTypes.string
-	  }).isRequired,
-	  handleChange: _react.PropTypes.func.isRequired,
-	  handleSubmit: _react.PropTypes.func.isRequired,
-	  handleClose: _react.PropTypes.func.isRequired
-	};
-	
-	exports.default = CardForm;
-
-/***/ },
-
-/***/ 816:
 /*!**********************************!*\
   !*** ./app/stores/DraftStore.js ***!
   \**********************************/
@@ -8345,7 +8314,7 @@ webpackJsonp([0],{
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 488);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 794);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
@@ -8353,9 +8322,9 @@ webpackJsonp([0],{
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _utils = __webpack_require__(/*! flux/utils */ 795);
+	var _utils = __webpack_require__(/*! flux/utils */ 798);
 	
-	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 812);
+	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 556);
 	
 	var _reactAddonsUpdate2 = _interopRequireDefault(_reactAddonsUpdate);
 	
@@ -8425,7 +8394,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 817:
+/***/ 816:
 /*!***********************************!*\
   !*** ./app/components/NewCard.js ***!
   \***********************************/
@@ -8443,19 +8412,21 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _CardForm = __webpack_require__(/*! ./CardForm */ 815);
+	var _CardForm = __webpack_require__(/*! ./CardForm */ 792);
 	
 	var _CardForm2 = _interopRequireDefault(_CardForm);
 	
-	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 816);
+	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 815);
 	
 	var _DraftStore2 = _interopRequireDefault(_DraftStore);
 	
-	var _utils = __webpack_require__(/*! flux/utils */ 795);
+	var _utils = __webpack_require__(/*! flux/utils */ 798);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 791);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 231);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -8477,13 +8448,13 @@ webpackJsonp([0],{
 	  _createClass(NewCard, [{
 	    key: 'handleChange',
 	    value: function handleChange(field, value) {
-	      _CardActionCreators2.default.updateDraft(field, value);
+	      this.props.dispatch(_CardActionCreators2.default.updateDraft(field, value));
 	    }
 	  }, {
 	    key: 'handleSubmit',
 	    value: function handleSubmit(e) {
 	      e.preventDefault();
-	      _CardActionCreators2.default.addCard(this.state.draft);
+	      this.props.dispatch(_CardActionCreators2.default.addCard(this.state.draft));
 	      this.props.history.pushState(null, '/');
 	    }
 	  }, {
@@ -8494,9 +8465,11 @@ webpackJsonp([0],{
 	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
+	      var _this2 = this;
+	
 	      setTimeout(function () {
-	        return _CardActionCreators2.default.createDraft();
-	      }, 0);
+	        return _this2.props.dispatch(_CardActionCreators2.default.createDraft(), 0);
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -8521,7 +8494,65 @@ webpackJsonp([0],{
 	  };
 	};
 	
-	exports.default = _utils.Container.create(NewCard);
+	exports.default = (0, _reactRedux.connect)()(_utils.Container.create(NewCard));
+
+/***/ },
+
+/***/ 821:
+/*!*******************************************!*\
+  !*** ./app/actions/TaskActionCreators.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _ReduxDispatcher = __webpack_require__(/*! ../ReduxDispatcher */ 787);
+	
+	var _constants = __webpack_require__(/*! ../constants */ 257);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 788);
+	
+	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var TaskActionCreators = {
+	  addTask: function addTask(cardId, task) {
+	    return function (dispatch) {
+	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.addTask(cardId, task), dispatch, {
+	        request: _constants2.default.CREATE_TASK,
+	        success: _constants2.default.CREATE_TASK_SUCCESS,
+	        failure: _constants2.default.CREATE_TASK_ERROR
+	      }, { cardId: cardId, task: task });
+	    };
+	  },
+	  deleteTask: function deleteTask(cardId, task, taskIndex) {
+	    return function (dispatch) {
+	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.deleteTask(cardId, task), dispatch, {
+	        request: _constants2.default.DELETE_TASK,
+	        success: _constants2.default.DELETE_TASK_SUCCESS,
+	        failure: _constants2.default.DELETE_TASK_ERROR
+	      }, { cardId: cardId, task: task, taskIndex: taskIndex });
+	    };
+	  },
+	  toggleTask: function toggleTask(cardId, task, taskIndex) {
+	    return function (dispatch) {
+	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.toggleTask(cardId, task), dispatch, {
+	        request: _constants2.default.TOGGLE_TASK,
+	        success: _constants2.default.TOGGLE_TASK_SUCCESS,
+	        failure: _constants2.default.TOGGLE_TASK_ERROR
+	      }, { cardId: cardId, task: task, taskIndex: taskIndex });
+	    };
+	  }
+	};
+	
+	exports.default = TaskActionCreators;
 
 /***/ }
 
