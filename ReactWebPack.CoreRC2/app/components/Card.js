@@ -27,7 +27,7 @@ const cardDragSpec = {
     };
   },
   endDrag(props) {
-    this.props.dispatch(CardActionCreators.persistCardDrag(props));
+    props.persistCardDrag(props);
   }
 }
 
@@ -35,7 +35,7 @@ const cardDropSpec = {
   hover(props, monitor) {
     const draggedId = monitor.getItem().id;
     if(props.id !== draggedId){
-      this.props.dispatch(CardActionCreators.updateCardPosition(draggedId, props.id));
+      props.updateCardPosition(draggedId, props.id);
     }
 
   }
@@ -55,7 +55,7 @@ let collectDrop = (connect, monitor) => {
 
 class Card extends Component {
   toggleDetails() {
-    this.props.dispatch(CardActionCreators.toggleCardDetails(this.props.id));
+    this.props.toggleCardDetails(this.props.id);
   }
   
   render() {
@@ -110,6 +110,18 @@ Card.propTypes = {
   connectDropTarget: PropTypes.func.isRequired
 };
 
+function mapDispatchToProps(dispatch) {
+  return {
+    persistCardDrag: (props) => CardActionCreators.persistCardDrag(props),
+    updateCardPosition: (draggedId, id) => CardActionCreators.updateCardPosition(draggedId, id),
+    toggleCardDetails: (id) => CardActionCreators.toggleCardDetails(id)
+  }
+}
+
+
 const dragHighOrderCard = DragSource(constants.CARD, cardDragSpec, collectDrag)(Card);
 const dragDropHighOrderCard = DropTarget(constants.CARD, cardDropSpec, collectDrop)(dragHighOrderCard);
-export default connect()(dragDropHighOrderCard);
+export default connect(
+  null,
+  mapDispatchToProps
+)(dragDropHighOrderCard);

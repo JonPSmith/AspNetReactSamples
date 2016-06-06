@@ -7,7 +7,7 @@ import CardActionCreators from '../actions/CardActionCreators';
 class KanbanBoardContainer extends Component {
 
   componentDidMount(){
-    this.props.actions.fetchCards();
+    this.props.fetchCards();
   }
 
   render() {
@@ -27,7 +27,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(CardActionCreators, dispatch)
+    fetchCards: () => dispatch(CardActionCreators.fetchCards())
   }
 }
 export default connect(
