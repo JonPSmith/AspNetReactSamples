@@ -43,31 +43,37 @@ let CardActionCreators = {
   },
 
   updateCardStatus(cardId, listId) {
-    throttle((cardId, listId) => {
-      return {
-        type: constants.UPDATE_CARD_STATUS,
-        payload: { cardId, listId }
-      };
-    })
+    return {
+      type: constants.UPDATE_CARD_STATUS,
+      payload: { cardId, listId },
+      meta: {
+        throttle: true
+      }
+    };
   },
 
   updateCardPosition(cardId, afterId) {
-    throttle((cardId, afterId) => {
-      return {
-        type: constants.UPDATE_CARD_POSITION,
-        payload: { cardId, afterId }
-      };
-    }, 500)
+    return {
+      type: constants.UPDATE_CARD_POSITION,
+      payload: { cardId, afterId },
+      meta: {
+        throttle: true
+      }
+    };
   },
 
+  //Note: this is an anti-pattern, i.e. you shouldn't really do this as it stops server-side rendering
+  //see this SO answer for more on this http://stackoverflow.com/a/35674575/1434764 
   persistCardDrag(cardProps) {
-    let card = CardStore.getCard(cardProps.id)
-    let cardIndex = CardStore.getCardIndex(cardProps.id)
-    dispatchAsync(KanbanAPI.persistCardDrag(card.id, card.status, cardIndex), {
-      request: constants.PERSIST_CARD_DRAG,
-      success: constants.PERSIST_CARD_DRAG_SUCCESS,
-      failure: constants.PERSIST_CARD_DRAG_ERROR
-    }, {cardProps});
+    return (dispatch, getState) => {
+      let card = getCard(getState().cards, cardProps.id)
+      let cardIndex = getCardIndex(getState().cards, cardProps.id)
+      dispatchAsync(KanbanAPI.persistCardDrag(card.id, card.status, cardIndex), dispatch, {
+        request: constants.PERSIST_CARD_DRAG,
+        success: constants.PERSIST_CARD_DRAG_SUCCESS,
+        failure: constants.PERSIST_CARD_DRAG_ERROR
+      }, {cardProps});
+    }
   },
 
   createDraft(card) {

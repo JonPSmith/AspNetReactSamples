@@ -34,11 +34,11 @@ webpackJsonp([0],{
 	
 	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
 	
-	var _EditCard = __webpack_require__(/*! ./components/EditCard */ 791);
+	var _EditCard = __webpack_require__(/*! ./components/EditCard */ 782);
 	
 	var _EditCard2 = _interopRequireDefault(_EditCard);
 	
-	var _NewCard = __webpack_require__(/*! ./components/NewCard */ 816);
+	var _NewCard = __webpack_require__(/*! ./components/NewCard */ 807);
 	
 	var _NewCard2 = _interopRequireDefault(_NewCard);
 	
@@ -74,7 +74,7 @@ webpackJsonp([0],{
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	   value: true
+	  value: true
 	});
 	
 	var _redux = __webpack_require__(/*! redux */ 238);
@@ -83,13 +83,24 @@ webpackJsonp([0],{
 	
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 	
+	var _reduxThrottle = __webpack_require__(/*! redux-throttle */ 822);
+	
+	var _reduxThrottle2 = _interopRequireDefault(_reduxThrottle);
+	
 	var _index = __webpack_require__(/*! ../reducers/index */ 255);
 	
 	var _index2 = _interopRequireDefault(_index);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var reduxStore = (0, _redux.createStore)(_index2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default));
+	var defaultThrottleOption = { // https://lodash.com/docs#throttle
+	  leading: true,
+	  trailing: false
+	};
+	
+	var throttleMiddleWare = (0, _reduxThrottle2.default)(500, defaultThrottleOption); //default 500ms,
+	
+	var reduxStore = (0, _redux.createStore)(_index2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default, throttleMiddleWare));
 	
 	exports.default = reduxStore;
 
@@ -377,12 +388,18 @@ webpackJsonp([0],{
 	var _babelPolyfill = __webpack_require__(/*! babel-polyfill */ 259);
 	
 	function getCard(cards, id) {
+	    if (!Array.isArray(cards)) {
+	        throw new Error('cards must be an array.');
+	    }
 	    return cards.find(function (card) {
 	        return card.id == id;
 	    });
 	};
 	
 	function getCardIndex(cards, id) {
+	    if (!Array.isArray(cards)) {
+	        throw new Error('cards must be an array.');
+	    }
 	    return cards.findIndex(function (card) {
 	        return card.id == id;
 	    });
@@ -416,7 +433,7 @@ webpackJsonp([0],{
 	
 	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 777);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
@@ -440,7 +457,7 @@ webpackJsonp([0],{
 	  _createClass(KanbanBoardContainer, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      this.props.actions.fetchCards();
+	      this.props.fetchCards();
 	    }
 	  }, {
 	    key: 'render',
@@ -464,7 +481,9 @@ webpackJsonp([0],{
 	
 	function mapDispatchToProps(dispatch) {
 	  return {
-	    actions: (0, _redux.bindActionCreators)(_CardActionCreators2.default, dispatch)
+	    fetchCards: function fetchCards() {
+	      return dispatch(_CardActionCreators2.default.fetchCards());
+	    }
 	  };
 	}
 	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(KanbanBoardContainer);
@@ -591,7 +610,7 @@ webpackJsonp([0],{
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 777);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
@@ -608,7 +627,7 @@ webpackJsonp([0],{
 	var listTargetSpec = {
 	  hover: function hover(props, monitor) {
 	    var dragged = monitor.getItem();
-	    this.props.dispatch(_CardActionCreators2.default.updateCardStatus(dragged.id, props.id));
+	    props.dispatch(_CardActionCreators2.default.updateCardStatus(dragged.id, props.id));
 	  }
 	};
 	
@@ -682,11 +701,11 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactAddonsCssTransitionGroup = __webpack_require__(/*! react-addons-css-transition-group */ 777);
+	var _reactAddonsCssTransitionGroup = __webpack_require__(/*! react-addons-css-transition-group */ 813);
 	
 	var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 	
-	var _marked = __webpack_require__(/*! marked */ 784);
+	var _marked = __webpack_require__(/*! marked */ 812);
 	
 	var _marked2 = _interopRequireDefault(_marked);
 	
@@ -696,13 +715,13 @@ webpackJsonp([0],{
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _CheckList = __webpack_require__(/*! ./CheckList */ 785);
+	var _CheckList = __webpack_require__(/*! ./CheckList */ 820);
 	
 	var _CheckList2 = _interopRequireDefault(_CheckList);
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 168);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 777);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
@@ -733,7 +752,7 @@ webpackJsonp([0],{
 	    };
 	  },
 	  endDrag: function endDrag(props) {
-	    this.props.dispatch(_CardActionCreators2.default.persistCardDrag(props));
+	    props.persistCardDrag(props);
 	  }
 	};
 	
@@ -741,7 +760,7 @@ webpackJsonp([0],{
 	  hover: function hover(props, monitor) {
 	    var draggedId = monitor.getItem().id;
 	    if (props.id !== draggedId) {
-	      this.props.dispatch(_CardActionCreators2.default.updateCardPosition(draggedId, props.id));
+	      props.updateCardPosition(draggedId, props.id);
 	    }
 	  }
 	};
@@ -770,7 +789,7 @@ webpackJsonp([0],{
 	  _createClass(Card, [{
 	    key: 'toggleDetails',
 	    value: function toggleDetails() {
-	      this.props.dispatch(_CardActionCreators2.default.toggleCardDetails(this.props.id));
+	      this.props.toggleCardDetails(this.props.id);
 	    }
 	  }, {
 	    key: 'render',
@@ -843,124 +862,27 @@ webpackJsonp([0],{
 	  connectDropTarget: _react.PropTypes.func.isRequired
 	};
 	
-	var dragHighOrderCard = (0, _reactDnd.DragSource)(_constants2.default.CARD, cardDragSpec, collectDrag)(Card);
-	var dragDropHighOrderCard = (0, _reactDnd.DropTarget)(_constants2.default.CARD, cardDropSpec, collectDrop)(dragHighOrderCard);
-	exports.default = (0, _reactRedux.connect)()(dragDropHighOrderCard);
-
-/***/ },
-
-/***/ 785:
-/*!*************************************!*\
-  !*** ./app/components/CheckList.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactRedux = __webpack_require__(/*! react-redux */ 231);
-	
-	var _redux = __webpack_require__(/*! redux */ 238);
-	
-	var _TaskActionCreators = __webpack_require__(/*! ../actions/TaskActionCreators */ 821);
-	
-	var _TaskActionCreators2 = _interopRequireDefault(_TaskActionCreators);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CheckList = function (_Component) {
-	  _inherits(CheckList, _Component);
-	
-	  function CheckList() {
-	    _classCallCheck(this, CheckList);
-	
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CheckList).apply(this, arguments));
-	  }
-	
-	  _createClass(CheckList, [{
-	    key: 'checkInputKeyPress',
-	    value: function checkInputKeyPress(evt) {
-	      if (evt.key === 'Enter') {
-	        var newTask = { id: Date.now(), name: evt.target.value, done: false };
-	        this.props.actions.addTask(this.props.cardId, newTask);
-	        evt.target.value = '';
-	      }
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this2 = this;
-	
-	      var tasks = this.props.tasks.map(function (task, taskIndex) {
-	        return _react2.default.createElement(
-	          'li',
-	          { key: task.id, className: 'checklist__task' },
-	          _react2.default.createElement('input', { type: 'checkbox',
-	            checked: task.done,
-	            onChange: _this2.props.actions.toggleTask.bind(_this2, _this2.props.cardId, task, taskIndex) }),
-	          task.name,
-	          ' ',
-	          _react2.default.createElement('a', { href: '#',
-	            className: 'checklist__task--remove',
-	            onClick: _this2.props.actions.deleteTask.bind(_this2, _this2.props.cardId, task, taskIndex) })
-	        );
-	      });
-	
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'checklist' },
-	        _react2.default.createElement(
-	          'ul',
-	          null,
-	          tasks
-	        ),
-	        _react2.default.createElement('input', { type: 'text',
-	          className: 'checklist--add-task',
-	          placeholder: 'Type then hit Enter to add a task',
-	          onKeyPress: this.checkInputKeyPress.bind(this) })
-	      );
-	    }
-	  }]);
-	
-	  return CheckList;
-	}(_react.Component);
-	
-	CheckList.propTypes = {
-	  cardId: _react.PropTypes.number,
-	  tasks: _react.PropTypes.arrayOf(_react.PropTypes.object)
-	};
-	
-	function mapStateToProps(state) {
-	  return {
-	    cards: state.cards
-	  };
-	}
-	
 	function mapDispatchToProps(dispatch) {
 	  return {
-	    actions: (0, _redux.bindActionCreators)(_TaskActionCreators2.default, dispatch)
+	    persistCardDrag: function persistCardDrag(props) {
+	      return _CardActionCreators2.default.persistCardDrag(props);
+	    },
+	    updateCardPosition: function updateCardPosition(draggedId, id) {
+	      return _CardActionCreators2.default.updateCardPosition(draggedId, id);
+	    },
+	    toggleCardDetails: function toggleCardDetails(id) {
+	      return _CardActionCreators2.default.toggleCardDetails(id);
+	    }
 	  };
 	}
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CheckList);
+	
+	var dragHighOrderCard = (0, _reactDnd.DragSource)(_constants2.default.CARD, cardDragSpec, collectDrag)(Card);
+	var dragDropHighOrderCard = (0, _reactDnd.DropTarget)(_constants2.default.CARD, cardDropSpec, collectDrop)(dragHighOrderCard);
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(dragDropHighOrderCard);
 
 /***/ },
 
-/***/ 786:
+/***/ 777:
 /*!*******************************************!*\
   !*** ./app/actions/CardActionCreators.js ***!
   \*******************************************/
@@ -972,17 +894,17 @@ webpackJsonp([0],{
 	  value: true
 	});
 	
-	var _ReduxDispatcher = __webpack_require__(/*! ../ReduxDispatcher */ 787);
+	var _ReduxDispatcher = __webpack_require__(/*! ../ReduxDispatcher */ 778);
 	
 	var _constants = __webpack_require__(/*! ../constants */ 257);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 788);
+	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 779);
 	
 	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
 	
-	var _utils = __webpack_require__(/*! ../utils */ 790);
+	var _utils = __webpack_require__(/*! ../utils */ 781);
 	
 	var _cardUtils = __webpack_require__(/*! ../cardUtils */ 258);
 	
@@ -1023,29 +945,37 @@ webpackJsonp([0],{
 	    };
 	  },
 	  updateCardStatus: function updateCardStatus(cardId, listId) {
-	    (0, _utils.throttle)(function (cardId, listId) {
-	      return {
-	        type: _constants2.default.UPDATE_CARD_STATUS,
-	        payload: { cardId: cardId, listId: listId }
-	      };
-	    });
+	    return {
+	      type: _constants2.default.UPDATE_CARD_STATUS,
+	      payload: { cardId: cardId, listId: listId },
+	      meta: {
+	        throttle: true
+	      }
+	    };
 	  },
 	  updateCardPosition: function updateCardPosition(cardId, afterId) {
-	    (0, _utils.throttle)(function (cardId, afterId) {
-	      return {
-	        type: _constants2.default.UPDATE_CARD_POSITION,
-	        payload: { cardId: cardId, afterId: afterId }
-	      };
-	    }, 500);
+	    return {
+	      type: _constants2.default.UPDATE_CARD_POSITION,
+	      payload: { cardId: cardId, afterId: afterId },
+	      meta: {
+	        throttle: true
+	      }
+	    };
 	  },
+	
+	
+	  //Note: this is an anti-pattern, i.e. you shouldn't really do this as it stops server-side rendering
+	  //see this SO answer for more on this http://stackoverflow.com/a/35674575/1434764
 	  persistCardDrag: function persistCardDrag(cardProps) {
-	    var card = CardStore.getCard(cardProps.id);
-	    var cardIndex = CardStore.getCardIndex(cardProps.id);
-	    (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.persistCardDrag(card.id, card.status, cardIndex), {
-	      request: _constants2.default.PERSIST_CARD_DRAG,
-	      success: _constants2.default.PERSIST_CARD_DRAG_SUCCESS,
-	      failure: _constants2.default.PERSIST_CARD_DRAG_ERROR
-	    }, { cardProps: cardProps });
+	    return function (dispatch, getState) {
+	      var card = (0, _cardUtils.getCard)(getState().cards, cardProps.id);
+	      var cardIndex = (0, _cardUtils.getCardIndex)(getState().cards, cardProps.id);
+	      (0, _ReduxDispatcher.dispatchAsync)(_KanbanApi2.default.persistCardDrag(card.id, card.status, cardIndex), dispatch, {
+	        request: _constants2.default.PERSIST_CARD_DRAG,
+	        success: _constants2.default.PERSIST_CARD_DRAG_SUCCESS,
+	        failure: _constants2.default.PERSIST_CARD_DRAG_ERROR
+	      }, { cardProps: cardProps });
+	    };
 	  },
 	  createDraft: function createDraft(card) {
 	    return {
@@ -1065,7 +995,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 787:
+/***/ 778:
 /*!********************************!*\
   !*** ./app/ReduxDispatcher.js ***!
   \********************************/
@@ -1084,6 +1014,9 @@ webpackJsonp([0],{
 	* This does the async request and provides Redux thunk feedback 
 	*/
 	function dispatchAsync(promise, dispatch, types, payload) {
+	  if (typeof dispatch !== 'function') {
+	    throw new Error('dispatch was not a function. Did you miss an update to the call?');
+	  }
 	  var request = types.request;
 	  var success = types.success;
 	  var failure = types.failure;
@@ -1109,7 +1042,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 788:
+/***/ 779:
 /*!******************************!*\
   !*** ./app/api/KanbanApi.js ***!
   \******************************/
@@ -1121,7 +1054,7 @@ webpackJsonp([0],{
 	  value: true
 	});
 	
-	__webpack_require__(/*! whatwg-fetch */ 789);
+	__webpack_require__(/*! whatwg-fetch */ 780);
 	
 	__webpack_require__(/*! babel-polyfill */ 259);
 	
@@ -1194,7 +1127,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 790:
+/***/ 781:
 /*!**********************!*\
   !*** ./app/utils.js ***!
   \**********************/
@@ -1240,7 +1173,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 791:
+/***/ 782:
 /*!************************************!*\
   !*** ./app/components/EditCard.js ***!
   \************************************/
@@ -1258,21 +1191,21 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _CardForm = __webpack_require__(/*! ./CardForm */ 792);
+	var _CardForm = __webpack_require__(/*! ./CardForm */ 783);
 	
 	var _CardForm2 = _interopRequireDefault(_CardForm);
 	
-	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 793);
+	var _CardStore = __webpack_require__(/*! ../stores/CardStore */ 784);
 	
 	var _CardStore2 = _interopRequireDefault(_CardStore);
 	
-	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 815);
+	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 806);
 	
 	var _DraftStore2 = _interopRequireDefault(_DraftStore);
 	
-	var _utils = __webpack_require__(/*! flux/utils */ 798);
+	var _utils = __webpack_require__(/*! flux/utils */ 789);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 777);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
@@ -1342,6 +1275,11 @@ webpackJsonp([0],{
 	  return EditCard;
 	}(_react.Component);
 	
+	//The code below enables access the store via the React context.
+	//The code that uses it is in componentDidMount, line 33
+	//see section called "Passing the Store" in http://redux.js.org/docs/basics/UsageWithReact.html for more info
+	
+	
 	EditCard.contextTypes = {
 	  store: _react2.default.PropTypes.object
 	};
@@ -1359,7 +1297,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 792:
+/***/ 783:
 /*!************************************!*\
   !*** ./app/components/CardForm.js ***!
   \************************************/
@@ -1502,7 +1440,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 793:
+/***/ 784:
 /*!*********************************!*\
   !*** ./app/stores/CardStore.js ***!
   \*********************************/
@@ -1516,7 +1454,7 @@ webpackJsonp([0],{
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 794);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 785);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
@@ -1524,7 +1462,7 @@ webpackJsonp([0],{
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _utils = __webpack_require__(/*! flux/utils */ 798);
+	var _utils = __webpack_require__(/*! flux/utils */ 789);
 	
 	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 556);
 	
@@ -1721,7 +1659,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 794:
+/***/ 785:
 /*!******************************!*\
   !*** ./app/AppDispatcher.js ***!
   \******************************/
@@ -1735,7 +1673,7 @@ webpackJsonp([0],{
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _flux = __webpack_require__(/*! flux */ 795);
+	var _flux = __webpack_require__(/*! flux */ 786);
 	
 	__webpack_require__(/*! babel-polyfill */ 259);
 	
@@ -1789,7 +1727,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 798:
+/***/ 789:
 /*!*************************!*\
   !*** ./~/flux/utils.js ***!
   \*************************/
@@ -1804,16 +1742,16 @@ webpackJsonp([0],{
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Container = __webpack_require__(/*! ./lib/FluxContainer */ 799);
-	module.exports.MapStore = __webpack_require__(/*! ./lib/FluxMapStore */ 802);
-	module.exports.Mixin = __webpack_require__(/*! ./lib/FluxMixinLegacy */ 814);
-	module.exports.ReduceStore = __webpack_require__(/*! ./lib/FluxReduceStore */ 803);
-	module.exports.Store = __webpack_require__(/*! ./lib/FluxStore */ 804);
+	module.exports.Container = __webpack_require__(/*! ./lib/FluxContainer */ 790);
+	module.exports.MapStore = __webpack_require__(/*! ./lib/FluxMapStore */ 793);
+	module.exports.Mixin = __webpack_require__(/*! ./lib/FluxMixinLegacy */ 805);
+	module.exports.ReduceStore = __webpack_require__(/*! ./lib/FluxReduceStore */ 794);
+	module.exports.Store = __webpack_require__(/*! ./lib/FluxStore */ 795);
 
 
 /***/ },
 
-/***/ 799:
+/***/ 790:
 /*!*************************************!*\
   !*** ./~/flux/lib/FluxContainer.js ***!
   \*************************************/
@@ -1838,10 +1776,10 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 800);
+	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 791);
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
-	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 801);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 788);
+	var shallowEqual = __webpack_require__(/*! fbjs/lib/shallowEqual */ 792);
 	
 	var DEFAULT_OPTIONS = {
 	  pure: true,
@@ -2000,7 +1938,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 800:
+/***/ 791:
 /*!**************************************!*\
   !*** ./~/flux/lib/FluxStoreGroup.js ***!
   \**************************************/
@@ -2022,7 +1960,7 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 788);
 	
 	/**
 	 * FluxStoreGroup allows you to execute a callback on every dispatch after
@@ -2085,7 +2023,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 801:
+/***/ 792:
 /*!*******************************************!*\
   !*** ./~/flux/~/fbjs/lib/shallowEqual.js ***!
   \*******************************************/
@@ -2144,7 +2082,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 802:
+/***/ 793:
 /*!************************************!*\
   !*** ./~/flux/lib/FluxMapStore.js ***!
   \************************************/
@@ -2168,10 +2106,10 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FluxReduceStore = __webpack_require__(/*! ./FluxReduceStore */ 803);
-	var Immutable = __webpack_require__(/*! immutable */ 813);
+	var FluxReduceStore = __webpack_require__(/*! ./FluxReduceStore */ 794);
+	var Immutable = __webpack_require__(/*! immutable */ 804);
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 788);
 	
 	/**
 	 * This is a simple store. It allows caching key value pairs. An implementation
@@ -2298,7 +2236,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 803:
+/***/ 794:
 /*!***************************************!*\
   !*** ./~/flux/lib/FluxReduceStore.js ***!
   \***************************************/
@@ -2322,10 +2260,10 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var FluxStore = __webpack_require__(/*! ./FluxStore */ 804);
+	var FluxStore = __webpack_require__(/*! ./FluxStore */ 795);
 	
-	var abstractMethod = __webpack_require__(/*! ./abstractMethod */ 812);
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
+	var abstractMethod = __webpack_require__(/*! ./abstractMethod */ 803);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 788);
 	
 	var FluxReduceStore = (function (_FluxStore) {
 	  _inherits(FluxReduceStore, _FluxStore);
@@ -2409,7 +2347,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 804:
+/***/ 795:
 /*!*********************************!*\
   !*** ./~/flux/lib/FluxStore.js ***!
   \*********************************/
@@ -2431,11 +2369,11 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var _require = __webpack_require__(/*! fbemitter */ 805);
+	var _require = __webpack_require__(/*! fbemitter */ 796);
 	
 	var EventEmitter = _require.EventEmitter;
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 788);
 	
 	/**
 	 * This class should be extended by the stores in your application, like so:
@@ -2596,7 +2534,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 805:
+/***/ 796:
 /*!*************************************!*\
   !*** ./~/flux/~/fbemitter/index.js ***!
   \*************************************/
@@ -2612,7 +2550,7 @@ webpackJsonp([0],{
 	 */
 	
 	var fbemitter = {
-	  EventEmitter: __webpack_require__(/*! ./lib/BaseEventEmitter */ 806)
+	  EventEmitter: __webpack_require__(/*! ./lib/BaseEventEmitter */ 797)
 	};
 	
 	module.exports = fbemitter;
@@ -2620,7 +2558,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 806:
+/***/ 797:
 /*!****************************************************!*\
   !*** ./~/flux/~/fbemitter/lib/BaseEventEmitter.js ***!
   \****************************************************/
@@ -2642,11 +2580,11 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var EmitterSubscription = __webpack_require__(/*! ./EmitterSubscription */ 807);
-	var EventSubscriptionVendor = __webpack_require__(/*! ./EventSubscriptionVendor */ 809);
+	var EmitterSubscription = __webpack_require__(/*! ./EmitterSubscription */ 798);
+	var EventSubscriptionVendor = __webpack_require__(/*! ./EventSubscriptionVendor */ 800);
 	
-	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 811);
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 810);
+	var emptyFunction = __webpack_require__(/*! fbjs/lib/emptyFunction */ 802);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 801);
 	
 	/**
 	 * @class BaseEventEmitter
@@ -2821,7 +2759,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 807:
+/***/ 798:
 /*!*******************************************************!*\
   !*** ./~/flux/~/fbemitter/lib/EmitterSubscription.js ***!
   \*******************************************************/
@@ -2845,7 +2783,7 @@ webpackJsonp([0],{
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var EventSubscription = __webpack_require__(/*! ./EventSubscription */ 808);
+	var EventSubscription = __webpack_require__(/*! ./EventSubscription */ 799);
 	
 	/**
 	 * EmitterSubscription represents a subscription with listener and context data.
@@ -2878,7 +2816,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 808:
+/***/ 799:
 /*!*****************************************************!*\
   !*** ./~/flux/~/fbemitter/lib/EventSubscription.js ***!
   \*****************************************************/
@@ -2936,7 +2874,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 809:
+/***/ 800:
 /*!***********************************************************!*\
   !*** ./~/flux/~/fbemitter/lib/EventSubscriptionVendor.js ***!
   \***********************************************************/
@@ -2958,7 +2896,7 @@ webpackJsonp([0],{
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 810);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 801);
 	
 	/**
 	 * EventSubscriptionVendor stores a set of EventSubscriptions that are
@@ -3049,7 +2987,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 810:
+/***/ 801:
 /*!****************************************************!*\
   !*** ./~/flux/~/fbemitter/~/fbjs/lib/invariant.js ***!
   \****************************************************/
@@ -3108,7 +3046,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 811:
+/***/ 802:
 /*!********************************************************!*\
   !*** ./~/flux/~/fbemitter/~/fbjs/lib/emptyFunction.js ***!
   \********************************************************/
@@ -3154,7 +3092,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 812:
+/***/ 803:
 /*!**************************************!*\
   !*** ./~/flux/lib/abstractMethod.js ***!
   \**************************************/
@@ -3174,7 +3112,7 @@ webpackJsonp([0],{
 	
 	'use strict';
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 788);
 	
 	function abstractMethod(className, methodName) {
 	   true ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Subclasses of %s must override %s() with their own implementation.', className, methodName) : invariant(false) : undefined;
@@ -3185,7 +3123,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 813:
+/***/ 804:
 /*!**********************************************!*\
   !*** ./~/flux/~/immutable/dist/immutable.js ***!
   \**********************************************/
@@ -8173,7 +8111,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 814:
+/***/ 805:
 /*!***************************************!*\
   !*** ./~/flux/lib/FluxMixinLegacy.js ***!
   \***************************************/
@@ -8193,9 +8131,9 @@ webpackJsonp([0],{
 	
 	'use strict';
 	
-	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 800);
+	var FluxStoreGroup = __webpack_require__(/*! ./FluxStoreGroup */ 791);
 	
-	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 797);
+	var invariant = __webpack_require__(/*! fbjs/lib/invariant */ 788);
 	
 	/**
 	 * `FluxContainer` should be preferred over this mixin, but it requires using
@@ -8300,7 +8238,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 815:
+/***/ 806:
 /*!**********************************!*\
   !*** ./app/stores/DraftStore.js ***!
   \**********************************/
@@ -8314,7 +8252,7 @@ webpackJsonp([0],{
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 794);
+	var _AppDispatcher = __webpack_require__(/*! ../AppDispatcher */ 785);
 	
 	var _AppDispatcher2 = _interopRequireDefault(_AppDispatcher);
 	
@@ -8322,7 +8260,7 @@ webpackJsonp([0],{
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _utils = __webpack_require__(/*! flux/utils */ 798);
+	var _utils = __webpack_require__(/*! flux/utils */ 789);
 	
 	var _reactAddonsUpdate = __webpack_require__(/*! react-addons-update */ 556);
 	
@@ -8394,7 +8332,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 816:
+/***/ 807:
 /*!***********************************!*\
   !*** ./app/components/NewCard.js ***!
   \***********************************/
@@ -8412,17 +8350,17 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _CardForm = __webpack_require__(/*! ./CardForm */ 792);
+	var _CardForm = __webpack_require__(/*! ./CardForm */ 783);
 	
 	var _CardForm2 = _interopRequireDefault(_CardForm);
 	
-	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 815);
+	var _DraftStore = __webpack_require__(/*! ../stores/DraftStore */ 806);
 	
 	var _DraftStore2 = _interopRequireDefault(_DraftStore);
 	
-	var _utils = __webpack_require__(/*! flux/utils */ 798);
+	var _utils = __webpack_require__(/*! flux/utils */ 789);
 	
-	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 786);
+	var _CardActionCreators = __webpack_require__(/*! ../actions/CardActionCreators */ 777);
 	
 	var _CardActionCreators2 = _interopRequireDefault(_CardActionCreators);
 	
@@ -8498,6 +8436,117 @@ webpackJsonp([0],{
 
 /***/ },
 
+/***/ 820:
+/*!*************************************!*\
+  !*** ./app/components/CheckList.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactRedux = __webpack_require__(/*! react-redux */ 231);
+	
+	var _redux = __webpack_require__(/*! redux */ 238);
+	
+	var _TaskActionCreators = __webpack_require__(/*! ../actions/TaskActionCreators */ 821);
+	
+	var _TaskActionCreators2 = _interopRequireDefault(_TaskActionCreators);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CheckList = function (_Component) {
+	  _inherits(CheckList, _Component);
+	
+	  function CheckList() {
+	    _classCallCheck(this, CheckList);
+	
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(CheckList).apply(this, arguments));
+	  }
+	
+	  _createClass(CheckList, [{
+	    key: 'checkInputKeyPress',
+	    value: function checkInputKeyPress(evt) {
+	      if (evt.key === 'Enter') {
+	        var newTask = { id: Date.now(), name: evt.target.value, done: false };
+	        this.props.actions.addTask(this.props.cardId, newTask);
+	        evt.target.value = '';
+	      }
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+	
+	      var tasks = this.props.tasks.map(function (task, taskIndex) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: task.id, className: 'checklist__task' },
+	          _react2.default.createElement('input', { type: 'checkbox',
+	            checked: task.done,
+	            onChange: _this2.props.actions.toggleTask.bind(_this2, _this2.props.cardId, task, taskIndex) }),
+	          task.name,
+	          ' ',
+	          _react2.default.createElement('a', { href: '#',
+	            className: 'checklist__task--remove',
+	            onClick: _this2.props.actions.deleteTask.bind(_this2, _this2.props.cardId, task, taskIndex) })
+	        );
+	      });
+	
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'checklist' },
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          tasks
+	        ),
+	        _react2.default.createElement('input', { type: 'text',
+	          className: 'checklist--add-task',
+	          placeholder: 'Type then hit Enter to add a task',
+	          onKeyPress: this.checkInputKeyPress.bind(this) })
+	      );
+	    }
+	  }]);
+	
+	  return CheckList;
+	}(_react.Component);
+	
+	CheckList.propTypes = {
+	  cardId: _react.PropTypes.number,
+	  tasks: _react.PropTypes.arrayOf(_react.PropTypes.object)
+	};
+	
+	function mapStateToProps(state) {
+	  return {
+	    cards: state.cards
+	  };
+	}
+	
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    actions: (0, _redux.bindActionCreators)(_TaskActionCreators2.default, dispatch)
+	  };
+	}
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CheckList);
+
+/***/ },
+
 /***/ 821:
 /*!*******************************************!*\
   !*** ./app/actions/TaskActionCreators.js ***!
@@ -8510,13 +8559,13 @@ webpackJsonp([0],{
 	  value: true
 	});
 	
-	var _ReduxDispatcher = __webpack_require__(/*! ../ReduxDispatcher */ 787);
+	var _ReduxDispatcher = __webpack_require__(/*! ../ReduxDispatcher */ 778);
 	
 	var _constants = __webpack_require__(/*! ../constants */ 257);
 	
 	var _constants2 = _interopRequireDefault(_constants);
 	
-	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 788);
+	var _KanbanApi = __webpack_require__(/*! ../api/KanbanApi */ 779);
 	
 	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
 	
@@ -8553,6 +8602,623 @@ webpackJsonp([0],{
 	};
 	
 	exports.default = TaskActionCreators;
+
+/***/ },
+
+/***/ 822:
+/*!*****************************************!*\
+  !*** ./~/redux-throttle/build/index.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.FLUSH = exports.CANCEL = undefined;
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+	
+	exports.default = middleware;
+	
+	var _lodash = __webpack_require__(/*! lodash.throttle */ 823);
+	
+	var _lodash2 = _interopRequireDefault(_lodash);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var CANCEL = exports.CANCEL = 'redux-throttle/CANCEL';
+	var FLUSH = exports.FLUSH = 'redux-throttle/FLUSH';
+	
+	function map(throttled, action, method) {
+	  if (action.payload && action.payload.type) {
+	    var _ret = function () {
+	      var types = action.payload.type;
+	      if (!Array.isArray(types)) {
+	        types = [types];
+	      }
+	      Object.keys(throttled).filter(function (t) {
+	        return types.includes(t);
+	      }).forEach(function (t) {
+	        return throttled[t][method]();
+	      });
+	      return {
+	        v: void 0
+	      };
+	    }();
+	
+	    if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	  }
+	  Object.keys(throttled).forEach(function (t) {
+	    return throttled[t][method]();
+	  });
+	  return;
+	}
+	
+	function middleware() {
+	  var defaultWait = arguments.length <= 0 || arguments[0] === undefined ? 300 : arguments[0];
+	  var defaultThrottleOption = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+	
+	  var throttled = {};
+	  return function (store) {
+	    return function (next) {
+	      return function (action) {
+	        if (action.type === CANCEL) {
+	          map(throttled, action, 'cancel');
+	          return next(action);
+	        }
+	
+	        if (action.type === FLUSH) {
+	          map(throttled, action, 'flush');
+	          return next(action);
+	        }
+	
+	        var shouldThrottle = (action.meta || {}).throttle;
+	
+	        // check if we don't need to throttle the action
+	        if (!shouldThrottle) {
+	          return next(action);
+	        }
+	
+	        if (throttled[action.type]) {
+	          // if it's a action which was throttled already
+	          return throttled[action.type](action);
+	        }
+	
+	        var wait = defaultWait;
+	        var options = defaultThrottleOption;
+	
+	        if (!isNaN(shouldThrottle) && shouldThrottle !== true) {
+	          wait = shouldThrottle;
+	        } else if ((typeof shouldThrottle === 'undefined' ? 'undefined' : _typeof(shouldThrottle)) === 'object') {
+	          wait = shouldThrottle.wait || defaultWait;
+	          options = _extends({}, defaultThrottleOption, shouldThrottle);
+	        }
+	
+	        throttled[action.type] = (0, _lodash2.default)(next, wait, options);
+	
+	        return throttled[action.type](action);
+	      };
+	    };
+	  };
+	}
+
+/***/ },
+
+/***/ 823:
+/*!************************************!*\
+  !*** ./~/lodash.throttle/index.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * lodash 4.0.1 (Custom Build) <https://lodash.com/>
+	 * Build: `lodash modularize exports="npm" -o ./`
+	 * Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
+	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+	 * Copyright 2009-2016 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 * Available under MIT license <https://lodash.com/license>
+	 */
+	var debounce = __webpack_require__(/*! lodash.debounce */ 824);
+	
+	/** Used as the `TypeError` message for "Functions" methods. */
+	var FUNC_ERROR_TEXT = 'Expected a function';
+	
+	/**
+	 * Creates a throttled function that only invokes `func` at most once per
+	 * every `wait` milliseconds. The throttled function comes with a `cancel`
+	 * method to cancel delayed `func` invocations and a `flush` method to
+	 * immediately invoke them. Provide an options object to indicate whether
+	 * `func` should be invoked on the leading and/or trailing edge of the `wait`
+	 * timeout. The `func` is invoked with the last arguments provided to the
+	 * throttled function. Subsequent calls to the throttled function return the
+	 * result of the last `func` invocation.
+	 *
+	 * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked
+	 * on the trailing edge of the timeout only if the throttled function is
+	 * invoked more than once during the `wait` timeout.
+	 *
+	 * See [David Corbacho's article](http://drupalmotion.com/article/debounce-and-throttle-visual-explanation)
+	 * for details over the differences between `_.throttle` and `_.debounce`.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @category Function
+	 * @param {Function} func The function to throttle.
+	 * @param {number} [wait=0] The number of milliseconds to throttle invocations to.
+	 * @param {Object} [options] The options object.
+	 * @param {boolean} [options.leading=true] Specify invoking on the leading
+	 *  edge of the timeout.
+	 * @param {boolean} [options.trailing=true] Specify invoking on the trailing
+	 *  edge of the timeout.
+	 * @returns {Function} Returns the new throttled function.
+	 * @example
+	 *
+	 * // Avoid excessively updating the position while scrolling.
+	 * jQuery(window).on('scroll', _.throttle(updatePosition, 100));
+	 *
+	 * // Invoke `renewToken` when the click event is fired, but not more than once every 5 minutes.
+	 * var throttled = _.throttle(renewToken, 300000, { 'trailing': false });
+	 * jQuery(element).on('click', throttled);
+	 *
+	 * // Cancel the trailing throttled invocation.
+	 * jQuery(window).on('popstate', throttled.cancel);
+	 */
+	function throttle(func, wait, options) {
+	  var leading = true,
+	      trailing = true;
+	
+	  if (typeof func != 'function') {
+	    throw new TypeError(FUNC_ERROR_TEXT);
+	  }
+	  if (isObject(options)) {
+	    leading = 'leading' in options ? !!options.leading : leading;
+	    trailing = 'trailing' in options ? !!options.trailing : trailing;
+	  }
+	  return debounce(func, wait, {
+	    'leading': leading,
+	    'maxWait': wait,
+	    'trailing': trailing
+	  });
+	}
+	
+	/**
+	 * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+	 * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 *
+	 * @static
+	 * @memberOf _
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+	 * @example
+	 *
+	 * _.isObject({});
+	 * // => true
+	 *
+	 * _.isObject([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObject(_.noop);
+	 * // => true
+	 *
+	 * _.isObject(null);
+	 * // => false
+	 */
+	function isObject(value) {
+	  var type = typeof value;
+	  return !!value && (type == 'object' || type == 'function');
+	}
+	
+	module.exports = throttle;
+
+
+/***/ },
+
+/***/ 824:
+/*!************************************!*\
+  !*** ./~/lodash.debounce/index.js ***!
+  \************************************/
+/***/ function(module, exports) {
+
+	/**
+	 * lodash 4.0.6 (Custom Build) <https://lodash.com/>
+	 * Build: `lodash modularize exports="npm" -o ./`
+	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+	 * Released under MIT license <https://lodash.com/license>
+	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+	 * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 */
+	
+	/** Used as the `TypeError` message for "Functions" methods. */
+	var FUNC_ERROR_TEXT = 'Expected a function';
+	
+	/** Used as references for various `Number` constants. */
+	var NAN = 0 / 0;
+	
+	/** `Object#toString` result references. */
+	var funcTag = '[object Function]',
+	    genTag = '[object GeneratorFunction]',
+	    symbolTag = '[object Symbol]';
+	
+	/** Used to match leading and trailing whitespace. */
+	var reTrim = /^\s+|\s+$/g;
+	
+	/** Used to detect bad signed hexadecimal string values. */
+	var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+	
+	/** Used to detect binary string values. */
+	var reIsBinary = /^0b[01]+$/i;
+	
+	/** Used to detect octal string values. */
+	var reIsOctal = /^0o[0-7]+$/i;
+	
+	/** Built-in method references without a dependency on `root`. */
+	var freeParseInt = parseInt;
+	
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+	
+	/**
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var objectToString = objectProto.toString;
+	
+	/* Built-in method references for those with the same name as other `lodash` methods. */
+	var nativeMax = Math.max,
+	    nativeMin = Math.min;
+	
+	/**
+	 * Gets the timestamp of the number of milliseconds that have elapsed since
+	 * the Unix epoch (1 January 1970 00:00:00 UTC).
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 2.4.0
+	 * @type {Function}
+	 * @category Date
+	 * @returns {number} Returns the timestamp.
+	 * @example
+	 *
+	 * _.defer(function(stamp) {
+	 *   console.log(_.now() - stamp);
+	 * }, _.now());
+	 * // => Logs the number of milliseconds it took for the deferred function to be invoked.
+	 */
+	var now = Date.now;
+	
+	/**
+	 * Creates a debounced function that delays invoking `func` until after `wait`
+	 * milliseconds have elapsed since the last time the debounced function was
+	 * invoked. The debounced function comes with a `cancel` method to cancel
+	 * delayed `func` invocations and a `flush` method to immediately invoke them.
+	 * Provide an options object to indicate whether `func` should be invoked on
+	 * the leading and/or trailing edge of the `wait` timeout. The `func` is invoked
+	 * with the last arguments provided to the debounced function. Subsequent calls
+	 * to the debounced function return the result of the last `func` invocation.
+	 *
+	 * **Note:** If `leading` and `trailing` options are `true`, `func` is invoked
+	 * on the trailing edge of the timeout only if the debounced function is
+	 * invoked more than once during the `wait` timeout.
+	 *
+	 * See [David Corbacho's article](https://css-tricks.com/debouncing-throttling-explained-examples/)
+	 * for details over the differences between `_.debounce` and `_.throttle`.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Function
+	 * @param {Function} func The function to debounce.
+	 * @param {number} [wait=0] The number of milliseconds to delay.
+	 * @param {Object} [options={}] The options object.
+	 * @param {boolean} [options.leading=false]
+	 *  Specify invoking on the leading edge of the timeout.
+	 * @param {number} [options.maxWait]
+	 *  The maximum time `func` is allowed to be delayed before it's invoked.
+	 * @param {boolean} [options.trailing=true]
+	 *  Specify invoking on the trailing edge of the timeout.
+	 * @returns {Function} Returns the new debounced function.
+	 * @example
+	 *
+	 * // Avoid costly calculations while the window size is in flux.
+	 * jQuery(window).on('resize', _.debounce(calculateLayout, 150));
+	 *
+	 * // Invoke `sendMail` when clicked, debouncing subsequent calls.
+	 * jQuery(element).on('click', _.debounce(sendMail, 300, {
+	 *   'leading': true,
+	 *   'trailing': false
+	 * }));
+	 *
+	 * // Ensure `batchLog` is invoked once after 1 second of debounced calls.
+	 * var debounced = _.debounce(batchLog, 250, { 'maxWait': 1000 });
+	 * var source = new EventSource('/stream');
+	 * jQuery(source).on('message', debounced);
+	 *
+	 * // Cancel the trailing debounced invocation.
+	 * jQuery(window).on('popstate', debounced.cancel);
+	 */
+	function debounce(func, wait, options) {
+	  var lastArgs,
+	      lastThis,
+	      maxWait,
+	      result,
+	      timerId,
+	      lastCallTime = 0,
+	      lastInvokeTime = 0,
+	      leading = false,
+	      maxing = false,
+	      trailing = true;
+	
+	  if (typeof func != 'function') {
+	    throw new TypeError(FUNC_ERROR_TEXT);
+	  }
+	  wait = toNumber(wait) || 0;
+	  if (isObject(options)) {
+	    leading = !!options.leading;
+	    maxing = 'maxWait' in options;
+	    maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+	    trailing = 'trailing' in options ? !!options.trailing : trailing;
+	  }
+	
+	  function invokeFunc(time) {
+	    var args = lastArgs,
+	        thisArg = lastThis;
+	
+	    lastArgs = lastThis = undefined;
+	    lastInvokeTime = time;
+	    result = func.apply(thisArg, args);
+	    return result;
+	  }
+	
+	  function leadingEdge(time) {
+	    // Reset any `maxWait` timer.
+	    lastInvokeTime = time;
+	    // Start the timer for the trailing edge.
+	    timerId = setTimeout(timerExpired, wait);
+	    // Invoke the leading edge.
+	    return leading ? invokeFunc(time) : result;
+	  }
+	
+	  function remainingWait(time) {
+	    var timeSinceLastCall = time - lastCallTime,
+	        timeSinceLastInvoke = time - lastInvokeTime,
+	        result = wait - timeSinceLastCall;
+	
+	    return maxing ? nativeMin(result, maxWait - timeSinceLastInvoke) : result;
+	  }
+	
+	  function shouldInvoke(time) {
+	    var timeSinceLastCall = time - lastCallTime,
+	        timeSinceLastInvoke = time - lastInvokeTime;
+	
+	    // Either this is the first call, activity has stopped and we're at the
+	    // trailing edge, the system time has gone backwards and we're treating
+	    // it as the trailing edge, or we've hit the `maxWait` limit.
+	    return (!lastCallTime || (timeSinceLastCall >= wait) ||
+	      (timeSinceLastCall < 0) || (maxing && timeSinceLastInvoke >= maxWait));
+	  }
+	
+	  function timerExpired() {
+	    var time = now();
+	    if (shouldInvoke(time)) {
+	      return trailingEdge(time);
+	    }
+	    // Restart the timer.
+	    timerId = setTimeout(timerExpired, remainingWait(time));
+	  }
+	
+	  function trailingEdge(time) {
+	    clearTimeout(timerId);
+	    timerId = undefined;
+	
+	    // Only invoke if we have `lastArgs` which means `func` has been
+	    // debounced at least once.
+	    if (trailing && lastArgs) {
+	      return invokeFunc(time);
+	    }
+	    lastArgs = lastThis = undefined;
+	    return result;
+	  }
+	
+	  function cancel() {
+	    if (timerId !== undefined) {
+	      clearTimeout(timerId);
+	    }
+	    lastCallTime = lastInvokeTime = 0;
+	    lastArgs = lastThis = timerId = undefined;
+	  }
+	
+	  function flush() {
+	    return timerId === undefined ? result : trailingEdge(now());
+	  }
+	
+	  function debounced() {
+	    var time = now(),
+	        isInvoking = shouldInvoke(time);
+	
+	    lastArgs = arguments;
+	    lastThis = this;
+	    lastCallTime = time;
+	
+	    if (isInvoking) {
+	      if (timerId === undefined) {
+	        return leadingEdge(lastCallTime);
+	      }
+	      if (maxing) {
+	        // Handle invocations in a tight loop.
+	        clearTimeout(timerId);
+	        timerId = setTimeout(timerExpired, wait);
+	        return invokeFunc(lastCallTime);
+	      }
+	    }
+	    if (timerId === undefined) {
+	      timerId = setTimeout(timerExpired, wait);
+	    }
+	    return result;
+	  }
+	  debounced.cancel = cancel;
+	  debounced.flush = flush;
+	  return debounced;
+	}
+	
+	/**
+	 * Checks if `value` is classified as a `Function` object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is correctly classified,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isFunction(_);
+	 * // => true
+	 *
+	 * _.isFunction(/abc/);
+	 * // => false
+	 */
+	function isFunction(value) {
+	  // The use of `Object#toString` avoids issues with the `typeof` operator
+	  // in Safari 8 which returns 'object' for typed array and weak map constructors,
+	  // and PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+	  var tag = isObject(value) ? objectToString.call(value) : '';
+	  return tag == funcTag || tag == genTag;
+	}
+	
+	/**
+	 * Checks if `value` is the
+	 * [language type](http://www.ecma-international.org/ecma-262/6.0/#sec-ecmascript-language-types)
+	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+	 * @example
+	 *
+	 * _.isObject({});
+	 * // => true
+	 *
+	 * _.isObject([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObject(_.noop);
+	 * // => true
+	 *
+	 * _.isObject(null);
+	 * // => false
+	 */
+	function isObject(value) {
+	  var type = typeof value;
+	  return !!value && (type == 'object' || type == 'function');
+	}
+	
+	/**
+	 * Checks if `value` is object-like. A value is object-like if it's not `null`
+	 * and has a `typeof` result of "object".
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+	 * @example
+	 *
+	 * _.isObjectLike({});
+	 * // => true
+	 *
+	 * _.isObjectLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObjectLike(_.noop);
+	 * // => false
+	 *
+	 * _.isObjectLike(null);
+	 * // => false
+	 */
+	function isObjectLike(value) {
+	  return !!value && typeof value == 'object';
+	}
+	
+	/**
+	 * Checks if `value` is classified as a `Symbol` primitive or object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is correctly classified,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isSymbol(Symbol.iterator);
+	 * // => true
+	 *
+	 * _.isSymbol('abc');
+	 * // => false
+	 */
+	function isSymbol(value) {
+	  return typeof value == 'symbol' ||
+	    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+	}
+	
+	/**
+	 * Converts `value` to a number.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to process.
+	 * @returns {number} Returns the number.
+	 * @example
+	 *
+	 * _.toNumber(3);
+	 * // => 3
+	 *
+	 * _.toNumber(Number.MIN_VALUE);
+	 * // => 5e-324
+	 *
+	 * _.toNumber(Infinity);
+	 * // => Infinity
+	 *
+	 * _.toNumber('3');
+	 * // => 3
+	 */
+	function toNumber(value) {
+	  if (typeof value == 'number') {
+	    return value;
+	  }
+	  if (isSymbol(value)) {
+	    return NAN;
+	  }
+	  if (isObject(value)) {
+	    var other = isFunction(value.valueOf) ? value.valueOf() : value;
+	    value = isObject(other) ? (other + '') : other;
+	  }
+	  if (typeof value != 'string') {
+	    return value === 0 ? value : +value;
+	  }
+	  value = value.replace(reTrim, '');
+	  var isBinary = reIsBinary.test(value);
+	  return (isBinary || reIsOctal.test(value))
+	    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+	    : (reIsBadHex.test(value) ? NAN : +value);
+	}
+	
+	module.exports = debounce;
+
 
 /***/ }
 

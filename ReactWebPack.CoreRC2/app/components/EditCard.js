@@ -48,6 +48,9 @@ class EditCard extends Component {
   } 
 }
 
+//The code below enables access the store via the React context.
+//The code that uses it is in componentDidMount, line 33
+//see section called "Passing the Store" in http://redux.js.org/docs/basics/UsageWithReact.html for more info
 EditCard.contextTypes = {
   store: React.PropTypes.object
 }
