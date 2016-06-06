@@ -5,6 +5,9 @@ import 'babel-polyfill';
 * This does the async request and provides Redux thunk feedback 
 */
 export function dispatchAsync(promise, dispatch, types, payload) {
+  if (typeof dispatch !== 'function'){
+    throw new Error('dispatch was not a function. Did you miss an update to the call?')
+  }
   const { request, success, failure } = types;
   dispatch({ 
     type: request,
