@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 const listTargetSpec = {
   hover(props, monitor) {
     const dragged = monitor.getItem();
-    this.props.dispatch(CardActionCreators.updateCardStatus(dragged.id, props.id));
+    props.dispatch(CardActionCreators.updateCardStatus(dragged.id, props.id));
   }
 };
 
