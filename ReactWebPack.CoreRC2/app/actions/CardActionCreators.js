@@ -62,7 +62,7 @@ let CardActionCreators = {
     };
   },
 
-  //Note: this is an anti-pattern, i.e. you shouldn't really do this as it stops server-side rendering
+  //Note: this is an anti-pattern, i.e. you shouldn't really do this as it does not support server-side rendering
   //see this SO answer for more on this http://stackoverflow.com/a/35674575/1434764 
   persistCardDrag(cardProps) {
     return (dispatch, getState) => {
