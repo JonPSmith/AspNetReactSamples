@@ -79,7 +79,7 @@ let CardActionCreators = {
   createDraft(card) {
     return {
       type: constants.CREATE_DRAFT,
-      payload: card
+      payload: {card}
     }
   },
 

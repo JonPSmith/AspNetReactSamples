@@ -1346,7 +1346,7 @@ webpackJsonp([0],{
 	  createDraft: function createDraft(card) {
 	    return {
 	      type: _constants2.default.CREATE_DRAFT,
-	      payload: card
+	      payload: { card: card }
 	    };
 	  },
 	  updateDraft: function updateDraft(field, value) {
