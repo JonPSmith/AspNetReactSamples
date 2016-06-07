@@ -18,7 +18,7 @@ webpackJsonp([0],{
 	
 	var _reactRedux = __webpack_require__(/*! react-redux */ 231);
 	
-	var _reduxStore = __webpack_require__(/*! ./stores/reduxStore */ 253);
+	var _reduxStore = __webpack_require__(/*! ./store/reduxStore */ 253);
 	
 	var _reduxStore2 = _interopRequireDefault(_reduxStore);
 	
@@ -26,7 +26,7 @@ webpackJsonp([0],{
 	
 	var _index2 = _interopRequireDefault(_index);
 	
-	var _KanbanBoardContainer = __webpack_require__(/*! ./containers/KanbanBoardContainer */ 562);
+	var _KanbanBoardContainer = __webpack_require__(/*! ./components/KanbanBoardContainer */ 562);
 	
 	var _KanbanBoardContainer2 = _interopRequireDefault(_KanbanBoardContainer);
 	
@@ -66,9 +66,9 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 253:
-/*!**********************************!*\
-  !*** ./app/stores/reduxStore.js ***!
-  \**********************************/
+/*!*********************************!*\
+  !*** ./app/store/reduxStore.js ***!
+  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -474,7 +474,7 @@ webpackJsonp([0],{
 
 /***/ 562:
 /*!************************************************!*\
-  !*** ./app/containers/KanbanBoardContainer.js ***!
+  !*** ./app/components/KanbanBoardContainer.js ***!
   \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
