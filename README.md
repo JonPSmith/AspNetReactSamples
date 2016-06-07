@@ -22,9 +22,9 @@ package to on-the-fly convert React JSX files to currently supported, e.g. ES5, 
 2. **ReactWebPack** This is a more complex React application which is built using 
 the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](http://babeljs.io/)
   - **[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)** 
-is an ASP.NET Core (RC2) MVC version.
+is an ASP.NET Core (RC2) MVC version using [Redux](http://redux.js.org/) store.
   - **[ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)** 
-is a ASP.NET MVC5 version.
+is a ASP.NET MVC5 version using the [Flux](https://facebook.github.io/flux/docs/overview.html) store.
 3. **[ReactTests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests)**:
 A separate project containing a setup for running Unit Tests on React components and
 libraries. 
