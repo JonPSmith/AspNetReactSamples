@@ -1,19 +1,17 @@
 import React,{Component} from 'react';
 import CardForm from './CardForm';
-import DraftStore from '../stores/DraftStore';
-import {Container} from 'flux/utils';
 import CardActionCreators from '../actions/CardActionCreators';
 import { connect } from 'react-redux';
 
 class NewCard extends Component{
 
   handleChange(field, value){
-    this.props.dispatch(CardActionCreators.updateDraft(field, value));
+    this.props.updateDraft(field, value);
   }
 
   handleSubmit(e){
     e.preventDefault();
-    this.props.dispatch(CardActionCreators.addCard(this.state.draft));
+    this.props.addCard(this.props.draft);
     this.props.history.pushState(null,'/');
   }
 
@@ -22,13 +20,13 @@ class NewCard extends Component{
   }
 
   componentDidMount(){
-    setTimeout(()=>this.props.dispatch(CardActionCreators.createDraft(), 0))
+    setTimeout(()=>this.props.createDraft(), 0)
   }
 
 
   render(){
     return (
-      <CardForm draftCard={this.state.draft}
+      <CardForm draftCard={this.props.draft}
                 buttonLabel="Create Card"
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
@@ -37,9 +35,21 @@ class NewCard extends Component{
   }
 }
 
-NewCard.getStores = () => ([DraftStore]);
-NewCard.calculateState = (prevState) => ({
-  draft: DraftStore.getState()
-});
+function mapStateToProps(state) {
+  return {
+    draft: state.draftCard
+  }
+}
 
-export default connect()(Container.create(NewCard))
+function mapDispatchToProps(dispatch) {
+  return {
+    updateDraft: (field, value) => dispatch(CardActionCreators.updateDraft(field, value)),
+    addCard: (card) => dispatch(CardActionCreators.addCard(card)),
+    createDraft: (card) => dispatch(CardActionCreators.createDraft(card)),
+  }
+}
+
+export default connect(  
+  mapStateToProps,
+  mapDispatchToProps)
+(NewCard)

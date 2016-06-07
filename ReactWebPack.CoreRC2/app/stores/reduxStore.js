@@ -15,4 +15,4 @@ const reduxStore = createStore(
    applyMiddleware(thunk, throttleMiddleWare) 
 );
 
-export default reduxStore;
+export default reduxStore; 

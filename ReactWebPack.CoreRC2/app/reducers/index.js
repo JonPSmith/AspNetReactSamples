@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 import cards from './cardReducer'
+import draftCard from './draftCardReducer'
 
 const reducers = combineReducers({
   cards,
-  //visibilityFilter
+  draftCard
 })
 
 export default reducers
