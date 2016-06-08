@@ -46,8 +46,19 @@ namespace ReactWebPack.CoreRC2.Models
                 new CardData
                 {
                     id = i++,
-                    title = "Read the article",
-                    description = "The article can be found [here](#)",
+                    title = "Read the React Templates article",
+                    description = "See [Templates for building React.js front-ends in ASP.NET Core and MVC5]."+
+                    "(http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/)",
+                    status = DoneStatus,
+                    color = DefaultColor,
+                    tasks = new List<TaskData>()
+                },
+                new CardData
+                {
+                    id = i++,
+                    title = "Read the Using Redux article",
+                    description = "See [Using a Redux store in your React.js application]."+
+                    "(http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/)",
                     status = DoneStatus,
                     color = DefaultColor,
                     tasks = new List<TaskData>()

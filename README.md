@@ -4,12 +4,19 @@ Wecome to this ASP.NET solution which contains examples of how to incorporate, b
 [React](https://facebook.github.io/react/) front-end inside an ASP.NET Core (RC2) and ASP.NET MVC5 
 application. 
 
-### This solution is supported by [an article](http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/) that goes through the examples in detail.
+**Licence: MIT**
+
+### This solution is supported by the article [React Templates](http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/) that goes through the examples in detail.
 
 The example projects are designed to be scalable up to a real-world, production-ready applications
 with full build, test, and deployment capabilities. 
 
-**Licence: MIT**
+#### UPDATE: New article [Using Redux in React.js app](http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/) now out.
+
+This new article covers the changes made to the [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
+Kanban application to use the [Redux](http://redux.js.org/) store instead of the
+[Flux](https://facebook.github.io/flux/docs/overview.html) store.
+
 
 ## What is included in this solution
 
@@ -17,7 +24,7 @@ The solution *currently* contains the following solutions:
 
 1. **[ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5):**
 A simple example of using the [ReactJS.Net](http://reactjs.net/)
-package to on-the-fly convert React JSX files to currently supported, e.g. ES5, JavaScript.
+package to on-the-fly convert React JSX files to currently supported standards, e.g. ES5, JavaScript.
 *(Note: Also available for ASP.NET Core, see [this NuGet package](https://www.nuget.org/packages/React.AspNet/)).*
 2. **ReactWebPack** This is a more complex React application which is built using 
 the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](http://babeljs.io/)
