@@ -112,12 +112,11 @@ Card.propTypes = {
 
 function mapDispatchToProps(dispatch) {
   return {
-    persistCardDrag: (props) => CardActionCreators.persistCardDrag(props),
-    updateCardPosition: (draggedId, id) => CardActionCreators.updateCardPosition(draggedId, id),
-    toggleCardDetails: (id) => CardActionCreators.toggleCardDetails(id)
+    persistCardDrag: (props) => dispatch(CardActionCreators.persistCardDrag(props)),
+    updateCardPosition: (draggedId, id) => dispatch(CardActionCreators.updateCardPosition(draggedId, id)),
+    toggleCardDetails: (id) => dispatch(CardActionCreators.toggleCardDetails(id))
   }
 }
-
 
 const dragHighOrderCard = DragSource(constants.CARD, cardDragSpec, collectDrag)(Card);
 const dragDropHighOrderCard = DropTarget(constants.CARD, cardDropSpec, collectDrop)(dragHighOrderCard);
