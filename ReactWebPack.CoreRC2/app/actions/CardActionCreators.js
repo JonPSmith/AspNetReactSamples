@@ -1,7 +1,6 @@
 import { dispatchAsync } from '../ReduxDispatcher';
 import constants from '../constants';
 import KanbanAPI from '../api/KanbanApi';
-import {throttle} from '../utils';
 import { getCard, getCardIndex } from '../cardUtils'
 
 let CardActionCreators = {

@@ -34,11 +34,11 @@ webpackJsonp([0],{
 	
 	var _KanbanBoard2 = _interopRequireDefault(_KanbanBoard);
 	
-	var _EditCard = __webpack_require__(/*! ./components/EditCard */ 796);
+	var _EditCard = __webpack_require__(/*! ./components/EditCard */ 795);
 	
 	var _EditCard2 = _interopRequireDefault(_EditCard);
 	
-	var _NewCard = __webpack_require__(/*! ./components/NewCard */ 798);
+	var _NewCard = __webpack_require__(/*! ./components/NewCard */ 797);
 	
 	var _NewCard2 = _interopRequireDefault(_NewCard);
 	
@@ -1270,8 +1270,6 @@ webpackJsonp([0],{
 	
 	var _KanbanApi2 = _interopRequireDefault(_KanbanApi);
 	
-	var _utils = __webpack_require__(/*! ../utils */ 795);
-	
 	var _cardUtils = __webpack_require__(/*! ../cardUtils */ 261);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -1362,52 +1360,6 @@ webpackJsonp([0],{
 /***/ },
 
 /***/ 795:
-/*!**********************!*\
-  !*** ./app/utils.js ***!
-  \**********************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.throttle = undefined;
-	
-	__webpack_require__(/*! babel-polyfill */ 262);
-	
-	var throttle = exports.throttle = function throttle(func, wait) {
-	  var context = void 0,
-	      args = void 0,
-	      prevArgs = void 0,
-	      argsChanged = void 0,
-	      result = void 0;
-	  var previous = 0;
-	  return function () {
-	    var now = void 0,
-	        remaining = void 0;
-	    if (wait) {
-	      now = Date.now();
-	      remaining = wait - (now - previous);
-	    }
-	    context = this;
-	    args = arguments;
-	    argsChanged = JSON.stringify(args) != JSON.stringify(prevArgs);
-	    prevArgs = Object.assign({}, args);
-	    if (argsChanged || wait && (remaining <= 0 || remaining > wait)) {
-	      if (wait) {
-	        previous = now;
-	      }
-	      result = func.apply(context, args);
-	      context = args = null;
-	    }
-	    return result;
-	  };
-	};
-
-/***/ },
-
-/***/ 796:
 /*!************************************!*\
   !*** ./app/components/EditCard.js ***!
   \************************************/
@@ -1425,7 +1377,7 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _CardForm = __webpack_require__(/*! ./CardForm */ 797);
+	var _CardForm = __webpack_require__(/*! ./CardForm */ 796);
 	
 	var _CardForm2 = _interopRequireDefault(_CardForm);
 	
@@ -1532,7 +1484,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 797:
+/***/ 796:
 /*!************************************!*\
   !*** ./app/components/CardForm.js ***!
   \************************************/
@@ -1675,7 +1627,7 @@ webpackJsonp([0],{
 
 /***/ },
 
-/***/ 798:
+/***/ 797:
 /*!***********************************!*\
   !*** ./app/components/NewCard.js ***!
   \***********************************/
@@ -1693,7 +1645,7 @@ webpackJsonp([0],{
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _CardForm = __webpack_require__(/*! ./CardForm */ 797);
+	var _CardForm = __webpack_require__(/*! ./CardForm */ 796);
 	
 	var _CardForm2 = _interopRequireDefault(_CardForm);
 	
