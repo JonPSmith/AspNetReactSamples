@@ -11,7 +11,7 @@ application.
 The example projects are designed to be scalable up to a real-world, production-ready applications
 with full build, test, and deployment capabilities. 
 
-#### UPDATE: New article [Using Redux in React.js app](http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/) now out.
+#### UPDATE: New article, [Using Redux in React.js app](http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/), now out.
 
 This new article covers the changes made to the [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 Kanban application to use the [Redux](http://redux.js.org/) store instead of the
@@ -43,7 +43,7 @@ If you clone/copy this GitHub Repository then you need to:
 
 #### 1. Make sure your computer is set up properly
 
-- I assume you are running Visual Studio 2015 (VS2015), which includes Node.js.  
+- I assume you are running Visual Studio 2015 (VS2015), which includes a version of Node.js just for VS2015.  
 *NOTE: You can use Visual Studio 2013 for the MVC5 versions, 
 but I don't think the ASP.NET Core versions will work (I haven't tried it).*
 - If you want to build the application that uses ASP.NET Core, R2 then you need to download and install
@@ -52,7 +52,7 @@ but I don't think the ASP.NET Core versions will work (I haven't tried it).*
 - I recommend you use [Visual Studio Code](https://code.visualstudio.com/) (VSCode)
 to run the build/test React command scripts. You will need to:
   - Install VSCode 
-  - Install [Node.js](https://nodejs.org/en/) if not already loaded.  
+  - Install proper [Node.js](https://nodejs.org/en/) if not already loaded.  
 *Type `node --version` to check if nodejs is already installed.*
   - Install the the extension
 [VSCode NPM Scripts](https://github.com/Microsoft/vscode-npm-scripts) extension.
