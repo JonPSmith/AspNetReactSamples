@@ -18,7 +18,7 @@ let CardActionCreators = {
   toggleCardDetails(cardId) {
     return {
       type: constants.TOGGLE_CARD_DETAILS,
-      payload: cardId
+      payload: {cardId}
     };
   },
 
