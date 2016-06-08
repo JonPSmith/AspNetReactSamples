@@ -538,9 +538,9 @@ webpackJsonp([0],{
 	  return KanbanBoardContainer;
 	}(_react.Component);
 	
-	function mapStateToProps(state) {
+	function mapStoreToProps(storeState) {
 	  return {
-	    cards: state.cards
+	    cards: storeState.cards
 	  };
 	}
 	
@@ -551,7 +551,7 @@ webpackJsonp([0],{
 	    }
 	  };
 	}
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(KanbanBoardContainer);
+	exports.default = (0, _reactRedux.connect)(mapStoreToProps, mapDispatchToProps)(KanbanBoardContainer);
 
 /***/ },
 
@@ -930,13 +930,13 @@ webpackJsonp([0],{
 	function mapDispatchToProps(dispatch) {
 	  return {
 	    persistCardDrag: function persistCardDrag(props) {
-	      return _CardActionCreators2.default.persistCardDrag(props);
+	      return dispatch(_CardActionCreators2.default.persistCardDrag(props));
 	    },
 	    updateCardPosition: function updateCardPosition(draggedId, id) {
-	      return _CardActionCreators2.default.updateCardPosition(draggedId, id);
+	      return dispatch(_CardActionCreators2.default.updateCardPosition(draggedId, id));
 	    },
 	    toggleCardDetails: function toggleCardDetails(id) {
-	      return _CardActionCreators2.default.toggleCardDetails(id);
+	      return dispatch(_CardActionCreators2.default.toggleCardDetails(id));
 	    }
 	  };
 	}
@@ -1043,9 +1043,9 @@ webpackJsonp([0],{
 	  tasks: _react.PropTypes.arrayOf(_react.PropTypes.object)
 	};
 	
-	function mapStateToProps(state) {
+	function mapStoreToProps(storeState) {
 	  return {
-	    cards: state.cards
+	    cards: storeState.cards
 	  };
 	}
 	
@@ -1054,7 +1054,7 @@ webpackJsonp([0],{
 	    actions: (0, _redux.bindActionCreators)(_TaskActionCreators2.default, dispatch)
 	  };
 	}
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(CheckList);
+	exports.default = (0, _reactRedux.connect)(mapStoreToProps, mapDispatchToProps)(CheckList);
 
 /***/ },
 
@@ -1289,7 +1289,7 @@ webpackJsonp([0],{
 	  toggleCardDetails: function toggleCardDetails(cardId) {
 	    return {
 	      type: _constants2.default.TOGGLE_CARD_DETAILS,
-	      payload: cardId
+	      payload: { cardId: cardId }
 	    };
 	  },
 	  addCard: function addCard(card) {
@@ -1508,9 +1508,9 @@ webpackJsonp([0],{
 	  store: _react2.default.PropTypes.object
 	};
 	
-	function mapStateToProps(state) {
+	function mapStoreToProps(storeState) {
 	  return {
-	    draft: state.draftCard
+	    draft: storeState.draftCard
 	  };
 	}
 	
@@ -1528,7 +1528,7 @@ webpackJsonp([0],{
 	  };
 	}
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(EditCard);
+	exports.default = (0, _reactRedux.connect)(mapStoreToProps, mapDispatchToProps)(EditCard);
 
 /***/ },
 
@@ -1760,9 +1760,9 @@ webpackJsonp([0],{
 	  return NewCard;
 	}(_react.Component);
 	
-	function mapStateToProps(state) {
+	function mapStoreToProps(storeState) {
 	  return {
-	    draft: state.draftCard
+	    draft: storeState.draftCard
 	  };
 	}
 	
@@ -1780,7 +1780,7 @@ webpackJsonp([0],{
 	  };
 	}
 	
-	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(NewCard);
+	exports.default = (0, _reactRedux.connect)(mapStoreToProps, mapDispatchToProps)(NewCard);
 
 /***/ }
 

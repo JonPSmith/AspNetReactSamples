@@ -19,9 +19,9 @@ class KanbanBoardContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStoreToProps(storeState) {
   return {
-    cards: state.cards
+    cards: storeState.cards
   }
 }
 
@@ -31,7 +31,7 @@ function mapDispatchToProps(dispatch) {
   }
 }
 export default connect(
-  mapStateToProps,
+  mapStoreToProps,
   mapDispatchToProps
 )(KanbanBoardContainer);
 

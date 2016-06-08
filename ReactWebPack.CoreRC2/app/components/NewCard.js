@@ -35,9 +35,9 @@ class NewCard extends Component{
   }
 }
 
-function mapStateToProps(state) {
+function mapStoreToProps(storeState) {
   return {
-    draft: state.draftCard
+    draft: storeState.draftCard
   }
 }
 
@@ -50,6 +50,6 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(  
-  mapStateToProps,
+  mapStoreToProps,
   mapDispatchToProps)
 (NewCard)
