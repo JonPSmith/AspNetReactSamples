@@ -7,7 +7,7 @@ import List from '../../ReactWebPack.CoreRC2/app/components/List';
 
 describe('Component.List', () => {
     describe('shallow render', () => {
-        it('froms correct html',
+        it('forms correct html',
         () => {
             const OrgList = List.DecoratedComponent;
             // Stub the React DnD connector functions with an identity function
