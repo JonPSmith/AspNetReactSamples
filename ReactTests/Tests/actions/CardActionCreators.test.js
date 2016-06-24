@@ -1,12 +1,13 @@
 ﻿import expect from 'expect';
+import MockPromise from '../../mocks/MockPromise';
 
 import constants from '../../../ReactWebPack.CoreRC2/app/constants';
 
-describe('CardActionCreators', () => {
-    let returnedActionObject = [];
+describe.only('CardActionCreators', () => {
+    let returnedActionObjects = [];
     const mockKanbanAPISuccess = {
         fetchCards() {
-            return Promise.resolve('Test data')
+            return new MockPromise(true)
         }
     };
 
@@ -19,12 +20,14 @@ describe('CardActionCreators', () => {
 
         it('success', () => {
             cardActions.fetchCards()((actionObject) => {
-                returnedActionObject.push( actionObject);
+                returnedActionObjects.push( actionObject);
             });
 
             debugger;
-            expect(returnedActionObject.length).toEqual(1);
-            expect(returnedActionObject[0].type).toEqual(constants.FETCH_CARDS);
+            expect(returnedActionObjects.length).toEqual(2);
+            expect(returnedActionObjects[0].type).toEqual(constants.FETCH_CARDS);
+            expect(returnedActionObjects[1].type).toEqual(constants.FETCH_CARDS_SUCCESS);
+            expect(returnedActionObjects[1].payload.response).toEqual('my data');
         });
     });
 }); 
