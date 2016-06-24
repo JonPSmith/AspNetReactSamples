@@ -43,9 +43,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ExampleReact\MockTestInnerFunction.js" />
+    <Content Include="ExampleReact\MockTestOuterFunction.js" />
     <Content Include="ExampleReact\CheckboxWithLabel.js" />
     <Content Include="ExampleReact\Decoded CheckboxWithLabel.js" />
     <Content Include="karma.conf.js" />
+    <Content Include="Tests\actions-CardActionCreators.test.js" />
+    <Content Include="Tests\TestMocking.js" />
     <Content Include="Tests\CheckboxWithLabel.test.js" />
     <Content Include="Tests\components-List.test.js" />
     <Content Include="Tests\karam-setup.test.js" />
