@@ -28,6 +28,9 @@
     "webpack": "1.13.0",
     "webpack-dev-server": "1.13.0",
     "jsx-loader": "0.13.2",
+
+    "inject-loader": "2.0.1",
+
     "karma": "0.13.22",
     "karma-chrome-launcher": "1.0.1",
     "karma-cli": "1.0.0",
