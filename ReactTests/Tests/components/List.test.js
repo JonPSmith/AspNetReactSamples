@@ -3,7 +3,7 @@
 import expect from 'expect';
 import {shallow} from 'enzyme'; 
 
-import List from '../../ReactWebPack.CoreRC2/app/components/List';
+import List from '../../../ReactWebPack.CoreRC2/app/components/List';
 
 describe('Component.List', () => {
     describe('shallow render', () => {

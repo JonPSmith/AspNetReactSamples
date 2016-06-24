@@ -3,7 +3,7 @@
 import expect from 'expect';
 import {shallow, mount} from 'enzyme';
 
-import CheckboxWithLabel from '../ExampleReact/CheckboxWithLabel';
+import CheckboxWithLabel from '../../localSrc/CheckboxWithLabel';
 
 
 describe('CheckboxWithLabel', function () {

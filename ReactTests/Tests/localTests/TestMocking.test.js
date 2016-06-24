@@ -1,7 +1,7 @@
 ﻿import expect from 'expect';
 
-import OuterFunction from '../ExampleReact/MockTestOuterFunction';
-import innerMock from '../mocks/MockInnerFunction'
+import OuterFunction from '../../localSrc/OuterFunction';
+import innerMock from '../../mocks/MockInnerFunction'
 
 describe('Test Mocking simple', function () {
 
@@ -12,9 +12,9 @@ describe('Test Mocking simple', function () {
 
     it('mock InnerFunction with a module',
     () => {
-        const inject = require('inject?../ExampleReact/MockTestInnerFunction!../ExampleReact/MockTestOuterFunction');
+        const inject = require('inject?../localSrc/InnerFunction!../../localSrc/OuterFunction');
         const outerFunctionWithMock = inject({
-                '../ExampleReact/MockTestInnerFunction': innerMock
+                '../localSrc/InnerFunction': innerMock
             }).default;
         expect(outerFunctionWithMock()).toEqual('Mocked Function', 'Did not mock');
     });
@@ -22,9 +22,9 @@ describe('Test Mocking simple', function () {
     it('mock InnerFunction with local function',
     () => {
         const localFunc = () => { return 'local mock'};
-        const inject = require('inject?../ExampleReact/MockTestInnerFunction!../ExampleReact/MockTestOuterFunction');
+        const inject = require('inject?../localSrc/InnerFunction!../../localSrc/OuterFunction');
         const outerFunctionWithMock = inject({
-                '../ExampleReact/MockTestInnerFunction': localFunc
+                '../localSrc/InnerFunction': localFunc
             }).default;
         expect(outerFunctionWithMock()).toEqual('local mock', 'Did not mock');
     });
