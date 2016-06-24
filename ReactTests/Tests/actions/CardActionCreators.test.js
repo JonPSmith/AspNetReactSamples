@@ -3,7 +3,7 @@ import MockPromise from '../../mocks/MockPromise';
 
 import constants from '../../../ReactWebPack.CoreRC2/app/constants';
 
-describe.only('CardActionCreators', () => {
+describe('CardActionCreators', () => {
     let returnedActionObjects = [];
     const mockKanbanAPISuccess = {
         fetchCards() {
@@ -22,8 +22,6 @@ describe.only('CardActionCreators', () => {
             cardActions.fetchCards()((actionObject) => {
                 returnedActionObjects.push( actionObject);
             });
-
-            debugger;
             expect(returnedActionObjects.length).toEqual(2);
             expect(returnedActionObjects[0].type).toEqual(constants.FETCH_CARDS);
             expect(returnedActionObjects[1].type).toEqual(constants.FETCH_CARDS_SUCCESS);

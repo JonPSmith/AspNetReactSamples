@@ -29,7 +29,6 @@ describe('CheckboxWithLabel', function () {
         it('defaults to unchecked and Off label', () => { 
             const wrapper = mount(<CheckboxWithLabel labelOn="On" labelOff="Off"/>);
             //console.log(wrapper.html());
-            debugger;
             expect(wrapper.find('label').text()).toEqual('Off');
             expect(wrapper.find('input').props().checked).toBeFalsy();
         });
@@ -38,7 +37,6 @@ describe('CheckboxWithLabel', function () {
 
             const wrapper = mount(<CheckboxWithLabel labelOn="On" labelOff="Off" />);    
             //console.log(wrapper.html());
-            debugger;
             wrapper.find('input').simulate('change');
             expect(wrapper.find('label').text()).toEqual('On');
             expect(wrapper.find('input').props().checked).toBeTruthy();

@@ -19,7 +19,6 @@ describe('Component.List', () => {
                 connectDropTarget={identity}/>);
             //console.log(wrapper.debug());
             expect(wrapper.html()).toEqual('<div class="list"><h1>To Do</h1></div>');
-            debugger;
         });
     });
 });
