@@ -21,7 +21,7 @@ describe('Test Mocking simple', function () {
 
     it('mock InnerFunction with local function',
     () => {
-        var localFunc = () => { return 'local mock'};
+        const localFunc = () => { return 'local mock'};
         const inject = require('inject?../ExampleReact/MockTestInnerFunction!../ExampleReact/MockTestOuterFunction');
         const outerFunctionWithMock = inject({
                 '../ExampleReact/MockTestInnerFunction': localFunc
