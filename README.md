@@ -11,12 +11,18 @@ application.
 The example projects are designed to be scalable up to a real-world, production-ready applications
 with full build, test, and deployment capabilities. 
 
-#### UPDATE: New article, [Using Redux in React.js app](http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/), now out.
-
+### UPDATE: Two new article are out now, with the code updated:
+#### [Using Redux in React.js app](http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/)
 This new article covers the changes made to the [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 Kanban application to use the [Redux](http://redux.js.org/) store instead of the
 [Flux](https://facebook.github.io/flux/docs/overview.html) store.
 
+#### [Adding mocking to React.js Unit Tests](http://www.thereformedprogrammer.net/adding-mocking-to-react-js-unit-tests/)
+This is about improving the Unit Test to test some of the parts of the
+[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
+application, which requires the mocking of the async 
+[KanbanApi](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2/app/api)
+module and handling the JavaScript promises that it uses.
 
 ## What is included in this solution
 
@@ -124,7 +130,10 @@ extension - see
 select the package.json of the project you want to run commands for in the top dropdown
 and then click the command you want to run. See example screenshot below:  
 ![Task Runner Window](https://raw.githubusercontent.com/JonPSmith/AspNetReactSamples/master/ReactNpmTaskRunnerWindow.PNG)  
-The results will appear in the Task Runner Explorer output pane.   
+The results will appear in the Task Runner Explorer output pane.  
+*NOTE: I have sometimes found that Task Runner will only shows the `ReactWebPack.CoreRC2` Gulp commands.
+I found out the NPM Task Runner tool was disabled (not sure why). If you can't see the build commands then check that 
+it is enabled via Tools->Extensions and Updates->Installed and search for NPM.*
 *NOTE: commands with `watch` in them stay running and will rebuild the files and 
 re-run the command if a *.js file is saved. Very useful when debugging/developing.*  
 
