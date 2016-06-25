@@ -43,23 +43,29 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ExampleReact\MockTestInnerFunction.js" />
-    <Content Include="ExampleReact\MockTestOuterFunction.js" />
-    <Content Include="ExampleReact\CheckboxWithLabel.js" />
-    <Content Include="ExampleReact\Decoded CheckboxWithLabel.js" />
     <Content Include="karma.conf.js" />
-    <Content Include="Tests\actions-CardActionCreators.test.js" />
-    <Content Include="Tests\TestMocking.js" />
-    <Content Include="Tests\CheckboxWithLabel.test.js" />
-    <Content Include="Tests\components-List.test.js" />
-    <Content Include="Tests\karam-setup.test.js" />
+    <Content Include="localSrc\CheckboxWithLabel.js" />
+    <Content Include="localSrc\Decoded CheckboxWithLabel.js" />
+    <Content Include="localSrc\InnerFunction.js" />
+    <Content Include="localSrc\InnerValue.js" />
+    <Content Include="localSrc\OuterFunction.js" />
+    <Content Include="mocks\MockInnerFunction.js" />
+    <Content Include="mocks\MockPromise.js" />
     <Content Include="server.js" />
     <Content Include="tests.webpack.js" />
+    <Content Include="Tests\actions\CardActionCreators.test.js" />
+    <Content Include="Tests\components\List.test.js" />
+    <Content Include="Tests\kanbanUtils\ReduxDispatcher.test.js" />
+    <Content Include="Tests\localTests\CheckboxWithLabel.test.js" />
+    <Content Include="Tests\localTests\karam-setup.test.js" />
+    <Content Include="Tests\localTests\TestMocking.test.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="package.json" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ExampleReact\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
