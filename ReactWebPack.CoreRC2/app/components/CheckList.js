@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import TaskActionCreators from '../actions/TaskActionCreators';
 
-class CheckList extends Component {
+export class CheckList extends Component {
   checkInputKeyPress(evt){
     if(evt.key === 'Enter'){
       let newTask = {id:Date.now(), name:evt.target.value, done:false};

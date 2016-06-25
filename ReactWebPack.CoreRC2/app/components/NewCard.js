@@ -3,7 +3,7 @@ import CardForm from './CardForm';
 import CardActionCreators from '../actions/CardActionCreators';
 import { connect } from 'react-redux';
 
-class NewCard extends Component{
+export class NewCard extends Component{
 
   handleChange(field, value){
     this.props.updateDraft(field, value);

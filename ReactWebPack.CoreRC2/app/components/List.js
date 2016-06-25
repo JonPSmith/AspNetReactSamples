@@ -18,7 +18,7 @@ function collect(connect, monitor) {
   };
 }
 
-class List extends Component {
+export class List extends Component {
     render() {
     const { connectDropTarget } = this.props;
 

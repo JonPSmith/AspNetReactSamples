@@ -53,7 +53,7 @@ let collectDrop = (connect, monitor) => {
   };
 }
 
-class Card extends Component {
+export class Card extends Component {
   toggleDetails() {
     this.props.toggleCardDetails(this.props.id);
   }

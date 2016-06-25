@@ -6,7 +6,7 @@ import { getCard } from '../cardUtils'
 
 import 'babel-polyfill';
 
-class EditCard extends Component {
+export class EditCard extends Component {
   
   handleChange(field, value) {
     this.props.updateDraft(field, value);

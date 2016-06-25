@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import KanbanBoard from '../components/KanbanBoard';
 import CardActionCreators from '../actions/CardActionCreators';
 
-class KanbanBoardContainer extends Component {
+export class KanbanBoardContainer extends Component {
 
   componentDidMount(){
     this.props.fetchCards();
