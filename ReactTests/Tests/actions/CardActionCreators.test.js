@@ -3,7 +3,7 @@ import MockPromise from '../../mocks/MockPromise';
 
 import constants from '../../../ReactWebPack.CoreRC2/app/constants';
 
-describe.only('CardActionCreators, success', () => {
+describe('CardActionCreators, success', () => {
     const mockKanbanAPISuccess = {
         fetchCards() {
             return new MockPromise(true)
