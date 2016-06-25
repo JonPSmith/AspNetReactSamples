@@ -12,12 +12,12 @@ The example projects are designed to be scalable up to a real-world, production-
 with full build, test, and deployment capabilities. 
 
 ### UPDATE: Two new article are out now, with the code updated:
-#### [Using Redux in React.js app](http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/)
+#### 1. [Using Redux in React.js app](http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/)
 This new article covers the changes made to the [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 Kanban application to use the [Redux](http://redux.js.org/) store instead of the
 [Flux](https://facebook.github.io/flux/docs/overview.html) store.
 
-#### [Adding mocking to React.js Unit Tests](http://www.thereformedprogrammer.net/adding-mocking-to-react-js-unit-tests/)
+#### 2. [Adding mocking to React.js Unit Tests](http://www.thereformedprogrammer.net/adding-mocking-to-react-js-unit-tests/)
 This is about improving the Unit Test to test some of the parts of the
 [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 application, which requires the mocking of the async 
@@ -114,7 +114,7 @@ to help the VSCode npm Scripts extension work with all of the projects. The proc
 4. You are then presented with scripts from all three apps: `ReactTests`, `ReactWebPack.CoreRC2` and `ReactWebPack.MVC5`.
 Pick the one you want, e.g. `ReactWebPack.CoreRC2: dev-build`.  
 *NOTE: commands with `watch` in them stay running and will rebuild the files and 
-re-run the command if a *.js file is saved. Very useful when debugging/developing.*
+re-run the command if a *.js file is saved. Very useful when debugging/developing.*  
 5. The output of the process is shown in a new console window, including any errors.  
 *NOTE: To stop a `watch` task type cntrl-C in the console window.*
 
@@ -142,7 +142,9 @@ re-run the command if a *.js file is saved. Very useful when debugging/developin
 I have only written a few [Unit Tests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests/Tests)
 just to prove that my Test configuration/commands works.
 See the article [Templates for building React front-ends in ASP.NET Core and MVC5](http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/)
-for more information on Unit Testing.
+for more information on Unit Testing and the newer article
+[Adding mocking to React.js Unit Tests](http://www.thereformedprogrammer.net/adding-mocking-to-react-js-unit-tests/) 
+about mocking modules to improve testing.
 
 
 ### NOTE: Making the application ready for production
