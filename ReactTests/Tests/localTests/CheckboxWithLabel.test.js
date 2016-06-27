@@ -6,7 +6,7 @@ import {shallow, mount} from 'enzyme';
 import CheckboxWithLabel from '../../localSrc/CheckboxWithLabel';
 
 
-describe('CheckboxWithLabel', function () {
+describe('localSrc/CheckboxWithLabel', function () {
     describe('(shallow)', () => {
         it('defaults to unchecked and Off label', () => { 
             const wrapper = shallow(<CheckboxWithLabel labelOn="On" labelOff="Off"/>);

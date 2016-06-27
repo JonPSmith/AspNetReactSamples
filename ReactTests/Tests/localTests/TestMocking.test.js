@@ -3,7 +3,7 @@
 import OuterFunction from '../../localSrc/OuterFunction';
 import innerMock from '../../mocks/MockInnerFunction'
 
-describe('Test Mocking example', function () {
+describe('/localSrc/OuterFunction (Test Mocking example)', function () {
 
     it('check normal operation works',
     () => {

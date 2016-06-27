@@ -4,7 +4,7 @@ import MockPromise from '../../mocks/MockPromise';
 import constants from '../../../ReactWebPack.CoreRC2/app/constants';
 import CardActionCreatorsActual from '../../../ReactWebPack.CoreRC2/app/actions/CardActionCreators';
 
-describe.only('CardActionCreators', () => {
+describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
     describe('async methods: success path', () => {
         const mockKanbanAPISuccess = {
             fetchCards() {
@@ -15,6 +15,9 @@ describe.only('CardActionCreators', () => {
             },
             updateCard(card, draftCard) {
                 return new MockPromise(true, { fromServer: 'server side' })
+            },
+            persistCardDrag(cardId, cardStatus, cardIndex) {
+                return new MockPromise(true, { status: cardStatus,  row_order_position: cardIndex})
             }
         };
 
@@ -60,7 +63,25 @@ describe.only('CardActionCreators', () => {
             expect(returnedActionObjects[1].payload.response.fromServer).toEqual('server side');
         });
 
-
+        it('persistCardDrag', () => {
+            let returnedActionObjects = [];
+            cardActions.persistCardDrag({ id: 3 })(
+                (actionObject) => {returnedActionObjects.push(actionObject);},
+                () => {
+                    return { cards: [
+                        { id : 1, status: 'card 1 status'},
+                        { id : 3, status: 'card 3 status'},
+                        { id : 2, status: 'card 2 status'}
+                    ]}
+                }
+            );
+            expect(returnedActionObjects.length).toEqual(2);
+            expect(returnedActionObjects[0].type).toEqual(constants.PERSIST_CARD_DRAG);
+            expect(returnedActionObjects[1].type).toEqual(constants.PERSIST_CARD_DRAG_SUCCESS);
+            expect(returnedActionObjects[1].payload.cardProps.id).toEqual(3);
+            expect(returnedActionObjects[1].payload.response.status).toEqual('card 3 status');
+            expect(returnedActionObjects[1].payload.response.row_order_position).toEqual(1);
+        });
     });
 
     describe('async methods: fail path', () => {
@@ -73,6 +94,9 @@ describe.only('CardActionCreators', () => {
                 return failMockPromise
             },
             updateCard(card, draftCard) {
+                return failMockPromise
+            },
+            persistCardDrag(cardId, cardStatus, cardIndex) {
                 return failMockPromise
             }
         };
@@ -116,9 +140,27 @@ describe.only('CardActionCreators', () => {
             expect(returnedActionObjects[1].payload.error).toEqual('my error');
         });
 
+        it('persistCardDrag', () => {
+            let returnedActionObjects = [];
+            cardActions.persistCardDrag({ id: 3 })(
+                (actionObject) => {returnedActionObjects.push(actionObject);},
+                () => {
+                    return { cards: [
+                        { id : 1, status: 'card 1 status'},
+                        { id : 3, status: 'card 3 status'},
+                        { id : 2, status: 'card 2 status'}
+                    ]}
+                }
+            );
+            expect(returnedActionObjects.length).toEqual(2);
+            expect(returnedActionObjects[0].type).toEqual(constants.PERSIST_CARD_DRAG);
+            expect(returnedActionObjects[1].type).toEqual(constants.PERSIST_CARD_DRAG_ERROR);
+            expect(returnedActionObjects[1].payload.error).toEqual('my error');
+        });
     });
 
     describe('sync methods', () => {
+        //Note: these do not use the KanbanApi so we can use the actual module
         it('updateCardStatus', () => {
             var result = CardActionCreatorsActual.updateCardStatus(1, 2);
             expect(result.type).toEqual(constants.UPDATE_CARD_STATUS);
@@ -132,6 +174,17 @@ describe.only('CardActionCreators', () => {
             expect(result.payload.cardId).toEqual(1);
             expect(result.payload.afterId).toEqual(2);
             expect(result.meta.throttle).toEqual(true);     //this causes the action to be throttled by Redux middleware
+        });
+        it('createDraft', () => {
+            var result = CardActionCreatorsActual.createDraft('draft card');
+            expect(result.type).toEqual(constants.CREATE_DRAFT);
+            expect(result.payload.card).toEqual('draft card');
+        });
+        it('updateDraft', () => {
+            var result = CardActionCreatorsActual.updateDraft('field1', 'new content');
+            expect(result.type).toEqual(constants.UPDATE_DRAFT);
+            expect(result.payload.field).toEqual('field1');
+            expect(result.payload.value).toEqual('new content');
         });
     });
 }); 

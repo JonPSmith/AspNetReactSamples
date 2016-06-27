@@ -3,7 +3,7 @@ import MockPromise from '../../mocks/MockPromise';
 
 import { dispatchAsync } from '../../../ReactWebPack.CoreRC2/app/ReduxDispatcher';
 
-describe('ReduxDispatcher', () => {
+describe('ReactWebPack.CoreRC2/app/ReduxDispatcher', () => {
 
     it('Call with success', () => {
         let returnedActionObjects = [];
