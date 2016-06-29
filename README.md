@@ -81,6 +81,10 @@ it will run with the last build I did on that project's React code.
 [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5) 
 transpiles on the fly anyway, so will always be up to date.*
 
+*Note: In the ReactWebPack.CoreRC2 project VS2015 shows the message `- not installed` 
+after the `Dependencies` folder and the `Dependencies\npm` folder. It seems this is a known issue 
+- see issue [NPM optional package installation failure #479](https://github.com/aspnet/Tooling/issues/479)
+in aspnet/Tooling.*
 
 #### 3. Running the React Build/Test commands
 
