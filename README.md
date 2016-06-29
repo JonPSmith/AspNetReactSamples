@@ -75,7 +75,7 @@ Simply right-click the project and select `Set as Startup Project`.
 
 If you want to run any of the MVC versions to see how it works 'out-of-the-box' then press F5 (Start Debugging).
 
-*For [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
+*Note: [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
 [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5) 
 it will run with the last build I did on that project's React code. 
 [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5) 
@@ -135,6 +135,7 @@ select the package.json of the project you want to run commands for in the top d
 and then click the command you want to run. See example screenshot below:  
 ![Task Runner Window](https://raw.githubusercontent.com/JonPSmith/AspNetReactSamples/master/ReactNpmTaskRunnerWindow.PNG)  
 The results will appear in the Task Runner Explorer output pane.  
+
 *NOTE: I have sometimes found that Task Runner will only shows the `ReactWebPack.CoreRC2` Gulp commands.
 I found out the NPM Task Runner tool was disabled (not sure why). If you can't see the build commands then check that 
 it is enabled via Tools->Extensions and Updates->Installed and search for NPM.*  
