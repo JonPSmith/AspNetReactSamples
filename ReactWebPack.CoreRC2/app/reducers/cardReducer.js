@@ -3,8 +3,9 @@ import { getCardIndex } from '../cardUtils'
 import update from 'react-addons-update';
 
 const initialState = [];
+const initialAction = { type: 'initial state'}
 
-const cards = (state = initialState, action) => {
+const cards = (state = initialState, action = initialAction) => {
     switch (action.type) {
       case constants.FETCH_CARDS_SUCCESS:
         return action.payload.response;

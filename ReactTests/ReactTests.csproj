@@ -59,6 +59,7 @@
     <Content Include="Tests\localTests\CheckboxWithLabel.test.js" />
     <Content Include="Tests\localTests\karam-setup.test.js" />
     <Content Include="Tests\localTests\TestMocking.test.js" />
+    <Content Include="Tests\reducers\CardReducer.test.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="package.json" />

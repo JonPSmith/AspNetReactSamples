@@ -136,11 +136,12 @@ and then click the command you want to run. See example screenshot below:
 ![Task Runner Window](https://raw.githubusercontent.com/JonPSmith/AspNetReactSamples/master/ReactNpmTaskRunnerWindow.PNG)  
 The results will appear in the Task Runner Explorer output pane.  
 
-*NOTE: I have sometimes found that Task Runner will only shows the `ReactWebPack.CoreRC2` Gulp commands.
+*NOTES: 
+- commands with `watch` in them stay running and will rebuild the files and 
+re-run the command if a *.js file is saved. Very useful when debugging/developing.
+- I have sometimes found that Task Runner will only shows the `ReactWebPack.CoreRC2` Gulp commands.
 I found out the NPM Task Runner tool was disabled (not sure why). If you can't see the build commands then check that 
 it is enabled via Tools->Extensions and Updates->Installed and search for NPM.*  
-*NOTE: commands with `watch` in them stay running and will rebuild the files and 
-re-run the command if a *.js file is saved. Very useful when debugging/developing.*  
 
 ##### 4c. Notes about the Unit Tests
 

@@ -9,8 +9,9 @@ let initialState = {
   color:'#c9c9c9',
   tasks:[]
 };
+const initialAction = { type: 'initial state'}
 
-const draftCard = (state = initialState, action) => {
+const draftCard = (state = initialState, action = initialAction) => {
   switch (action.type) {
     case constants.CREATE_DRAFT:
       if(action.payload.card){
