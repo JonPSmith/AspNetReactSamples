@@ -31,10 +31,10 @@ describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
             cardActions.fetchCards()((actionObject) => {
                 returnedActionObjects.push(actionObject);
             });
-            expect(returnedActionObjects.length).toEqual(2);
-            expect(returnedActionObjects[0].type).toEqual(constants.FETCH_CARDS);
-            expect(returnedActionObjects[1].type).toEqual(constants.FETCH_CARDS_SUCCESS);
-            expect(returnedActionObjects[1].payload.response).toEqual('my data');
+            expect(returnedActionObjects.length).toBe(2);
+            expect(returnedActionObjects[0].type).toBe(constants.FETCH_CARDS);
+            expect(returnedActionObjects[1].type).toBe(constants.FETCH_CARDS_SUCCESS);
+            expect(returnedActionObjects[1].payload.response).toBe('my data');
         });
 
 
@@ -43,11 +43,11 @@ describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
             cardActions.addCard({ fromReact: 'client side' })((actionObject) => {
                 returnedActionObjects.push(actionObject);
             });
-            expect(returnedActionObjects.length).toEqual(2);
-            expect(returnedActionObjects[0].type).toEqual(constants.CREATE_CARD);
-            expect(returnedActionObjects[1].type).toEqual(constants.CREATE_CARD_SUCCESS);
-            expect(returnedActionObjects[1].payload.card.fromReact).toEqual('client side');
-            expect(returnedActionObjects[1].payload.response.fromServer).toEqual('server side');
+            expect(returnedActionObjects.length).toBe(2);
+            expect(returnedActionObjects[0].type).toBe(constants.CREATE_CARD);
+            expect(returnedActionObjects[1].type).toBe(constants.CREATE_CARD_SUCCESS);
+            expect(returnedActionObjects[1].payload.card.fromReact).toBe('client side');
+            expect(returnedActionObjects[1].payload.response.fromServer).toBe('server side');
         });
 
         it('updateCard', () => {
@@ -55,12 +55,12 @@ describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
             cardActions.updateCard({ id: 'org card id' }, { newTitle: 'new title' })((actionObject) => {
                 returnedActionObjects.push(actionObject);
             });
-            expect(returnedActionObjects.length).toEqual(2);
-            expect(returnedActionObjects[0].type).toEqual(constants.UPDATE_CARD);
-            expect(returnedActionObjects[1].type).toEqual(constants.UPDATE_CARD_SUCCESS);
-            expect(returnedActionObjects[1].payload.card.id).toEqual('org card id');
-            expect(returnedActionObjects[1].payload.draftCard.newTitle).toEqual('new title');
-            expect(returnedActionObjects[1].payload.response.fromServer).toEqual('server side');
+            expect(returnedActionObjects.length).toBe(2);
+            expect(returnedActionObjects[0].type).toBe(constants.UPDATE_CARD);
+            expect(returnedActionObjects[1].type).toBe(constants.UPDATE_CARD_SUCCESS);
+            expect(returnedActionObjects[1].payload.card.id).toBe('org card id');
+            expect(returnedActionObjects[1].payload.draftCard.newTitle).toBe('new title');
+            expect(returnedActionObjects[1].payload.response.fromServer).toBe('server side');
         });
 
         it('persistCardDrag', () => {
@@ -75,12 +75,12 @@ describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
                     ]}
                 }
             );
-            expect(returnedActionObjects.length).toEqual(2);
-            expect(returnedActionObjects[0].type).toEqual(constants.PERSIST_CARD_DRAG);
-            expect(returnedActionObjects[1].type).toEqual(constants.PERSIST_CARD_DRAG_SUCCESS);
-            expect(returnedActionObjects[1].payload.cardProps.id).toEqual(3);
-            expect(returnedActionObjects[1].payload.response.status).toEqual('card 3 status');
-            expect(returnedActionObjects[1].payload.response.row_order_position).toEqual(1);
+            expect(returnedActionObjects.length).toBe(2);
+            expect(returnedActionObjects[0].type).toBe(constants.PERSIST_CARD_DRAG);
+            expect(returnedActionObjects[1].type).toBe(constants.PERSIST_CARD_DRAG_SUCCESS);
+            expect(returnedActionObjects[1].payload.cardProps.id).toBe(3);
+            expect(returnedActionObjects[1].payload.response.status).toBe('card 3 status');
+            expect(returnedActionObjects[1].payload.response.row_order_position).toBe(1);
         });
     });
 
@@ -111,10 +111,10 @@ describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
             cardActions.fetchCards()((actionObject) => {
                 returnedActionObjects.push(actionObject);
             });
-            expect(returnedActionObjects.length).toEqual(2);
-            expect(returnedActionObjects[0].type).toEqual(constants.FETCH_CARDS);
-            expect(returnedActionObjects[1].type).toEqual(constants.FETCH_CARDS_ERROR);
-            expect(returnedActionObjects[1].payload.error).toEqual('my error');
+            expect(returnedActionObjects.length).toBe(2);
+            expect(returnedActionObjects[0].type).toBe(constants.FETCH_CARDS);
+            expect(returnedActionObjects[1].type).toBe(constants.FETCH_CARDS_ERROR);
+            expect(returnedActionObjects[1].payload.error).toBe('my error');
         });
 
 
@@ -123,10 +123,10 @@ describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
             cardActions.addCard({ fromReact: 'client side' })((actionObject) => {
                 returnedActionObjects.push(actionObject);
             });
-            expect(returnedActionObjects.length).toEqual(2);
-            expect(returnedActionObjects[0].type).toEqual(constants.CREATE_CARD);
-            expect(returnedActionObjects[1].type).toEqual(constants.CREATE_CARD_ERROR);
-            expect(returnedActionObjects[1].payload.error).toEqual('my error');
+            expect(returnedActionObjects.length).toBe(2);
+            expect(returnedActionObjects[0].type).toBe(constants.CREATE_CARD);
+            expect(returnedActionObjects[1].type).toBe(constants.CREATE_CARD_ERROR);
+            expect(returnedActionObjects[1].payload.error).toBe('my error');
         });
 
         it('updateCard', () => {
@@ -134,10 +134,10 @@ describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
             cardActions.updateCard({ id: 'org card id' }, { newTitle: 'new title' })((actionObject) => {
                 returnedActionObjects.push(actionObject);
             });
-            expect(returnedActionObjects.length).toEqual(2);
-            expect(returnedActionObjects[0].type).toEqual(constants.UPDATE_CARD);
-            expect(returnedActionObjects[1].type).toEqual(constants.UPDATE_CARD_ERROR);
-            expect(returnedActionObjects[1].payload.error).toEqual('my error');
+            expect(returnedActionObjects.length).toBe(2);
+            expect(returnedActionObjects[0].type).toBe(constants.UPDATE_CARD);
+            expect(returnedActionObjects[1].type).toBe(constants.UPDATE_CARD_ERROR);
+            expect(returnedActionObjects[1].payload.error).toBe('my error');
         });
 
         it('persistCardDrag', () => {
@@ -152,10 +152,10 @@ describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
                     ]}
                 }
             );
-            expect(returnedActionObjects.length).toEqual(2);
-            expect(returnedActionObjects[0].type).toEqual(constants.PERSIST_CARD_DRAG);
-            expect(returnedActionObjects[1].type).toEqual(constants.PERSIST_CARD_DRAG_ERROR);
-            expect(returnedActionObjects[1].payload.error).toEqual('my error');
+            expect(returnedActionObjects.length).toBe(2);
+            expect(returnedActionObjects[0].type).toBe(constants.PERSIST_CARD_DRAG);
+            expect(returnedActionObjects[1].type).toBe(constants.PERSIST_CARD_DRAG_ERROR);
+            expect(returnedActionObjects[1].payload.error).toBe('my error');
         });
     });
 
@@ -163,28 +163,28 @@ describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
         //Note: these do not use the KanbanApi so we can use the actual module
         it('updateCardStatus', () => {
             var result = CardActionCreatorsActual.updateCardStatus(1, 2);
-            expect(result.type).toEqual(constants.UPDATE_CARD_STATUS);
-            expect(result.payload.cardId).toEqual(1);
-            expect(result.payload.listId).toEqual(2);
-            expect(result.meta.throttle).toEqual(true);     //this causes the action to be throttled by Redux middleware
+            expect(result.type).toBe(constants.UPDATE_CARD_STATUS);
+            expect(result.payload.cardId).toBe(1);
+            expect(result.payload.listId).toBe(2);
+            expect(result.meta.throttle).toBe(true);     //this causes the action to be throttled by Redux middleware
         });
         it('updateCardStatus', () => {
             var result = CardActionCreatorsActual.updateCardPosition(1, 2);
-            expect(result.type).toEqual(constants.UPDATE_CARD_POSITION);
-            expect(result.payload.cardId).toEqual(1);
-            expect(result.payload.afterId).toEqual(2);
-            expect(result.meta.throttle).toEqual(true);     //this causes the action to be throttled by Redux middleware
+            expect(result.type).toBe(constants.UPDATE_CARD_POSITION);
+            expect(result.payload.cardId).toBe(1);
+            expect(result.payload.afterId).toBe(2);
+            expect(result.meta.throttle).toBe(true);     //this causes the action to be throttled by Redux middleware
         });
         it('createDraft', () => {
             var result = CardActionCreatorsActual.createDraft('draft card');
-            expect(result.type).toEqual(constants.CREATE_DRAFT);
-            expect(result.payload.card).toEqual('draft card');
+            expect(result.type).toBe(constants.CREATE_DRAFT);
+            expect(result.payload.card).toBe('draft card');
         });
         it('updateDraft', () => {
             var result = CardActionCreatorsActual.updateDraft('field1', 'new content');
-            expect(result.type).toEqual(constants.UPDATE_DRAFT);
-            expect(result.payload.field).toEqual('field1');
-            expect(result.payload.value).toEqual('new content');
+            expect(result.type).toBe(constants.UPDATE_DRAFT);
+            expect(result.payload.field).toBe('field1');
+            expect(result.payload.value).toBe('new content');
         });
     });
 }); 
