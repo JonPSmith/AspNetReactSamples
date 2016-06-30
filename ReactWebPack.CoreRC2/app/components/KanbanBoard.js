@@ -4,7 +4,7 @@ import HTML5Backend from 'react-dnd-html5-backend';
 import { Link } from 'react-router';
 import List from './List';
 
-class KanbanBoard extends Component {
+export class KanbanBoard extends Component {
   render(){
     return (
       <div className="app">
