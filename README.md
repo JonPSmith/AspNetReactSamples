@@ -44,8 +44,8 @@ libraries.
 
 *NOTE: Due to existing links I am leaving the 
 [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
-project at ASP.NET core, version RC2. However I have built a similar React.js application using the existing setup,
-i.e. `package.json` and `webpack.config.js` and, as I suspected, it works just the same.* 
+project at ASP.NET core 1.0.0-rc2-final. However I have built a similar React.js application using the existing setup,
+i.e. `package.json` and `webpack.config.js` and, rest assured, it works just the same.* 
 
 
 ## How to try the examples
@@ -206,7 +206,7 @@ and the [Shared/_ReactLayout.cshtml](https://github.com/JonPSmith/AspNetReactSam
 and the [Shared/_ReactLayout.cshtml](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.MVC5/Views/Shared/_ReactLayout.cshtml) files.
 
 
-### NOTE: Making the application ready for production
+## NOTE: Making the application ready for production
 
 While the React build process have totally valid development and production
 paths I haven't handled all the ASP.NET side of production/deployment. 
