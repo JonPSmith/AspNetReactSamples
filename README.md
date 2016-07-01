@@ -42,6 +42,11 @@ is a ASP.NET MVC5 version using the [Flux](https://facebook.github.io/flux/docs/
 A separate project containing a setup for running Unit Tests on React components and
 libraries. 
 
+*NOTE: Due to existing links I am leaving the 
+[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
+project at ASP.NET core, version RC2. However I have built a similar React.js application using the existing setup,
+i.e. `package.json` and `webpack.config.js` and, as I suspected, it works just the same.* 
+
 
 ## How to try the examples
 
@@ -151,6 +156,54 @@ See the article [Templates for building React front-ends in ASP.NET Core and MVC
 for more information on Unit Testing and the newer article
 [Adding mocking to React.js Unit Tests](http://www.thereformedprogrammer.net/adding-mocking-to-react-js-unit-tests/) 
 about mocking modules to improve testing.
+
+## Using these templates to create your own React.js application
+
+If you want to create your own ASP.NET application that runs a React.js application then 
+it is fairly easy to copy a few files from these sample projects to add React.js 
+build and run capabilites.
+
+### 1. Using Webpack for building React.js applications
+
+The two projects, [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
+[ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5), contain four 
+key files. You should pick the files for the specific 
+
+1. **package.json: npm library files and scripts**
+The `package.json` file holds all the libraries that you need to a) build and b) run the React.js application.
+You need to decide what libraraies you want for your application, but the sample has a good starting point.
+The [ASP.NET Core `package.json`](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/package.json)
+and [ASP.NET MVC5 `package.json`](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.MVC5/package.json)
+are different, but only because they have different libraries. 
+  - The ASP.NET Core `package.json`contains the various React.js Redux libraries and the normal Gulp
+build automation tools that ASP.NET Core uses to productionise the JavaScript and CSS files.
+  - The ASP.NET MVC5 `package.json` contains the React.js Flux store instead of Redux, as this implements the older style
+of the Kanban application. By default MVC5 applciations do not included any Gulp or Grunt build automation tools in this.
+
+2. **webpack.config.js: the file that controls the build of the React.js application**
+This file controls how the React.js is transpiled and linked to form the two JavaScript files that contain
+the built React.js application. The ASP.NET Core version and the ASP.NET MVC5 version are very similar,
+which a few key differences which I will spell out below:  
+The [ASP.NET Core `*webpack.config.js`](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/webpack.config.js)
+contains the follow lines especially for ASP.NET Core:
+  - line 22: it refers to `wwwroot\js` directory, as that is where published files need to go.
+  - line 24: if in production mode the files are minified so we make the ending `....min.js`. That stops Gulp from 
+doing any more concatenating/minification on the files.  
+The [ASP.NET MVC5 `*webpack.config.js`](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.MVC5/webpack.config.js)
+contains the follow lines especially for ASP.NET MVC:
+  - line 22: it puts the published files in the /js directory.
+  - I don't add `...min.js` to the end of production produced files. It made it easier for testing, but you might want to do that.  
+BOTH files look for the top level React.js file in the file `/app/App.js` (see line 18 in both files).
+If you want to move/change the name of your top level React.js file then you need to adit this.
+
+3. **The razor Index.cshtml and Layout .cshtml files**
+To get the React.js application shown then you need to put it in MVC Views file,
+with an appropriate layout file to load any associated libraries. The way you do this has changed 
+between the ASP.NET MVC5 release and the newer ASP.NET Core release.
+  - For the ASP.NET Core version look at [Home/Index.cshmtl](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/Views/Home/Index.cshtml)
+and the [Shared/_ReactLayout.cshtml](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/Views/Shared/_ReactLayout.cshtml) files.
+  - For the ASP.NER MVC5 version look at [Home/Index.cshmtl](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.MVC5/Views/Home/Index.cshtml)
+and the [Shared/_ReactLayout.cshtml](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.MVC5/Views/Shared/_ReactLayout.cshtml) files.
 
 
 ### NOTE: Making the application ready for production
