@@ -21,7 +21,6 @@ The conclusions from this work are:
 - However if the component calls another component that uses the Redux connect function then:
   1. You HAVE to supply a store via the Redux <Provider> class.
   2. Enzyme's mount (i.e. fully rendered) test approach is then the best way to test it.
-  3. Don't use React's react-addons-test-utils library - it isn't very useful, or fails.
 ****************************************************************************************/
 describe('localSrc/InnerConnect and OuterConnect (example of testing nested, decorated components)', () => {
     describe('enzyme', () => {
