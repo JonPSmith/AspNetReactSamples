@@ -14,7 +14,16 @@ import InnerConnectConnected, {InnerConnect} from '../../localSrc/InnerConnect';
 import OuterConnect from '../../localSrc/OuterConnect';
 import OuterWithInnerConnect from '../../localSrc/OuterWithInnerConnect';
 
-describe('localSrc/InnerConnect and OuterConnect', () => {
+/*************************************************************************************
+These tests provide an example of testing nested React components that use Redux via its connect function
+The conclusions from this work are:
+- Export the React component class (without the connect) so you can test it in isolation
+- However if the component calls another component that uses the Redux connect function then:
+  1. You HAVE to supply a store via the Redux <Provider> class.
+  2. Enzyme's mount (i.e. fully rendered) test approach is then the best way to test it.
+  3. Don't use React's react-addons-test-utils library - it isn't very useful, or fails.
+****************************************************************************************/
+describe('localSrc/InnerConnect and OuterConnect (example of testing nested, decorated components)', () => {
     describe('enzyme', () => {
         describe('shallow', () => {
             it('InnerConnect, no connect', () => {
@@ -46,7 +55,7 @@ describe('localSrc/InnerConnect and OuterConnect', () => {
                 expect(wrapper.find('h2').length).toBe(1);
                 expect(wrapper.find('h2').text()).toBe('Inner.dispatch defined');
             });
-            it('OuterConnect, with connect', () => {
+            it('OuterConnect plus InnerConnect, with connect', () => {
                 const mockStore = configureStore([]);
                 const store = mockStore({});
                 const wrapper = mount(<Provider store={store}>
@@ -75,7 +84,7 @@ describe('localSrc/InnerConnect and OuterConnect', () => {
 
     //The react-addons-test-utils shallow tests are not very useful (and some fail!)
     //I have left them in so you know what happens
-    describe.skip('react-addons-test-utils', () => {
+    describe.skip('react-addons-test-utils (not very useful, or fail)', () => {
         describe('shallow', () => {
             //Thsi runs fine as we are testing an undecorated react class
             it('InnerConnect, no connect', () => {
