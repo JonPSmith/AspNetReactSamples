@@ -219,3 +219,5 @@ in ReactWebPack.CoreRC2, but not in ReactWebPack.MVC5.
 - The ASP.NET Core Gulp command `min:js` in ReactWebPack.CoreRC2
 must ignore the `vendor.js` and `main.js` development files. 
 I haven't done that so the Gulp `min:js` command produces an incorrect file.
+Either delete the development files as part of the production stage or 
+get Gulp to ignore those two files.

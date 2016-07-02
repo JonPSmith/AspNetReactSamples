@@ -46,6 +46,8 @@
     <Content Include="karma.conf.js" />
     <Content Include="localSrc\CheckboxWithLabel.js" />
     <Content Include="localSrc\Decoded CheckboxWithLabel.js" />
+    <Content Include="localSrc\OuterWithInnerConnect.js" />
+    <Content Include="localSrc\OuterConnect.js" />
     <Content Include="localSrc\InnerFunction.js" />
     <Content Include="localSrc\InnerValue.js" />
     <Content Include="localSrc\OuterFunction.js" />
@@ -54,19 +56,21 @@
     <Content Include="server.js" />
     <Content Include="tests.webpack.js" />
     <Content Include="Tests\actions\CardActionCreators.test.js" />
+    <Content Include="Tests\components\KanbanBoard.test.js" />
     <Content Include="Tests\components\List.test.js" />
     <Content Include="Tests\kanbanUtils\ReduxDispatcher.test.js" />
     <Content Include="Tests\localTests\CheckboxWithLabel.test.js" />
+    <Content Include="Tests\localTests\ConnectedClasses.test.js" />
     <Content Include="Tests\localTests\karam-setup.test.js" />
     <Content Include="Tests\localTests\TestMocking.test.js" />
     <Content Include="Tests\reducers\CardReducer.test.js" />
+    <Content Include="localSrc\InnerConnect.js" />
+    <Content Include="TestUtils\CardCreators.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="package.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ExampleReact\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
