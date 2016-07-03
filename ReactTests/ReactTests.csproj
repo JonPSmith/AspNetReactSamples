@@ -46,7 +46,6 @@
     <Content Include="karma.conf.js" />
     <Content Include="localSrc\CheckboxWithLabel.js" />
     <Content Include="localSrc\Decoded CheckboxWithLabel.js" />
-    <Content Include="localSrc\OuterWithInnerConnect.js" />
     <Content Include="localSrc\OuterConnect.js" />
     <Content Include="localSrc\InnerFunction.js" />
     <Content Include="localSrc\InnerValue.js" />

@@ -76,5 +76,7 @@ describe('ReactWebPack.CoreRC2/app/reducers/cardReducer', () => {
         expect(cards).toEqual([card1, {id : 200, title : 'Card2'}]);
     });
 
-    //... I could write more but you get the idea. This is only an example after all!
+    it('... more tests of a similar style', () => {
+        //... I could write more but you get the idea. This is only an example after all!
+    })
 }); 
