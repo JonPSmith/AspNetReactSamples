@@ -11,7 +11,7 @@ import configureStore from 'redux-mock-store';
 import { Provider } from 'react-redux';
 
 import InnerConnectConnected, {InnerConnect} from '../../localSrc/InnerConnect';
-import OuterConnect from '../../localSrc/OuterConnect';
+import OuterConnectConnected, {OuterConnect} from '../../localSrc/OuterConnect';
 
 /*************************************************************************************
 These tests provide an example of testing nested React components that use Redux via its connect function
@@ -26,7 +26,8 @@ describe('localSrc/InnerConnect and OuterConnect (example of testing nested, dec
         describe('shallow', () => {
             it('InnerConnect, no connect', () => {
                 const wrapper = shallow(<InnerConnect />);
-                expect(wrapper.debug()).toBe('<h2>\nInner.dispatch \nundefined\n</h2>');
+                expect(wrapper.find('h2').length).toBe(1);
+                expect(wrapper.find('h2').text()).toBe('Inner.dispatch undefined');
             });
             it('InnerConnect, with connect', () => {
                 const mockStore = configureStore([]);
@@ -34,8 +35,17 @@ describe('localSrc/InnerConnect and OuterConnect (example of testing nested, dec
                 const wrapper = shallow(<Provider store={store}>
                 	<InnerConnectConnected />
                 </Provider>);
-                expect(wrapper.debug()).toBe('<Connect(InnerConnect) />');
+                expect(wrapper.text()).toBe('<Connect(InnerConnect) />');
             });
+            it('OuterConnect, with connect', () => {
+                const mockStore = configureStore([]);
+                const store = mockStore({});
+                const wrapper = shallow(<Provider store={store}>
+                    <OuterConnect />
+                </Provider>);
+                debugger;
+                expect(wrapper.text()).toBe('<OuterConnect />');
+            }); 
         });
         describe('mount', () => {
             it('InnerConnect, no connect', () => {
@@ -43,7 +53,7 @@ describe('localSrc/InnerConnect and OuterConnect (example of testing nested, dec
                 expect(wrapper.find('h2').length).toBe(1);
                 expect(wrapper.find('h2').text()).toBe('Inner.dispatch undefined');
             });
-            it('InnerConnect, with connect', () => {
+            it('InnerConnectConnected, with connect', () => {
                 const mockStore = configureStore([]);
                 const store = mockStore({});
                 const wrapper = mount(<Provider store={store}>
@@ -53,11 +63,11 @@ describe('localSrc/InnerConnect and OuterConnect (example of testing nested, dec
                 expect(wrapper.find('h2').length).toBe(1);
                 expect(wrapper.find('h2').text()).toBe('Inner.dispatch defined');
             });
-            it('OuterConnect, with connect', () => {
+            it('OuterConnectConnected, with connect', () => {
                 const mockStore = configureStore([]);
                 const store = mockStore({});
                 const wrapper = mount(<Provider store={store}>
-                    <OuterConnect />
+                    <OuterConnectConnected />
                 </Provider>);
                 expect(wrapper.find('h1').length).toBe(1);
                 expect(wrapper.find('h1').text()).toBe('Outer.dispatch defined');
@@ -83,7 +93,7 @@ describe('localSrc/InnerConnect and OuterConnect (example of testing nested, dec
             //ERROR: 'Warning: Failed propType: Invalid prop `children` supplied to `Provider`, expected a single ReactElement.'
             //... and then fails with error below:
             //Invariant Violation: onlyChild must be passed a children with exactly one child
-            it.skip('InnerConnect, with connect', () => {
+            it.skip('InnerConnectConnected, with connect', () => {
                 const mockStore = configureStore([]);
                 const store = mockStore({});
                 let renderer = ReactTestUtils.createRenderer();
@@ -93,13 +103,13 @@ describe('localSrc/InnerConnect and OuterConnect (example of testing nested, dec
                 expect(result.props.children).toEqual(['Inner.dispatch ', 'defined']);
             });
             //this test runs fine, but it doesn't produce any useful output.
-            it('OuterConnect, with connect',
+            it('OuterConnectConnected, with connect',
             () => {
                 const mockStore = configureStore([]);
                 const store = mockStore({});
                 let renderer = ReactTestUtils.createRenderer();
-                renderer.render(<Provider store={store}>
-                    <OuterConnect />
+                renderer.render(<Provider store={store}> 
+                    <OuterConnectConnected />
                 </Provider>);
                 const result = renderer.getRenderOutput();
                 //it picks up the connect function

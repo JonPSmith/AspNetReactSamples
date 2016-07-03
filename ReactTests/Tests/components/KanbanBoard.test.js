@@ -1,50 +1,49 @@
 ﻿import React, {Component} from 'react';
-import sd from 'skin-deep'
 
 import expect from 'expect';
-import {shallow, mount} from 'enzyme'; 
+import {shallow, mount} from 'enzyme';
 import {createCards} from '../../TestUtils/CardCreators'
 
 //These are used to pass a mock store down through nested components
 import configureStore from 'redux-mock-store';
-//import { createStore } from 'redux';
 import { Provider, connect} from 'react-redux';
 
-import KanbanBoardActual, {KanbanBoard} from '../../../ReactWebPack.CoreRC2/app/components/KanbanBoard';
+import KanbanBoardConnected, {KanbanBoard} from '../../../ReactWebPack.CoreRC2/app/components/KanbanBoard';
 
-describe.skip('ReactWebPack.CoreRC2/app/components/KanbanBoard', () => {
-    describe('skin-deep shallow render', () => {
-        it('forms correct html',
-        () => {
+describe('ReactWebPack.CoreRC2/app/components/KanbanBoard', () => {
+    describe('shallow render', () => {
+        it('forms correct html', () => {
             // Stub the React DnD connector functions with an identity function
-            const identity = function(el) { return el; };
+            const identity = function (el) { return el; };
 
             //create mocked Redux store
             const mockStore = configureStore([]);
             const store = mockStore({});
-            //const store = createStore( (state, action) => {state})
-            const tree = sd.shallowRender(
+            const wrapper = shallow(
                 <Provider store={store}>
-                    <KanbanBoardActual
-                    cards= {createCards(1)}    //only show one card
-                    connectDropTarget={identity}/>
+                    <KanbanBoard
+                        cards= {createCards(1) }    //only show one card
+                        connectDropTarget={identity}/>
                 </Provider>);
-            //const subTree = tree.subTree('div');
-            //debugger;
-            //expect(subTree.text()).toEqual('<div class="list"><h1>To Do</h1></div>');
+            debugger;
+            expect(wrapper.text()).toBe('<KanbanBoard />');
         });
     });
 
     describe('enzyme mount render', () => {
-        it('forms correct html',
-        () => {
+        it('forms correct html', () => {
             // Stub the React DnD connector functions with an identity function
-            const identity = function(el) { return el; };
+            const identity = function (el) { return el; };
 
+            //create mocked Redux store
+            const mockStore = configureStore([]);
+            const store = mockStore({});
             const wrapper = mount(
-                <KanbanBoard
-                    cards= {createCards(1)}    //only show one card
-                    connectDropTarget={identity}/>);
+                <Provider store={store}>
+                    <KanbanBoardConnected
+                        cards= {createCards(1) }    //only show one card
+                        connectDropTarget={identity}/>
+                </Provider>);
             debugger;
             //console.log(wrapper.debug());
             expect(wrapper.html()).toEqual('<div class="list"><h1>To Do</h1></div>');
