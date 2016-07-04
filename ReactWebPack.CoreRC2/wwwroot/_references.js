@@ -28,6 +28,7 @@
 /// <reference path="../jsunittests/localsrc/OuterFunction.js" />
 /// <reference path="../jsunittests/mocksetc/MockInnerFunction.js" />
 /// <reference path="../jsunittests/mocksetc/MockPromise.js" />
+/// <reference path="../jsunittests/mocksetc/wraptestdnd.js" />
 /// <reference path="../jsunittests/tests/actions/CardActionCreators.test.js" />
 /// <reference path="../jsunittests/tests/components/KanbanBoard.test.js" />
 /// <reference path="../jsunittests/tests/components/List.test.js" />
