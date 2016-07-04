@@ -10,9 +10,10 @@ import { Provider, connect} from 'react-redux';
 
 import KanbanBoardConnected, {KanbanBoard} from '../../../app/components/KanbanBoard';
 
-describe.only('app/components/KanbanBoard', () => {
+describe('app/components/KanbanBoard', () => {
     describe('shallow render', () => {
-        it('forms correct html', () => {
+        //This tests the inner class, i.e. without the connected
+        it('class is created OK', () => {         
             // Stub the React DnD connector functions with an identity function
             const identity = function (el) { return el; };
 
@@ -27,10 +28,26 @@ describe.only('app/components/KanbanBoard', () => {
                 </Provider>);
             expect(wrapper.text()).toBe('<KanbanBoard />');
         });
+        //This tests the default export, i.e. class with Redux connect
+        it('connected class is created OK', () => {         
+            // Stub the React DnD connector functions with an identity function
+            const identity = function (el) { return el; };
+
+            //create mocked Redux store
+            const mockStore = configureStore([]);
+            const store = mockStore({});
+            const wrapper = shallow(
+                <Provider store={store}>
+                    <KanbanBoardConnected
+                        cards= {createCards(1) }    //only show one card
+                        connectDropTarget={identity}/>
+                </Provider>); 
+            expect(wrapper.text()).toBe('<DragDropContext(KanbanBoard) />');
+        });
     });
 
-    describe('enzyme mount render', () => {
-        it('forms correct html', () => {
+    describe('mount render', () => {
+        it('forms three columns and Done col has one card', () => {
             // Stub the React DnD connector functions with an identity function
             const identity = function (el) { return el; };
 
