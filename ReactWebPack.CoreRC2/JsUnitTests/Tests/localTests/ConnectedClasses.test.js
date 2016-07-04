@@ -28,7 +28,7 @@ describe('localSrc/InnerConnect and OuterConnect (example of testing nested, dec
                 expect(wrapper.find('h2').length).toBe(1);
                 expect(wrapper.find('h2').text()).toBe('Inner.dispatch undefined');
             });
-            it('InnerConnect, with connect', () => {
+            it('InnerConnectConnected, with connect', () => {
                 const mockStore = configureStore([]);
                 const store = mockStore({});
                 const wrapper = shallow(<Provider store={store}>
