@@ -97,7 +97,6 @@ in aspnet/Tooling.*
 #### 3. Running the React Build/Test commands
 
 These sections apply to:
-- [ReactTests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests)
 - [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 - [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)
 
@@ -122,7 +121,7 @@ to help the VSCode npm Scripts extension work with all of the projects. The proc
 1. Make sure you have VSCode setup properly - see [1. How to setup](https://github.com/JonPSmith/AspNetReactSamples#1-make-sure-your-computer-is-set-up-properly).
 2. Open the outer directory of the samples, e.g. AspNetReactSamples, with VSCodes `Open Folder` command.
 3. Type `F1` key, then `npm` and select `npm: Run Script` (shortcut: cntrl-R shift-R)
-4. You are then presented with scripts from all three apps: `ReactTests`, `ReactWebPack.CoreRC2` and `ReactWebPack.MVC5`.
+4. You are then presented with scripts from all two apps: `ReactWebPack.CoreRC2` and `ReactWebPack.MVC5`.
 Pick the one you want, e.g. `ReactWebPack.CoreRC2: dev-build`.  
 *NOTE: commands with `watch` in them stay running and will rebuild the files and 
 re-run the command if a *.js file is saved. Very useful when debugging/developing.*  
