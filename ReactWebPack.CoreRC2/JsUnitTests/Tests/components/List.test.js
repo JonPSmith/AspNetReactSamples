@@ -5,7 +5,7 @@ import {shallow} from 'enzyme';
 
 import List from '../../../app/components/List';
 
-describe('ReactWebPack.CoreRC2/app/components/List', () => {
+describe('app/components/List', () => {
     describe('shallow render', () => {
         it('forms correct html',
         () => {

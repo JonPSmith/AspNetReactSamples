@@ -4,7 +4,7 @@ import MockPromise from '../../mocks/MockPromise';
 import constants from '../../../app/constants';
 import CardActionCreatorsActual from '../../../app/actions/CardActionCreators';
 
-describe('ReactWebPack.CoreRC2/app/actions/CardActionCreators', () => {
+describe('app/actions/CardActionCreators', () => {
     describe('async methods: success path', () => {
         const mockKanbanAPISuccess = {
             fetchCards() {

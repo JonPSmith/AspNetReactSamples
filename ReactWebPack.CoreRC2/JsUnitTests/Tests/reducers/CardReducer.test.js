@@ -3,7 +3,7 @@
 import constants from '../../../app/constants';
 import cardReducer from '../../../app/reducers/cardReducer';
 
-describe('ReactWebPack.CoreRC2/app/reducers/cardReducer', () => {
+describe('app/reducers/cardReducer', () => {
     function createDummyCard(id) {
         if (id === undefined){
             throw new Error('You forgot to define the dummy card id')
