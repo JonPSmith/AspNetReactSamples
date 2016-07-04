@@ -39,7 +39,6 @@
 /// <reference path="../jsunittests/tests/reducers/CardReducer.test.js" />
 /// <reference path="../jsunittests/testutils/CardCreators.js" />
 /// <reference path="../karma.conf.js" />
-/// <reference path="../server.js" />
 /// <reference path="../tests.webpack.js" />
 /// <reference path="../webpack.config.js" />
 /// <reference path="js/main.js" />
