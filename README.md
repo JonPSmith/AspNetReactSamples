@@ -37,10 +37,14 @@ the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](
   - **[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)** 
 is an ASP.NET Core (RC2) MVC version using [Redux](http://redux.js.org/) store.
   - **[ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)** 
-is a ASP.NET MVC5 version using the [Flux](https://facebook.github.io/flux/docs/overview.html) store.
-3. **[ReactTests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests)**:
+is a ASP.NET MVC5 version using the [Flux](https://facebook.github.io/flux/docs/overview.html) store.  
+*Note: This now contains the Unit Tests.*
+3. ~~**[ReactTests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests)**:
 A separate project containing a setup for running Unit Tests on React components and
-libraries. 
+libraries.~~
+*This was removed because having a separate project causes a problem of having 
+[multiple copies of React](https://fb.me/react-refs-must-have-owner). Now found as part of 
+[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2).*
 
 *NOTE: Due to existing links I am leaving the 
 [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
@@ -76,7 +80,6 @@ extension through Tools -> Extensions and Updates -> Online -> search for NPM Ta
 
 You should set the specific project you want to try as the startup application.
 Simply right-click the project and select `Set as Startup Project`.  
-*NOTE: No need to do that on the ReactTests application. That can't be run in that way anyway.*
 
 If you want to run any of the MVC versions to see how it works 'out-of-the-box' then press F5 (Start Debugging).
 
@@ -108,10 +111,9 @@ you are interested in. Then click `Restore Packages` at the top of the context m
 
 *Note: If you restore all the packages and compile all the projects the solution takes up a LOT of disk space.*
 
-
 ##### 3a. React Build/Test with VSCode
 
-VSCode  is a great way to handle the React code because it understands JSX and ES6 syntax. 
+VSCode is a great way to handle the React code because it understands JSX and ES6 syntax. 
 Its also very lightweight, i.e. it has a small memory footprint and is fast. 
 Because the AspNetReactSamples solution has multiple package.json files  I have added some 
 [user setting](https://github.com/JonPSmith/AspNetReactSamples/blob/master/.vscode/settings.json) 
@@ -150,8 +152,21 @@ it is enabled via Tools->Extensions and Updates->Installed and search for NPM.*
 
 ##### 4c. Notes about the Unit Tests
 
-I have only written a few [Unit Tests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactTests/Tests)
-just to prove that my Test configuration/commands works.
+I have now written quite a few Unit Tests and the way I set this up has changed. It used to be in a separate project,
+but that caused a problem of [multiple copies of React](https://fb.me/react-refs-must-have-owner).
+The Unit Tests are therefore now part of [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2).
+
+The key configuration files for Unit Testing are:
+1. [karam.config.js](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/karma.conf.js)
+which holds all the info for the Karam test runner.
+2. [tests.webpack.js](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/tests.webpack.js) 
+which finds the unit tests to run.
+3. [package.json](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/package.json)
+which holds all the libraries needed for Unit Testing, and the scripts to run the unit tests.
+
+The Unit Tests, which include some tests I created to check out certain things like Mocking, call all be found
+in the directory [JsUnitTests/Tests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2/JsUnitTests/Tests).
+
 See the article [Templates for building React front-ends in ASP.NET Core and MVC5](http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/)
 for more information on Unit Testing and the newer article
 [Adding mocking to React.js Unit Tests](http://www.thereformedprogrammer.net/adding-mocking-to-react-js-unit-tests/) 
@@ -204,6 +219,12 @@ between the ASP.NET MVC5 release and the newer ASP.NET Core release.
 and the [Shared/_ReactLayout.cshtml](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/Views/Shared/_ReactLayout.cshtml) files.
   - For the ASP.NER MVC5 version look at [Home/Index.cshmtl](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.MVC5/Views/Home/Index.cshtml)
 and the [Shared/_ReactLayout.cshtml](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.MVC5/Views/Shared/_ReactLayout.cshtml) files.
+
+4. **Unit Tests**
+If you want to create Unit tests (of course you do!) then you need to add the unit test
+configuration files, the npm test libraries & scripts and write the Unit Tests themselves. Have a look at the section 
+[4c. Notes about the Unit Tests](https://github.com/JonPSmith/AspNetReactSamples#4c-notes-about-the-unit-tests) 
+for more on this.
 
 
 ## NOTE: Making the application ready for production
