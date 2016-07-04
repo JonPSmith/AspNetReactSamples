@@ -156,15 +156,16 @@ but that caused a problem of [multiple copies of React](https://fb.me/react-refs
 The Unit Tests are therefore now part of [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2).
 
 The key configuration files for Unit Testing are:
+
 1. [karam.config.js](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/karma.conf.js)
-which holds all the info for the Karam test runner.
+which holds all the info for the [Karam test runner](https://karma-runner.github.io/1.0/index.html).
 2. [tests.webpack.js](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/tests.webpack.js) 
 which finds the unit tests to run.
 3. [package.json](https://github.com/JonPSmith/AspNetReactSamples/blob/master/ReactWebPack.CoreRC2/package.json)
 which holds all the libraries needed for Unit Testing, and the scripts to run the unit tests.
 
-The Unit Tests, which include some tests I created to check out certain things like Mocking, call all be found
-in the directory [JsUnitTests/Tests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2/JsUnitTests/Tests).
+The Unit Tests can be found in the directory 
+[JsUnitTests/Tests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2/JsUnitTests/Tests).
 
 See the article [Templates for building React front-ends in ASP.NET Core and MVC5](http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/)
 for more information on Unit Testing and the newer article
