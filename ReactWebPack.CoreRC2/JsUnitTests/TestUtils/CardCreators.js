@@ -1,4 +1,4 @@
-﻿export function createCard(id = 1, status='done', tasks = []){
+﻿export function createCard(id = 0, status='done', tasks = []){
     return {
         id,
         title: `Card${id} title`,
