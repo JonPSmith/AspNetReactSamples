@@ -27,6 +27,7 @@ describe('app/components/KanbanBoard', () => {
                         connectDropTarget={identity}/>
                 </Provider>);
             expect(wrapper.text()).toBe('<KanbanBoard />');
+            //Could check props here...
         });
         //This tests the default export, i.e. class with Redux connect
         it('connected class is created OK', () => {         
@@ -43,6 +44,7 @@ describe('app/components/KanbanBoard', () => {
                         connectDropTarget={identity}/>
                 </Provider>); 
             expect(wrapper.text()).toBe('<DragDropContext(KanbanBoard) />');
+            //Could check props here...
         });
     });
 
