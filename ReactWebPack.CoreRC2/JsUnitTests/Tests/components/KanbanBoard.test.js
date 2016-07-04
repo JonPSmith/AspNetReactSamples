@@ -10,7 +10,7 @@ import { Provider, connect} from 'react-redux';
 
 import KanbanBoardConnected, {KanbanBoard} from '../../../app/components/KanbanBoard';
 
-describe('ReactWebPack.CoreRC2/app/components/KanbanBoard', () => {
+describe.only('app/components/KanbanBoard', () => {
     describe('shallow render', () => {
         it('forms correct html', () => {
             // Stub the React DnD connector functions with an identity function
@@ -25,7 +25,6 @@ describe('ReactWebPack.CoreRC2/app/components/KanbanBoard', () => {
                         cards= {createCards(1) }    //only show one card
                         connectDropTarget={identity}/>
                 </Provider>);
-            debugger;
             expect(wrapper.text()).toBe('<KanbanBoard />');
         });
     });
@@ -44,9 +43,21 @@ describe('ReactWebPack.CoreRC2/app/components/KanbanBoard', () => {
                         cards= {createCards(1) }    //only show one card
                         connectDropTarget={identity}/>
                 </Provider>);
-            debugger;
             //console.log(wrapper.debug());
-            expect(wrapper.html()).toEqual('<div class="list"><h1>To Do</h1></div>');
+
+            //Check we have the three columns
+            const h1Parts = wrapper.find('div .list');
+            expect(h1Parts.length).toBe(3);
+            //Now check that we only have one card and its in the 'done' column
+            expect(h1Parts.nodes[0].children.length).toBe(1);
+            expect(h1Parts.nodes[0].children[0].textContent).toBe('To Do');
+            expect(h1Parts.nodes[1].children.length).toBe(1);
+            expect(h1Parts.nodes[1].children[0].textContent).toBe('In Progress');
+            expect(h1Parts.nodes[2].children.length).toBe(2);
+            expect(h1Parts.nodes[2].children[0].textContent).toBe('Done');
+            //now check that Done column has a single card
+            expect(h1Parts.nodes[2].children[1].classList.length).toBe(1);
+            expect(h1Parts.nodes[2].children[1].classList[0]).toBe('card');
         });
     });
 });
