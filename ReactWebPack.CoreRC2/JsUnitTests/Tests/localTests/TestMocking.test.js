@@ -1,7 +1,7 @@
 ﻿import expect from 'expect';
 
 import OuterFunction from '../../localSrc/OuterFunction';
-import innerMock from '../../mocks/MockInnerFunction'
+import innerMock from '../../mocksEtc/MockInnerFunction'
 
 describe('localSrc/OuterFunction (Test Mocking example)', function () {
 

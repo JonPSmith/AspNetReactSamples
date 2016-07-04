@@ -1,5 +1,5 @@
 ﻿import expect from 'expect';
-import MockPromise from '../../mocks/MockPromise';
+import MockPromise from '../../mocksEtc/MockPromise';
 
 import { dispatchAsync } from '../../../app/ReduxDispatcher';
 
