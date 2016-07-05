@@ -26,7 +26,7 @@ describe('app/components/List', () => {
         });
     });
     describe('mount render', () => {
-        it('one cards', () => {
+        it('one card', () => {
 
             // Stub the React DnD connector functions with an identity function
             const identity = function (el) { return el; };

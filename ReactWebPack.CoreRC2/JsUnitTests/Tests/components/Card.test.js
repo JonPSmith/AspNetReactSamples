@@ -56,11 +56,24 @@ describe('app/components/Card', () => {
             expect(wrapper.find('div .card__title').text()).toBe(card.title);
             expect(wrapper.find('div .card__details').text().trim()).toBe(card.description);
         });
-        it('simulate close card', () => {
+        it('call close card event', () => {
             expect(store.getActions().length).toBe(0);
             wrapper.find('div .card__title').simulate('click')
             expect(store.getActions().length).toBe(1);
             expect(store.getActions()[0]).toEqual({ payload: { cardId: 0 }, type: 'toggle card details' });
         });
+        it('card with showDetails false', () => {
+            let card = createCard();
+            card.showDetails = false;
+            wrapper = mount(
+                <Provider store={store}>
+                    <CardConnectedWithDnD
+                        {...card}
+                        connectDropTarget={identity}/>
+                </Provider>);
+            expect(wrapper.find('div .card__title').text()).toBe(card.title);
+            expect(wrapper.find('div .card__details').length).toBe(0);
+        });
+
     });
 });

@@ -8,7 +8,7 @@ export class OuterConnect extends Component {
         return <div>
                 <h1>Outer.dispatch {this.props.dispatch === undefined ? 'undefined' : 'defined' }</h1>
                 <InnerConnect />
-            </div>;
+            </div>
     }
 }
 

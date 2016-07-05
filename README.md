@@ -11,7 +11,7 @@ application.
 The example projects are designed to be scalable up to a real-world, production-ready applications
 with full build, test, and deployment capabilities. 
 
-### UPDATE: Two new article are out now, with the code updated:
+### UPDATE: Three new article are out now, with the code updated:
 #### 1. [Using Redux in React.js app](http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/)
 This new article covers the changes made to the [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 Kanban application to use the [Redux](http://redux.js.org/) store instead of the
@@ -23,6 +23,9 @@ This is about improving the Unit Test to test some of the parts of the
 application, which requires the mocking of the async 
 [KanbanApi](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2/app/api)
 module and handling the JavaScript promises that it uses.
+
+#### 3. [Unit Testing React components that use Redux](http://www.thereformedprogrammer.net/unit-testing-react-components-that-use-redux/)
+This gives some guidance on how to test React components in a React application that uses Redux.
 
 ## What is included in this solution
 
