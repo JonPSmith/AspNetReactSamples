@@ -36,6 +36,7 @@
 /// <reference path="../jsunittests/tests/kanbanUtils/ReduxDispatcher.test.js" />
 /// <reference path="../jsunittests/tests/localTests/CheckboxWithLabel.test.js" />
 /// <reference path="../jsunittests/tests/localTests/ConnectedClasses.test.js" />
+/// <reference path="../jsunittests/tests/localtests/enzymesuimulate.test.js" />
 /// <reference path="../jsunittests/tests/localTests/karam-setup.test.js" />
 /// <reference path="../jsunittests/tests/localTests/TestMocking.test.js" />
 /// <reference path="../jsunittests/tests/reducers/CardReducer.test.js" />
