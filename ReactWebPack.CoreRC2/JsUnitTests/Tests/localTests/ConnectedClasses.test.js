@@ -1,4 +1,5 @@
 ﻿import React, {Component} from 'react';
+import ReactDOM from 'react-dom';
 
 import expect from 'expect';
 
@@ -20,7 +21,7 @@ The conclusions from this work are:
   1. You HAVE to supply a store via the Redux <Provider> class.
   2. Enzyme's mount (i.e. fully rendered) test approach is then the best way to test it.
 ****************************************************************************************/
-describe('localSrc/InnerConnect and OuterConnect (example of testing nested, decorated components)', () => {
+describe.only('localSrc/InnerConnect and OuterConnect (example of testing nested, decorated components)', () => {
     describe('enzyme', () => {
         describe('shallow', () => {
             it('InnerConnect, no connect', () => {
@@ -114,6 +115,38 @@ describe('localSrc/InnerConnect and OuterConnect (example of testing nested, dec
                 //it picks up the connect function
                 expect(typeof result.type).toBe('function');
                 //I didn't find anything else that was useful to check.
+            });
+        });
+        describe('renderIntoDocument', () => {
+            it('InnerConnect, no connect', () => {
+                const rendered = ReactTestUtils.renderIntoDocument(<InnerConnect />);
+                const node = ReactDOM.findDOMNode(rendered);
+                expect(node.tagName).toBe('H2');
+                expect(node.textContent).toEqual('Inner.dispatch undefined');
+            });
+            //The test below outputs the following error message:
+            //ERROR: 'Warning: Failed propType: Invalid prop `children` supplied to `Provider`, expected a single ReactElement.'
+            //... and then fails with error below:
+            //Invariant Violation: onlyChild must be passed a children with exactly one child
+            it.skip('InnerConnectConnected, with connect', () => {
+                const mockStore = configureStore([]);
+                const store = mockStore({});
+                const rendered = ReactTestUtils.renderIntoDocument(
+                    <Provider store={store}> <InnerConnectConnected /> </Provider>);
+                const node = ReactDOM.findDOMNode(rendered);
+                expect(node.tagName).toBe('H2');
+                expect(node.textContent).toEqual('Inner.dispatch defined');
+            });
+            //this test runs fine, but it doesn't produce any useful output.
+            it('OuterConnectConnected, with connect',
+            () => {
+                const mockStore = configureStore([]);
+                const store = mockStore({});
+                const rendered = ReactTestUtils.renderIntoDocument(
+                    <Provider store={store}> <OuterConnectConnected /> </Provider>);
+                const node = ReactDOM.findDOMNode(rendered);
+                expect(node.tagName).toBe('H2');
+                expect(node.textContent).toEqual('Inner.dispatch defined');
             });
         });
     });
