@@ -50,8 +50,8 @@ describe('app/components/Card', () => {
                         {...card}
                         connectDropTarget={identity}/>
                 </Provider>);
-            expect(wrapper.find('div.card .card__title').text()).toBe('Card0 title');
-            expect(wrapper.find('div.card .card__details').text().trim()).toBe('Card0 description');
+            expect(wrapper.find('div.card .card__title').text()).toBe(card.title);
+            expect(wrapper.find('div.card .card__details').text().trim()).toBe(card.description);
         });
     });
 });
