@@ -170,9 +170,11 @@ which holds all the libraries needed for Unit Testing, and the scripts to run th
 [JsUnitTests/Tests](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2/JsUnitTests/Tests).
 
 See the article [Templates for building React front-ends in ASP.NET Core and MVC5](http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/)
-for more information on Unit Testing and the newer article
-[Adding mocking to React.js Unit Tests](http://www.thereformedprogrammer.net/adding-mocking-to-react-js-unit-tests/) 
+for more information on Unit Testing and the newer articles:
+- [Adding mocking to React.js Unit Tests](http://www.thereformedprogrammer.net/adding-mocking-to-react-js-unit-tests/) 
 about mocking modules to improve testing.
+- [Unit Testing React components that use Redux](http://www.thereformedprogrammer.net/unit-testing-react-components-that-use-redux/)
+which talks testing React apps that use Redux.
 
 ## Using these templates to create your own React.js application
 
