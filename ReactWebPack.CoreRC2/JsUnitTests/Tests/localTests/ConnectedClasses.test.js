@@ -16,7 +16,8 @@ import OuterConnectConnected, {OuterConnect} from '../../localSrc/OuterConnect';
 /*************************************************************************************
 These tests provide an example of testing nested React components that use Redux via its connect function
 The conclusions from this work are:
-- Export the React component class (without the connect) so you can test it in isolation
+- Export the React component class (without the connect) so you can test it in isolation.
+  You can then shallow render without supplying the Redux store via the <Provider> class.
 - Enzyme's mount (i.e. fully rendered) test approach is then the best way to test it,
   but you HAVE to supply a store via the Redux <Provider> class if the nested components use Redux.
 ****************************************************************************************/
