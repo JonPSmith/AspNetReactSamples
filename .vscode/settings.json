@@ -3,7 +3,6 @@
     //Setting for https://github.com/Microsoft/vscode-npm-scripts
     "npm.runInTerminal": true,
     "npm.includeDirectories": [
-        "ReactTests",
         "ReactWebPack.MVC5",
         "ReactWebPack.CoreRC2"
     ],
