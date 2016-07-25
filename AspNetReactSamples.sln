@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ReactWebPack.CoreRC2", "ReactWebPack.CoreRC2\ReactWebPack.CoreRC2.xproj", "{A0569A67-F54B-4D02-9E17-59BB64A13EE6}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ReactWebPack.Core", "ReactWebPack.CoreRC2\ReactWebPack.Core.xproj", "{A0569A67-F54B-4D02-9E17-59BB64A13EE6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

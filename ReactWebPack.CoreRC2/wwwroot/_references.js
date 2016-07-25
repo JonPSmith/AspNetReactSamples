@@ -18,7 +18,6 @@
 /// <reference path="../app/reducers/index.js" />
 /// <reference path="../app/reduxdispatcher.js" />
 /// <reference path="../app/store/reduxStore.js" />
-/// <reference path="../gulpfile.js" />
 /// <reference path="../jsunittests/localsrc/CheckboxWithLabel.js" />
 /// <reference path="../jsunittests/localsrc/Decoded CheckboxWithLabel.js" />
 /// <reference path="../jsunittests/localsrc/InnerConnect.js" />

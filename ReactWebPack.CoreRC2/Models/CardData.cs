@@ -12,7 +12,7 @@
 
 using System.Collections.Generic;
 
-namespace ReactWebPack.CoreRC2.Models
+namespace ReactWebPack.Core.Models
 {
     
     public class CardData

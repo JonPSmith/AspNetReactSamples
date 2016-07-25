@@ -9,7 +9,7 @@
 // Written by Jon Smith : GitHub JonPSmith, www.thereformedprogrammer.net
 // =====================================================
 #endregion
-namespace ReactWebPack.CoreRC2.Models
+namespace ReactWebPack.Core.Models
 {
     public class TaskData
     {

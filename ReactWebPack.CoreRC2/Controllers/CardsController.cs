@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using ReactWebPack.CoreRC2.Models;
-using Microsoft.AspNetCore.Cors;
+using ReactWebPack.Core.Models;
 
-namespace ReactWebPack.CoreRC2.Controllers
+namespace ReactWebPack.Core.Controllers
 {
     [Route("api/[controller]")]
     public class CardsController : Controller
