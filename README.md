@@ -38,7 +38,8 @@ package to on-the-fly convert React JSX files to currently supported standards, 
 2. **ReactWebPack** This is a more complex React application which is built using 
 the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](http://babeljs.io/)
   - **[ReactWebPack.Core](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)** 
-is an ASP.NET Core (1.0.0) MVC version using [Redux](http://redux.js.org/) store.
+is an ASP.NET Core (1.1.1) MVC version using [Redux](http://redux.js.org/) store.  
+**NOTE: Has been updated to Visual Studio 2017 .NET Core format and ASP.NET 1.1.1**
   - **[ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)** 
 is a ASP.NET MVC5 version using the [Flux](https://facebook.github.io/flux/docs/overview.html) store.  
 *Note: This now contains the Unit Tests.*
@@ -59,11 +60,10 @@ If you clone/copy this GitHub Repository then you need to:
 
 #### 1. Make sure your computer is set up properly
 
-- I assume you are running Visual Studio 2015 (VS2015), which includes a version of Node.js just for VS2015.  
-*NOTE: You can use Visual Studio 2013 for the MVC5 versions, but you need VS2015 for the ASP.NET Core versions.*
+- I assume you are running Visual Studio ~~2015~~ **now 2017** (VS2017), which includes a version of Node.js just for VS2017.  
 - If you want to build the application that uses ASP.NET Core then you need to download and install
-**Visual Studio 2015 Update 3** and **.NET Core 1.0.0 - VS 2015 Tooling Preview 2** -
-See [The .NET Core Windows page](https://www.microsoft.com/net/core#windows) for the latest links.
+**Visual Studio 2017** and ensure you have included the *.NET Core cross-platform development*  -
+See [Visual Studio 2017](https://www.visualstudio.com/) for the latest links.
 
 - I recommend you use [Visual Studio Code](https://code.visualstudio.com/) (VSCode)
 to run the build/test React command scripts. You will need to:
@@ -89,11 +89,6 @@ If you want to run any of the MVC versions to see how it works 'out-of-the-box' 
 it will run with the last build I did on that project's React code. 
 [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5) 
 transpiles on the fly anyway, so will always be up to date.*
-
-*Note: In the ReactWebPack.Core project VS2015 shows the message `- not installed` 
-after the `Dependencies` folder and the `Dependencies\npm` folder. It seems this is a known issue:
-see issue [NPM optional package installation failure #479](https://github.com/aspnet/Tooling/issues/479)
-in aspnet/Tooling.*
 
 #### 3. Running the React Build/Test commands
 
@@ -239,6 +234,6 @@ Things that would need to be added:
 but I haven't done anything in the ReactWebPack.MVC5 project. 
 - I have changed the endings of the `vendor.js` and `main.js` to ...**min**.js
 in ReactWebPack.Core, but not in ReactWebPack.MVC5.
-- The ASP.NET Core project now uses the VS2015 
+- The ASP.NET Core project now uses the VS2017
 [bundle and minifier extension](https://visualstudiogallery.msdn.microsoft.com/9ec27da7-e24b-4d56-8064-fd7e88ac1c40)
 instead of Gulp. I have minified the CSS files using this extension so there should be no need to run it again.
