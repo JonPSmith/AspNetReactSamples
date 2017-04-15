@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReactWebPack.MVC5", "ReactWebPack.MVC5\ReactWebPack.MVC5.csproj", "{8140BA2D-5A78-4686-BB64-ED05326B916B}"
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ReactWebPack.Core", "ReactWebPack.CoreRC2\ReactWebPack.Core.xproj", "{A0569A67-F54B-4D02-9E17-59BB64A13EE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReactWebPack.CoreRC2", "ReactWebPack.CoreRC2\ReactWebPack.CoreRC2.csproj", "{42F11D42-8BEB-4EF2-B411-278CFC1D25AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{6EA00B4B-1A7D-43AE-955F-3C0519440017}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6EA00B4B-1A7D-43AE-955F-3C0519440017}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6EA00B4B-1A7D-43AE-955F-3C0519440017}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0569A67-F54B-4D02-9E17-59BB64A13EE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0569A67-F54B-4D02-9E17-59BB64A13EE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0569A67-F54B-4D02-9E17-59BB64A13EE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0569A67-F54B-4D02-9E17-59BB64A13EE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42F11D42-8BEB-4EF2-B411-278CFC1D25AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42F11D42-8BEB-4EF2-B411-278CFC1D25AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42F11D42-8BEB-4EF2-B411-278CFC1D25AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42F11D42-8BEB-4EF2-B411-278CFC1D25AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
