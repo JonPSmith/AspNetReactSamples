@@ -6,6 +6,8 @@ application.
 
 **Licence: MIT**
 
+## UPDATE: Now in Visual Studio 2017 format (.csproj)
+
 ### This solution is supported by the article [React Templates](http://www.thereformedprogrammer.net/templates-for-building-react-front-ends-in-asp-net-core-and-mvc5/) that goes through the examples in detail.
 
 The example projects are designed to be scalable up to a real-world, production-ready applications
@@ -37,9 +39,9 @@ package to on-the-fly convert React JSX files to currently supported standards, 
 *(Note: Also available for ASP.NET Core, see [this NuGet package](https://www.nuget.org/packages/React.AspNet/)).*
 2. **ReactWebPack** This is a more complex React application which is built using 
 the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](http://babeljs.io/)
-  - **[ReactWebPack.Core](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)** 
-is an ASP.NET Core (1.1.1) MVC version using [Redux](http://redux.js.org/) store.  
-**NOTE: Has been updated to Visual Studio 2017 .NET Core format and ASP.NET 1.1.1**
+  - **[ReactWebPack.CoreCR2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)** 
+is an ASP.NET Core MVC (1.0.3) version using [Redux](http://redux.js.org/) store. - Ignore the RC2 part in the name - I have updated it the 1.0.3  
+**NOTE: Has been updated to Visual Studio 2017 .NET Core format - with help from GitHub user @innerjoin**
   - **[ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)** 
 is a ASP.NET MVC5 version using the [Flux](https://facebook.github.io/flux/docs/overview.html) store.  
 *Note: This now contains the Unit Tests.*
