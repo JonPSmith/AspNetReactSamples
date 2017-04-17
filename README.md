@@ -15,13 +15,13 @@ with full build, test, and deployment capabilities.
 
 ### UPDATE: Three new article are out now, with the code updated:
 #### 1. [Using Redux in React.js app](http://www.thereformedprogrammer.net/using-a-redux-store-in-your-react-js-application/)
-This new article covers the changes made to the [ReactWebPack.Core](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
+This new article covers the changes made to the [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 Kanban application to use the [Redux](http://redux.js.org/) store instead of the
 [Flux](https://facebook.github.io/flux/docs/overview.html) store.
 
 #### 2. [Adding mocking to React.js Unit Tests](http://www.thereformedprogrammer.net/adding-mocking-to-react-js-unit-tests/)
 This is about improving the Unit Test to test some of the parts of the
-[ReactWebPack.Core](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
+[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 application, which requires the mocking of the async 
 [KanbanApi](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2/app/api)
 module and handling the JavaScript promises that it uses.
@@ -39,7 +39,7 @@ package to on-the-fly convert React JSX files to currently supported standards, 
 *(Note: Also available for ASP.NET Core, see [this NuGet package](https://www.nuget.org/packages/React.AspNet/)).*
 2. **ReactWebPack** This is a more complex React application which is built using 
 the [WebPack module bundler](https://webpack.github.io/) and [Babel Transpiler](http://babeljs.io/)
-  - **[ReactWebPack.CoreCR2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)** 
+  - **[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)** 
 is an ASP.NET Core MVC (1.0.3) version using [Redux](http://redux.js.org/) store. - Ignore the RC2 part in the name - I have updated it the 1.0.3  
 **NOTE: Has been updated to Visual Studio 2017 .NET Core format - with help from GitHub user @innerjoin**
   - **[ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)** 
@@ -50,7 +50,7 @@ A separate project containing a setup for running Unit Tests on React components
 libraries.~~
 *This was removed because having a separate project causes a problem of having 
 [multiple copies of React](https://fb.me/react-refs-must-have-owner). Now found as part of 
-[ReactWebPack.Core](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2).*
+[ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2).*
 
 *NOTE: The ReactWebPack.Core project used to be at Core version RC2, but has been updated to Core 1.0.0. 
 While I changed the namespace I haven't changed the folder names as it would mean updating every link
@@ -86,7 +86,7 @@ Simply right-click the project and select `Set as Startup Project`.
 
 If you want to run any of the MVC versions to see how it works 'out-of-the-box' then press F5 (Start Debugging).
 
-*Note: [ReactWebPack.Core](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
+*Note: [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
 [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5) 
 it will run with the last build I did on that project's React code. 
 [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5) 
@@ -95,7 +95,7 @@ transpiles on the fly anyway, so will always be up to date.*
 #### 3. Running the React Build/Test commands
 
 These sections apply to:
-- [ReactWebPack.Core](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
+- [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2)
 - [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5)
 
 *NOTE: [ReactJsNet.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactJsNet.MVC5)
@@ -151,7 +151,7 @@ it is enabled via Tools->Extensions and Updates->Installed and search for NPM.*
 
 I have now written quite a few Unit Tests and the way I set this up has changed. It used to be in a separate project,
 but that caused a problem of [multiple copies of React](https://fb.me/react-refs-must-have-owner).
-The Unit Tests are therefore now part of [ReactWebPack.Core](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2).
+The Unit Tests are therefore now part of [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2).
 
 The key files for Unit Testing are:
 
@@ -179,7 +179,7 @@ build and run capabilites.
 
 ### 1. Using Webpack for building React.js applications
 
-The two projects, [ReactWebPack.Core](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
+The two projects, [ReactWebPack.CoreRC2](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.CoreRC2) or
 [ReactWebPack.MVC5](https://github.com/JonPSmith/AspNetReactSamples/tree/master/ReactWebPack.MVC5), contain four 
 key files. You should pick the files for the specific 
 
